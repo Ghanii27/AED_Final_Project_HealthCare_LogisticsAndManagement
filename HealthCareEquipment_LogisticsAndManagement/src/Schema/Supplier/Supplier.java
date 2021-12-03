@@ -46,6 +46,4 @@ public class Supplier {
     public void setProduct(Product product) {
         this.product = product;
     }
-    
-    
 }
