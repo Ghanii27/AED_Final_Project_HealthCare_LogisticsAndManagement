@@ -4,10 +4,14 @@
  */
 package Schema.WorkQueue;
 
+import Schema.UserAccount.UserAccount;
+
 /**
  *
  * @author 16176
  */
+import java.util.Date;
+
 public class DoctorWorkRequest {
     private UserAccount sender;
     private UserAccount receiver;
