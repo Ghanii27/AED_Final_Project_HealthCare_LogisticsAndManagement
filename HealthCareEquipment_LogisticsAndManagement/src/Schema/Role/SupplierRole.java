@@ -14,7 +14,9 @@ import javax.swing.JPanel;
  *
  * @author ganes
  */
-public class SupplierRole {
+public class SupplierRole extends Role {
+
+  
     @Override
 public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business,Network network) {
 return new SupplierWorkAreaJPanel(userProcessContainer,business,account,organization);

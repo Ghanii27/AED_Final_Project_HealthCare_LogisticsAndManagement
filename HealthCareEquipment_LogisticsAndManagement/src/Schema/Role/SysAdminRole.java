@@ -14,7 +14,7 @@ import javax.swing.JPanel;
  *
  * @author ganes
  */
-public class SysAdminRole {
+public class SysAdminRole extends Role{
     @Override
 public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem system,Network network) {
 return new SystemAdminWorkAreaJPanel(userProcessContainer, system);
