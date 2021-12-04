@@ -6,17 +6,20 @@
 package Schema.Enterprise;
 import Schema.Role.Role;
 import java.util.ArrayList;
+
 /**
  *
  * @author krishna
  */
-public class HospitalEnterprise extends Enterprise{
-   public HospitalEnterprise(String name) {
-super(name, EnterpriseType.Hospital);
-}
-
-@Override
-public ArrayList<Role> getSupportedRole() {
-return null;
-}   
+public class SupplierEnterprise extends Enterprise {
+    
+    public SupplierEnterprise (String name){
+        super (name, Enterprise.EnterpriseType.Supplier);
+   
+    }
+    @Override
+    public ArrayList<Role> getSupportedRole(){
+        return null;
+    }
+    
 }
