@@ -93,7 +93,7 @@ public class HealthcareEquipmentWorkRequest {
     
     @Override
     public String toString(){
-        return this.equipmentName;
+        return this.equipmentName;Health
     }
     
 }
