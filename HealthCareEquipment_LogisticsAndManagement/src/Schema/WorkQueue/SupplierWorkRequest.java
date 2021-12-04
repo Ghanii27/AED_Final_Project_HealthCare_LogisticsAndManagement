@@ -9,6 +9,7 @@ package Schema.WorkQueue;
  * @author 16176
  */
 public class SupplierWorkRequest  extends WorkRequest {
+    
     private String medicationName;
     private int Quantity;
     private String deliveryTime;
