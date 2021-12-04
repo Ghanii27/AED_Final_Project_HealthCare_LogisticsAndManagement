@@ -10,7 +10,7 @@ import java.util.Date;
  *
  * @author 16176
  */
-public class PharmacyWorkRequest extends Workrequest {
+public class PharmacyWorkRequest extends WorkRequest {
     private String requestDate;
     private String status ;
     private String medicationName;

@@ -4,6 +4,9 @@
  */
 package Schema.WorkQueue;
 
+import Schema.UserAccount.UserAccount;
+import java.util.Date;
+
 /**
  *
  * @author 16176
@@ -84,13 +87,7 @@ public class OperationsWorkRequest extends WorkRequest {
         this.receiver = receiver;
     }
 
-    public Date getRequestDate() {
-        return requestDate;
-    }
-
-    public void setRequestDate(Date requestDate) {
-        this.requestDate = requestDate;
-    }
+   
 
     public int getQuantity() {
         return Quantity;

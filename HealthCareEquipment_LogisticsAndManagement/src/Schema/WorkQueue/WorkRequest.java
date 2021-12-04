@@ -4,7 +4,10 @@
  */
 package Schema.WorkQueue;
 
-import Sc
+import Schema.UserAccount.UserAccount;
+import java.util.Date;
+
+
 
 /**
  *
@@ -38,7 +41,7 @@ public class WorkRequest {
         return receiver;
     }
 
-    public void setReceiver(USerAccount receiver) {
+    public void setReceiver(UserAccount receiver) {
         this.receiver = receiver;
     }
 
