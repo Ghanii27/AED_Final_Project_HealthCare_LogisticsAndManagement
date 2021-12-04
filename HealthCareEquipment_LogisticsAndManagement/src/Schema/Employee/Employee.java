@@ -18,7 +18,7 @@ public class Employee {
         EmployeeId = count;
         count++;
     }
-    public int getEmployeeID(){
+    public int getEmployeeId(){
         return EmployeeId;
     }
     public void setName (String EmployeeName){
