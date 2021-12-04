@@ -39,7 +39,7 @@ organizationList.add(organization);
 }
 
 else if (type.getValue().equals(OrganizationType.Supplier.getValue())){
-organization=new SupplierOragnization();
+organization=new SupplierOrganization();
 organizationList.add(organization);
 }
 

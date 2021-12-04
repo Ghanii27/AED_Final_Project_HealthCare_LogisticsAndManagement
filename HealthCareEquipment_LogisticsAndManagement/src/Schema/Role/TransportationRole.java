@@ -14,7 +14,7 @@ import javax.swing.JPanel;
  *
  * @author ganes
  */
-public class TransportationRole {
+public class TransportationRole extends Role {
     @Override
 public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business,Network network) {
 return new TransportationWorkAreaJPanel(userProcessContainer,account,organization,business);
