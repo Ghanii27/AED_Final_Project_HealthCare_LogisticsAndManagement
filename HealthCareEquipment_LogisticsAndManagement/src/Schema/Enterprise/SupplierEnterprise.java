@@ -8,17 +8,16 @@ import Schema.Role.Role;
 import java.util.ArrayList;
 /**
  *
- * @author krishna
+ * @author ganes
  */
-public class HospitalEnterprise extends Enterprise {
-    public HospitalEnterprise(String name){
-        super (name, EnterpriseType.Hospital);
+public class SupplierEnterprise extends Enterprise{
+    public SupplierEnterprise(String name){
+        super(name, Enterprise.EnterpriseType.Supplier);
         
     }
     @Override
     public ArrayList<Role> getSupportedRole(){
         return null;
     }
-    
     
 }
