@@ -4,19 +4,20 @@
  * and open the template in the editor.
  */
 package Schema.Enterprise;
-
 import Schema.Role.Role;
 import java.util.ArrayList;
 /**
  *
- * @author krishna
+ * @author ganes
  */
 public class LogisticsEnterprise extends Enterprise {
     public LogisticsEnterprise(String name){
-    super (name, Enterprise.EnterpriseType.Logistics);
+        super (name, Enterprise.EnterpriseType.Logistics);
+        
     }
     @Override
     public ArrayList<Role> getSupportedRole(){
-    return null;
+        return null;
+
     }
 }
