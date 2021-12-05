@@ -6,6 +6,7 @@
 package Schema.Role;
 
 import Schema.Enterprise.Enterprise;
+import Schema.Network.Network;
 import Schema.Organization.Organization;
 import Schema.UserAccount.UserAccount;
 import javax.swing.JPanel;
