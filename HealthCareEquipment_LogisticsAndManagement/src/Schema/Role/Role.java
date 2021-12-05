@@ -4,10 +4,12 @@
  * and open the template in the editor.
  */
 package Schema.Role;
-
+import Schema.EcoSystem;
 import Schema.UserAccount.UserAccount;
 import javax.swing.JPanel;
 import Schema.Enterprise.Enterprise;
+import Schema.Network.Network;
+import Schema.Organization.Organization;
 import Schema.UserAccount.UserAccount;
 
 
@@ -42,7 +44,7 @@ public abstract class Role {
         }
     }
     
-    public abstract JPanel createWorkArea (JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, Ecosystem business, Network network);
+    public abstract JPanel createWorkArea (JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business, Network network);
     @Override
     public String toString(){
         return this.getClass().getName();

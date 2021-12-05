@@ -4,6 +4,9 @@
  */
 package ui.SystemAdminWorkArea;
 
+import Schema.EcoSystem;
+import javax.swing.JPanel;
+
 /**
  *
  * @author 16176
@@ -15,6 +18,10 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
      */
     public SystemAdminWorkAreaJPanel() {
         initComponents();
+    }
+
+    public SystemAdminWorkAreaJPanel(JPanel userProcessContainer, EcoSystem system) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**

@@ -4,6 +4,9 @@
  */
 package ui.AdministrativeRole;
 
+import Schema.Enterprise.Enterprise;
+import javax.swing.JPanel;
+
 /**
  *
  * @author 16176
@@ -15,6 +18,10 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
      */
     public AdminWorkAreaJPanel() {
         initComponents();
+    }
+
+    public AdminWorkAreaJPanel(JPanel userProcessContainer, Enterprise enterprise) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**

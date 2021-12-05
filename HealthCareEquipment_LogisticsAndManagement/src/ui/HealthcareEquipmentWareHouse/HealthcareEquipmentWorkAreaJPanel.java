@@ -4,6 +4,12 @@
  */
 package ui.HealthcareEquipmentWareHouse;
 
+import Schema.EcoSystem;
+import Schema.Network.Network;
+import Schema.Organization.Organization;
+import Schema.UserAccount.UserAccount;
+import javax.swing.JPanel;
+
 /**
  *
  * @author 16176
@@ -15,6 +21,10 @@ public class HealthcareEquipmentWorkAreaJPanel extends javax.swing.JPanel {
      */
     public HealthcareEquipmentWorkAreaJPanel() {
         initComponents();
+    }
+
+    public HealthcareEquipmentWorkAreaJPanel(JPanel userProcessContainer, EcoSystem business, UserAccount account, Organization organization, Network network) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**

@@ -4,6 +4,11 @@
  */
 package ui.Transportation;
 
+import Schema.EcoSystem;
+import Schema.Organization.Organization;
+import Schema.UserAccount.UserAccount;
+import javax.swing.JPanel;
+
 /**
  *
  * @author 16176
@@ -15,6 +20,10 @@ public class TransportationWorkAreaJPanel extends javax.swing.JPanel {
      */
     public TransportationWorkAreaJPanel() {
         initComponents();
+    }
+
+    public TransportationWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**

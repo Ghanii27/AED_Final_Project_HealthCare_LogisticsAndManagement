@@ -4,6 +4,13 @@
  */
 package ui.DoctorRole;
 
+import Schema.EcoSystem;
+import Schema.Enterprise.Enterprise;
+import Schema.Network.Network;
+import Schema.Organization.DoctorOrganization;
+import Schema.UserAccount.UserAccount;
+import javax.swing.JPanel;
+
 /**
  *
  * @author 16176
@@ -15,6 +22,10 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
      */
     public DoctorWorkAreaJPanel() {
         initComponents();
+    }
+
+    public DoctorWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, DoctorOrganization doctorOrganization, Enterprise enterprise, EcoSystem business, Network network) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**

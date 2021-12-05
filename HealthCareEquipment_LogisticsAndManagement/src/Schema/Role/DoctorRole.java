@@ -5,11 +5,14 @@
  */
 package Schema.Role;
 
+import Schema.EcoSystem;
 import Schema.Enterprise.Enterprise;
+import Schema.Network.Network;
 import Schema.Organization.DoctorOrganization;
 import Schema.Organization.Organization;
 import Schema.UserAccount.UserAccount;
 import javax.swing.JPanel;
+import ui.DoctorRole.DoctorWorkAreaJPanel;
 
 /**
  *
@@ -18,7 +21,7 @@ import javax.swing.JPanel;
 public class DoctorRole extends Role {
 
     @Override
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, Ecosystem business, Network network) {
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business, Network network) {
         return new DoctorWorkAreaJPanel(userProcessContainer,account,(DoctorOrganization)organization,enterprise,business,network);
     }
     

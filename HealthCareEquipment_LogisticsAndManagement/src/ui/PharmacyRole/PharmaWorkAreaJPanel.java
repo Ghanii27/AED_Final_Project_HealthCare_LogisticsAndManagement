@@ -4,6 +4,12 @@
  */
 package ui.PharmacyRole;
 
+import Schema.Enterprise.Enterprise;
+import Schema.Network.Network;
+import Schema.Organization.PharmacyOrganization;
+import Schema.UserAccount.UserAccount;
+import javax.swing.JPanel;
+
 /**
  *
  * @author 16176
@@ -15,6 +21,10 @@ public class PharmaWorkAreaJPanel extends javax.swing.JPanel {
      */
     public PharmaWorkAreaJPanel() {
         initComponents();
+    }
+
+    public PharmaWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Enterprise enterprise, PharmacyOrganization pharmacyOrganization, Network network) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**

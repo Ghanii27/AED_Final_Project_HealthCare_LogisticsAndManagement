@@ -4,6 +4,11 @@
  */
 package ui.Supplier;
 
+import Schema.EcoSystem;
+import Schema.Organization.Organization;
+import Schema.UserAccount.UserAccount;
+import javax.swing.JPanel;
+
 /**
  *
  * @author 16176
@@ -15,6 +20,10 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
      */
     public SupplierWorkAreaJPanel() {
         initComponents();
+    }
+
+    public SupplierWorkAreaJPanel(JPanel userProcessContainer, EcoSystem business, UserAccount account, Organization organization) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**

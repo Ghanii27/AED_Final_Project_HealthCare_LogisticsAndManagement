@@ -6,7 +6,10 @@
 package Schema;
 
 
+import Schema.Network.Network;
 import Schema.Organization.Organization;
+import Schema.Role.Role;
+import Schema.Role.SysAdminRole;
 import java.util.ArrayList;
 /**
  *
@@ -64,7 +67,7 @@ public boolean checkIfUsernameIsUnique(String username) {
 
 
 
-if (!this.getUserAccountDirectory().checkIfUsernameIsUnique(username)) {
+if (!this.getUserAccountDirectory().checkIFUsernameIsunique(username)) {
 return false;
 }
 return true;
