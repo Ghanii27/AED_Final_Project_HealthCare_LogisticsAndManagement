@@ -7,6 +7,7 @@ package Schema.Enterprise;
 import java.util.ArrayList;
 /**
  *
+
  * @author ganes
  */
 public class EnterpriseDirectory {
@@ -42,4 +43,3 @@ public class EnterpriseDirectory {
         return enterprise;
     }
     
-}

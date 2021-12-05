@@ -8,8 +8,9 @@ import Schema.Role.Role;
 import java.util.ArrayList;
 /**
  *
- * @author krishna
+ * @author ganesh
  */
+
 public class HospitalEnterprise extends Enterprise {
     public HospitalEnterprise(String name){
         super (name, EnterpriseType.Hospital);
@@ -21,4 +22,4 @@ public class HospitalEnterprise extends Enterprise {
     }
     
     
-}
+
