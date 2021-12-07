@@ -26,6 +26,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private EcoSystem system;
     private Network network;
     private DB4OUtil db4o = DB4OUtil.getInstance();
+   
     
     
     public MainJFrame() {
@@ -134,55 +135,21 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_userNameJTextFieldActionPerformed
 
     private void logoutJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutJButtonActionPerformed
+logoutJButton.setEnabled(false);
+userNameJTextField.setEnabled(true); userNameJTextField.setText("");
+PasswordField.setEnabled(true); PasswordField.setText("");
+db4o.storeSystem(system);
+loginJButton.setEnabled(true);
+jPanel2.removeAll();
+JPanel blankPanel = new JPanel();
+jPanel2.add("blank",blankPanel );
+CardLayout layoutCard = (CardLayout) jPanel2.getLayout();
+layoutCard.next(jPanel2);
 
-//Step1: Check in the system user account directory if you have the user
-
-
-    }
-private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {
-// TODO add your handling code here:
-}
-
-
-
-/**
-* @param args the command line arguments
-*/
-public static void main(String args[]) {
-/* Set the Nimbus look and feel */
-//<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-/* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-* For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-*/
-try {
-for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-if ("Nimbus".equals(info.getName())) {
-javax.swing.UIManager.setLookAndFeel(info.getClassName());
-break;
-}
-}
-} catch (ClassNotFoundException ex) {
-java.util.logging.Logger.getLogger(MainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-} catch (InstantiationException ex) {
-java.util.logging.Logger.getLogger(MainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-} catch (IllegalAccessException ex) {
-java.util.logging.Logger.getLogger(MainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-java.util.logging.Logger.getLogger(MainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-}
-//</editor-fold>
-
-
-
-/* Create and display the form */
-java.awt.EventQueue.invokeLater(new Runnable() {
-public void run() {
-new MainJFrame().setVisible(true);
-}
-});
 // TODO add your handling code here:
     }//GEN-LAST:event_logoutJButtonActionPerformed
 
+   
     private void loginJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginJButtonActionPerformed
 String userName = userNameJTextField.getText();
 char[] passwordCharArray = PasswordField.getPassword();
@@ -233,10 +200,53 @@ CardLayout layout = (CardLayout) jPanel2.getLayout();
 jPanel2.add(ua.getRole().toString()+"workArea", ua.getRole().createWorkArea(jPanel2, ua, inOrg, inEnt, system,inNet));
 layout.next(jPanel2);
 }
+loginJButton.setEnabled(false);
+userNameJTextField.setEnabled(false);
+PasswordField.setEnabled(false);
+logoutJButton.setEnabled(true);
+
+
     }//GEN-LAST:event_loginJButtonActionPerformed
 
     private void PasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasswordFieldActionPerformed
-    
+
+// TODO add your handling code here:
+}
+/**
+* @param args the command line arguments
+*/
+public static void main(String args[]) {
+/* Set the Nimbus look and feel */
+//<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+/* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+* For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+*/
+try {
+for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+if ("Nimbus".equals(info.getName())) {
+javax.swing.UIManager.setLookAndFeel(info.getClassName());
+break;
+}
+}
+} catch (ClassNotFoundException ex) {
+java.util.logging.Logger.getLogger(MainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+} catch (InstantiationException ex) {
+java.util.logging.Logger.getLogger(MainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+} catch (IllegalAccessException ex) {
+java.util.logging.Logger.getLogger(MainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+java.util.logging.Logger.getLogger(MainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+}
+//</editor-fold>
+
+
+
+/* Create and display the form */
+java.awt.EventQueue.invokeLater(new Runnable() {
+public void run() {
+new MainJFrame().setVisible(true);
+}
+});
         // TODO add your handling code here:
     }//GEN-LAST:event_PasswordFieldActionPerformed
 

@@ -5,13 +5,24 @@
 package ui.SystemAdminWorkArea;
 
 import Schema.EcoSystem;
+import Schema.Enterprise.AddressList;
+import Schema.Enterprise.Enterprise;
+import Schema.Network.Network;
+import Schema.Organization.Organization;
+import java.util.ArrayList;
 import javax.swing.JPanel;
+import javax.swing.JTree;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 /**
  *
  * @author 16176
  */
 public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
+JPanel userprocessContainer;
+EcoSystem system;
+private AddressList addresslist;
 
     /**
      * Creates new form SystemAdminWorkAreaJPanel
@@ -21,8 +32,70 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     }
 
     public SystemAdminWorkAreaJPanel(JPanel userProcessContainer, EcoSystem system) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        initComponents();
+        this.userprocessContainer=userProcessContainer;
+        this.system=system;
+        populateTree();
     }
+    
+    public void populateTree() {
+DefaultTreeModel model = (DefaultTreeModel) jTree1.getModel();
+
+
+
+ArrayList<Network> networkList = system.getNetworkList();
+ArrayList<Enterprise> enterpriseList;
+ArrayList<Organization> organizationList;
+Network network;
+Enterprise enterprise;
+Organization organization;
+
+
+
+DefaultMutableTreeNode networks = new DefaultMutableTreeNode("Networks");
+DefaultMutableTreeNode root = (DefaultMutableTreeNode) model.getRoot();
+root.removeAllChildren();
+root.insert(networks, 0);
+
+
+
+DefaultMutableTreeNode networkNode;
+DefaultMutableTreeNode enterpriseNode;
+DefaultMutableTreeNode organizationNode;
+for (int i = 0; i < networkList.size(); i++) {
+network = networkList.get(i);
+networkNode = new DefaultMutableTreeNode(network.getName());
+networks.insert(networkNode, i);
+
+
+
+enterpriseList = network.getEnterpriseDirectory().getEnterpriseList();
+
+
+
+for (int j = 0; j < enterpriseList.size(); j++) {
+enterprise = enterpriseList.get(j);
+enterpriseNode = new DefaultMutableTreeNode(enterprise.getName());
+networkNode.insert(enterpriseNode, j);
+
+
+
+organizationList = enterprise.getOrganizationDirectory().getOrganizationList();
+for (int k = 0; k < organizationList.size(); k++) {
+organization = organizationList.get(k);
+organizationNode = new DefaultMutableTreeNode(organization.getName());
+enterpriseNode.insert(organizationNode, k);
+}
+}
+}
+
+
+
+model.reload();
+}
+        
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -35,38 +108,40 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         splitPane = new javax.swing.JSplitPane();
         jPanel1 = new javax.swing.JPanel();
-        manageNetworkJButton = new javax.swing.JButton();
-        manageAdminJButton = new javax.swing.JButton();
-        manageEnterpriseJButton = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        SysAdminViewReports = new javax.swing.JButton();
+        btnManageNetwork = new javax.swing.JButton();
+        btnManageEnterprise = new javax.swing.JButton();
+        btnManageEnterpriseAdmin = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jScrollBar1 = new javax.swing.JScrollBar();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTree1 = new javax.swing.JTree();
 
-        manageNetworkJButton.setText("Reports");
-        manageNetworkJButton.addActionListener(new java.awt.event.ActionListener() {
+        SysAdminViewReports.setText("Reports");
+        SysAdminViewReports.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                manageNetworkJButtonActionPerformed(evt);
+                SysAdminViewReportsActionPerformed(evt);
             }
         });
 
-        manageAdminJButton.setText("Manage Network");
-        manageAdminJButton.addActionListener(new java.awt.event.ActionListener() {
+        btnManageNetwork.setText("Manage Network");
+        btnManageNetwork.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                manageAdminJButtonActionPerformed(evt);
+                btnManageNetworkActionPerformed(evt);
             }
         });
 
-        manageEnterpriseJButton.setText("Manage Enterprise");
-        manageEnterpriseJButton.addActionListener(new java.awt.event.ActionListener() {
+        btnManageEnterprise.setText("Manage Enterprise");
+        btnManageEnterprise.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                manageEnterpriseJButtonActionPerformed(evt);
+                btnManageEnterpriseActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Manage Enterprise Admin");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnManageEnterpriseAdmin.setText("Manage Enterprise Admin");
+        btnManageEnterpriseAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnManageEnterpriseAdminActionPerformed(evt);
             }
         });
 
@@ -74,39 +149,36 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(398, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(manageEnterpriseJButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(manageNetworkJButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(manageAdminJButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(215, 215, 215))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addContainerGap(398, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(215, 215, 215)))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(213, 213, 213)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnManageEnterpriseAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+                    .addComponent(btnManageNetwork, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnManageEnterprise, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(SysAdminViewReports, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(360, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(161, Short.MAX_VALUE)
-                .addComponent(manageAdminJButton)
-                .addGap(50, 50, 50)
-                .addComponent(manageEnterpriseJButton)
-                .addGap(127, 127, 127)
-                .addComponent(manageNetworkJButton)
-                .addGap(276, 276, 276))
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(308, 308, 308)
-                    .addComponent(jButton4)
-                    .addContainerGap(352, Short.MAX_VALUE)))
+                .addGap(34, 34, 34)
+                .addComponent(btnManageNetwork)
+                .addGap(65, 65, 65)
+                .addComponent(btnManageEnterpriseAdmin)
+                .addGap(65, 65, 65)
+                .addComponent(btnManageEnterprise)
+                .addGap(65, 65, 65)
+                .addComponent(SysAdminViewReports)
+                .addContainerGap(362, Short.MAX_VALUE))
         );
 
         splitPane.setRightComponent(jPanel1);
 
-        jPanel2.add(jScrollBar1);
+        jPanel2.add(jScrollPane1);
+
+        jScrollPane2.setViewportView(jTree1);
+
+        jPanel2.add(jScrollPane2);
 
         splitPane.setLeftComponent(jPanel2);
 
@@ -122,31 +194,33 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void manageNetworkJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageNetworkJButtonActionPerformed
+    private void SysAdminViewReportsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SysAdminViewReportsActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_manageNetworkJButtonActionPerformed
+    }//GEN-LAST:event_SysAdminViewReportsActionPerformed
 
-    private void manageEnterpriseJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageEnterpriseJButtonActionPerformed
+    private void btnManageEnterpriseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageEnterpriseActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_manageEnterpriseJButtonActionPerformed
+    }//GEN-LAST:event_btnManageEnterpriseActionPerformed
 
-    private void manageAdminJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageAdminJButtonActionPerformed
+    private void btnManageNetworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageNetworkActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_manageAdminJButtonActionPerformed
+    }//GEN-LAST:event_btnManageNetworkActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnManageEnterpriseAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageEnterpriseAdminActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btnManageEnterpriseAdminActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton SysAdminViewReports;
+    private javax.swing.JButton btnManageEnterprise;
+    private javax.swing.JButton btnManageEnterpriseAdmin;
+    private javax.swing.JButton btnManageNetwork;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollBar jScrollBar1;
-    private javax.swing.JButton manageAdminJButton;
-    private javax.swing.JButton manageEnterpriseJButton;
-    private javax.swing.JButton manageNetworkJButton;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTree jTree1;
     private javax.swing.JSplitPane splitPane;
     // End of variables declaration//GEN-END:variables
 }
