@@ -4,6 +4,16 @@
  */
 package ui;
 
+import Schema.DB4OUtil.DB4OUtil;
+import Schema.Enterprise.Enterprise;
+import Schema.Network.Network;
+import Schema.Organization.Organization;
+import Schema.UserAccount.UserAccount;
+import Schema.EcoSystem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import java.awt.CardLayout;
+
 /**
  *
  * @author 16176
@@ -13,8 +23,15 @@ public class MainJFrame extends javax.swing.JFrame {
     /**
      * Creates new form MainJFrame
      */
+    private EcoSystem system;
+    private Network network;
+    private DB4OUtil db4o = DB4OUtil.getInstance();
+    
+    
     public MainJFrame() {
         initComponents();
+        system = db4o.retrieveSystem();
+        this.setExtendedState(MAXIMIZED_BOTH);
     }
 
     /**
@@ -104,17 +121,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         splitPane.setLeftComponent(jPanel1);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 778, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 997, Short.MAX_VALUE)
-        );
-
+        jPanel2.setLayout(new java.awt.CardLayout());
         splitPane.setRightComponent(jPanel2);
 
         getContentPane().add(splitPane, java.awt.BorderLayout.CENTER);
@@ -127,11 +134,105 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_userNameJTextFieldActionPerformed
 
     private void logoutJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutJButtonActionPerformed
-        // TODO add your handling code here:
+
+//Step1: Check in the system user account directory if you have the user
+
+
+    }
+private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {
+// TODO add your handling code here:
+}
+
+
+
+/**
+* @param args the command line arguments
+*/
+public static void main(String args[]) {
+/* Set the Nimbus look and feel */
+//<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+/* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+* For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+*/
+try {
+for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+if ("Nimbus".equals(info.getName())) {
+javax.swing.UIManager.setLookAndFeel(info.getClassName());
+break;
+}
+}
+} catch (ClassNotFoundException ex) {
+java.util.logging.Logger.getLogger(MainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+} catch (InstantiationException ex) {
+java.util.logging.Logger.getLogger(MainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+} catch (IllegalAccessException ex) {
+java.util.logging.Logger.getLogger(MainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+java.util.logging.Logger.getLogger(MainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+}
+//</editor-fold>
+
+
+
+/* Create and display the form */
+java.awt.EventQueue.invokeLater(new Runnable() {
+public void run() {
+new MainJFrame().setVisible(true);
+}
+});
+// TODO add your handling code here:
     }//GEN-LAST:event_logoutJButtonActionPerformed
 
     private void loginJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginJButtonActionPerformed
-        // TODO add your handling code here:
+String userName = userNameJTextField.getText();
+char[] passwordCharArray = PasswordField.getPassword();
+String password = String.valueOf(passwordCharArray);
+
+UserAccount ua = system.getUserAccountDirectory().authenticateUser(userName, password);
+Enterprise inEnt = null;
+Organization inOrg = null;
+Network inNet = null;
+
+if (ua==null){
+    for(Network network : system.getNetworkList()){
+       for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
+           ua = enterprise.getUserAccountDirectory().authenticateUser(userName, password);
+           if (ua==null){
+               for(Organization org : enterprise.getOrganizationDirectory().getOrganizationList()){
+                   ua = org.getUserAccountDirectory().authenticateUser(userName, password);
+                   if(ua != null){
+                       inEnt = enterprise;
+                       inOrg = org;
+                       inNet = network;
+                       System.out.println("***"+network.getName());
+                       break;
+                   }
+               }
+           }
+           else {
+               inEnt = enterprise;
+               break;
+               
+           }
+           if (inOrg !=null){
+               break;
+           }
+       }
+       if(inEnt !=null){
+           break;
+       }
+    }
+}
+// TODO add your handling code here:
+if (ua==null){
+    JOptionPane.showMessageDialog(null, "Credentials invalid");
+    return;
+}
+else {
+CardLayout layout = (CardLayout) jPanel2.getLayout();
+jPanel2.add(ua.getRole().toString()+"workArea", ua.getRole().createWorkArea(jPanel2, ua, inOrg, inEnt, system,inNet));
+layout.next(jPanel2);
+}
     }//GEN-LAST:event_loginJButtonActionPerformed
 
     private void PasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasswordFieldActionPerformed
@@ -142,37 +243,6 @@ public class MainJFrame extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MainJFrame().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField PasswordField;
