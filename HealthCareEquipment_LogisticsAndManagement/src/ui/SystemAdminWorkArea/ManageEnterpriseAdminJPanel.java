@@ -5,9 +5,13 @@
 package ui.SystemAdminWorkArea;
 
 import Schema.EcoSystem;
+import Schema.Employee.Employee;
 import Schema.Enterprise.Enterprise;
 import Schema.Network.Network;
+import Schema.Role.AdminRole;
 import Schema.UserAccount.UserAccount;
+import java.awt.CardLayout;
+import java.awt.Component;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -51,11 +55,11 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         usernameLbl = new javax.swing.JLabel();
         usernameTxtField = new javax.swing.JTextField();
         passwordLbl = new javax.swing.JLabel();
-        passwordTxtField = new javax.swing.JTextField();
         nameLbl = new javax.swing.JLabel();
         nameTxtField = new javax.swing.JTextField();
         backBtn = new javax.swing.JButton();
         submitBtn = new javax.swing.JButton();
+        jPasswordField1 = new javax.swing.JPasswordField();
 
         jScrollPane1.setOpaque(false);
 
@@ -97,11 +101,22 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
 
         usernameLbl.setText("Username:");
 
+        usernameTxtField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernameTxtFieldActionPerformed(evt);
+            }
+        });
+
         passwordLbl.setText("Password:");
 
         nameLbl.setText("Name:");
 
         backBtn.setText("<< Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
 
         submitBtn.setText("Submit");
         submitBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -124,10 +139,6 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addComponent(nameTxtField))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(passwordLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(passwordTxtField))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(enterpriseLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(enterpriseCmbBox, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -138,7 +149,11 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(usernameLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(usernameTxtField))))
+                                .addComponent(usernameTxtField))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(passwordLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jPasswordField1))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(419, 419, 419)
                         .addComponent(backBtn)
@@ -168,8 +183,8 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
                     .addComponent(usernameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(passwordTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(passwordLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(passwordLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nameLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -194,9 +209,33 @@ populateEnterpriseComboBox (network);
     }//GEN-LAST:event_networkCmbBoxActionPerformed
 
     private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
-        // TODO add your handling code here:
+Enterprise ent = (Enterprise) enterpriseCmbBox.getSelectedItem();
+String username = usernameTxtField.getText();
+String password = String.valueOf(jPasswordField1.getPassword());
+String name = nameTxtField.getText();
+Employee employee = ent.getEmployeeDirectory().createEmployee(name);
+UserAccount ua = ent.getUserAccountDirectory().createUserAccount(username, password, employee, new AdminRole());
+populateTable();// TODO add your handling code here:
     }//GEN-LAST:event_submitBtnActionPerformed
 
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+userProcessContainer.remove(this);
+Component[] cmpArray = userProcessContainer.getComponents();
+Component component = cmpArray[cmpArray.length-1];
+SystemAdminWorkAreaJPanel sysWAJP = (SystemAdminWorkAreaJPanel) component;
+sysWAJP.populateTree();
+CardLayout card = (CardLayout) userProcessContainer.getLayout();
+card.previous(userProcessContainer);
+// TODO add your handling code here:
+    }//GEN-LAST:event_backBtnActionPerformed
+
+    private void usernameTxtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameTxtFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usernameTxtFieldActionPerformed
+
+    
+    
+    
 private void populateTable() {
 DefaultTableModel model = (DefaultTableModel) tblEnterprise.getModel();
 model.setRowCount(0);
@@ -228,13 +267,13 @@ for(Network ntw : system.getNetworkList()){
     private javax.swing.JButton backBtn;
     private javax.swing.JComboBox enterpriseCmbBox;
     private javax.swing.JLabel enterpriseLbl;
+    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel nameLbl;
     private javax.swing.JTextField nameTxtField;
     private javax.swing.JComboBox networkCmbBox;
     private javax.swing.JLabel networkLbl;
     private javax.swing.JLabel passwordLbl;
-    private javax.swing.JTextField passwordTxtField;
     private javax.swing.JButton submitBtn;
     private javax.swing.JTable tblEnterprise;
     private javax.swing.JLabel usernameLbl;

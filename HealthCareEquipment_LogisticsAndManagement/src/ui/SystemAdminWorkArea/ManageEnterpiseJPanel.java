@@ -5,8 +5,16 @@
 package ui.SystemAdminWorkArea;
 
 import Schema.EcoSystem;
+import Schema.Enterprise.Address;
 import Schema.Enterprise.AddressList;
+import Schema.Enterprise.Enterprise;
+import Schema.Network.Network;
+import java.awt.CardLayout;
+import java.awt.Component;
+import java.io.File;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -30,6 +38,20 @@ public class ManageEnterpiseJPanel extends javax.swing.JPanel {
         populateComboBox();
     }
 
+    private void populateTable() {
+DefaultTableModel model = (DefaultTableModel) nameTbl.getModel();
+model.setRowCount(0);
+for(Network ntw : system.getNetworkList()){
+    for(Enterprise ent : ntw.getEnterpriseDirectory().getEnterpriseList()){
+        Object[] row = new Object[4];
+        row[0] = ent.getName();
+        row[1] = ntw.getName();
+        row[2] = ent.getEnterpriseType().getValue();
+        row[3] = ent.getZipcode();
+        model.addRow(row);
+    }
+}
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -42,9 +64,9 @@ public class ManageEnterpiseJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         nameTbl = new javax.swing.JTable();
         networkLbl = new javax.swing.JLabel();
-        networkCmbBox = new javax.swing.JComboBox<>();
+        networkCmbBox = new javax.swing.JComboBox();
         enterprisetypeLbl = new javax.swing.JLabel();
-        enterprisetypeCmbBox = new javax.swing.JComboBox<>();
+        enterprisetypeCmbBox = new javax.swing.JComboBox();
         nameLbl = new javax.swing.JLabel();
         nameTxtField = new javax.swing.JTextField();
         backBtn = new javax.swing.JButton();
@@ -62,11 +84,11 @@ public class ManageEnterpiseJPanel extends javax.swing.JPanel {
 
         networkLbl.setText("Network:");
 
-        networkCmbBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        networkCmbBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         enterprisetypeLbl.setText("Enterprise Type:");
 
-        enterprisetypeCmbBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        enterprisetypeCmbBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         nameLbl.setText("Name:");
 
@@ -77,8 +99,18 @@ public class ManageEnterpiseJPanel extends javax.swing.JPanel {
         });
 
         backBtn.setText("<< Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
 
         submitBtn.setText("Submit");
+        submitBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submitBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -138,24 +170,61 @@ public class ManageEnterpiseJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_nameTxtFieldActionPerformed
 
-    private void populateTable() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
+Network network = (Network) networkCmbBox.getSelectedItem();
+        Enterprise.EnterpriseType type = (Enterprise.EnterpriseType) enterprisetypeCmbBox.getSelectedItem();
 
-    private void populateComboBox() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (network == null || type == null) {
+            JOptionPane.showMessageDialog(null, "Invalid Input!");
+            return;
+        }
+
+        String name = nameTxtField.getText();
+       
+
+        Enterprise enterprise = network.getEnterpriseDirectory().createAndAddEnterprise(name, type);
+        
+        Address a=addressList.AddAddress();
+        a.setEnterpriseName(nameTxtField.getText());
+      
+    //    File f= new File("D:\\AED_FINALPROJECT\\file.xls");
+         
+        populateTable();        // TODO add your handling code here:
+    }//GEN-LAST:event_submitBtnActionPerformed
+
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+userprocessContainer.remove(this);
+Component[] cmpArray = userprocessContainer.getComponents();
+Component component= cmpArray[cmpArray.length-1];
+SystemAdminWorkAreaJPanel sysAdmin = (SystemAdminWorkAreaJPanel) component;
+sysAdmin.populateTree();
+CardLayout crd = (CardLayout) userprocessContainer.getLayout();
+crd.previous(userprocessContainer);// TODO add your handling code here:
+    }//GEN-LAST:event_backBtnActionPerformed
+
+
+
+private void populateComboBox() {
+networkCmbBox.removeAllItems();
+enterprisetypeCmbBox.removeAllItems();
+for(Network ntw : system.getNetworkList()){
+    networkCmbBox.addItem(ntw);
+}
+for (Enterprise.EnterpriseType type : Enterprise.EnterpriseType.values()){
+    enterprisetypeCmbBox.addItem(type);
+}
     }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
-    private javax.swing.JComboBox<String> enterprisetypeCmbBox;
+    private javax.swing.JComboBox enterprisetypeCmbBox;
     private javax.swing.JLabel enterprisetypeLbl;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel nameLbl;
     private javax.swing.JTable nameTbl;
     private javax.swing.JTextField nameTxtField;
-    private javax.swing.JComboBox<String> networkCmbBox;
+    private javax.swing.JComboBox networkCmbBox;
     private javax.swing.JLabel networkLbl;
     private javax.swing.JButton submitBtn;
     // End of variables declaration//GEN-END:variables
