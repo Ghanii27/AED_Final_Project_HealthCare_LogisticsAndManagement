@@ -29,9 +29,6 @@ private AddressList addresslist;
     /**
      * Creates new form SystemAdminWorkAreaJPanel
      */
-    public SystemAdminWorkAreaJPanel() {
-        initComponents();
-    }
 
     public SystemAdminWorkAreaJPanel(JPanel userProcessContainer, EcoSystem system) {
         initComponents();
@@ -207,7 +204,7 @@ model.reload();
     }// </editor-fold>//GEN-END:initComponents
 
     private void SysAdminViewReportsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SysAdminViewReportsActionPerformed
-      ui.SystemAdminWorkArea.ViewReportsJPanel showReports = new  ui.SystemAdminWorkArea.ViewReportsJPanel(userprocessContainer, system);
+     ui.SystemAdminWorkArea.ViewReportsJPanel showReports = new ui.SystemAdminWorkArea.ViewReportsJPanel(userprocessContainer, system);
      userprocessContainer.add("showReports", showReports);
      CardLayout crdlyt = (CardLayout) userprocessContainer.getLayout();
      crdlyt.next(userprocessContainer);       // TODO add your handling code here:

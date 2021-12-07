@@ -21,15 +21,12 @@ public class ViewReportsJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ViewReportsJPanel
      */
-    public ViewReportsJPanel() {
+    public ViewReportsJPanel(JPanel userprocessContainer, EcoSystem system) {
         initComponents();
         this.userProcessContainer=userProcessContainer;
         this.system=system;
     }
 
-    ViewReportsJPanel(JPanel userprocessContainer, EcoSystem system) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -40,19 +37,136 @@ public class ViewReportsJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jSplitPane1 = new javax.swing.JSplitPane();
+        jPanel1 = new javax.swing.JPanel();
+        networkLevelRepLbl = new javax.swing.JLabel();
+        ntwReport1 = new javax.swing.JButton();
+        ntwReport2 = new javax.swing.JButton();
+        networkLevelRepLbl1 = new javax.swing.JLabel();
+        orgReport1 = new javax.swing.JButton();
+        entReport2 = new javax.swing.JButton();
+        networkLevelRepLbl2 = new javax.swing.JLabel();
+        ordReport2 = new javax.swing.JButton();
+        entReport1 = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+
+        networkLevelRepLbl.setText("NETWORK LEVEL REPORTS >>");
+
+        ntwReport1.setText("Report 1");
+
+        ntwReport2.setText("Report 2");
+
+        networkLevelRepLbl1.setText("ENTERPRISE LEVEL REPORTS >>");
+
+        orgReport1.setText("Report 1");
+
+        entReport2.setText("Report 2");
+
+        networkLevelRepLbl2.setText("ORGANIZATION LEVEL REPORTS >>");
+
+        ordReport2.setText("Report 2");
+
+        entReport1.setText("Report 1");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(networkLevelRepLbl1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(networkLevelRepLbl2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(25, 25, 25)
+                                .addComponent(networkLevelRepLbl))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(54, 54, 54)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(ntwReport2)
+                                    .addComponent(ntwReport1)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(54, 54, 54)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(ordReport2)
+                                    .addComponent(orgReport1)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(52, 52, 52)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(entReport1)
+                                    .addComponent(entReport2))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addComponent(networkLevelRepLbl)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(ntwReport1)
+                .addGap(18, 18, 18)
+                .addComponent(ntwReport2)
+                .addGap(18, 18, 18)
+                .addComponent(networkLevelRepLbl1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(entReport1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(entReport2)
+                .addGap(18, 18, 18)
+                .addComponent(networkLevelRepLbl2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(orgReport1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(ordReport2)
+                .addContainerGap(755, Short.MAX_VALUE))
+        );
+
+        jSplitPane1.setLeftComponent(jPanel1);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1185, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1086, Short.MAX_VALUE)
+        );
+
+        jSplitPane1.setRightComponent(jPanel2);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jSplitPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jSplitPane1)
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton entReport1;
+    private javax.swing.JButton entReport2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JLabel networkLevelRepLbl;
+    private javax.swing.JLabel networkLevelRepLbl1;
+    private javax.swing.JLabel networkLevelRepLbl2;
+    private javax.swing.JButton ntwReport1;
+    private javax.swing.JButton ntwReport2;
+    private javax.swing.JButton ordReport2;
+    private javax.swing.JButton orgReport1;
     // End of variables declaration//GEN-END:variables
 }
