@@ -4,6 +4,12 @@
  */
 package ui.DoctorRole;
 
+import Schema.Doctor.PrescriptionList;
+import Schema.Enterprise.Enterprise;
+import Schema.Organization.DoctorOrganization;
+import Schema.UserAccount.UserAccount;
+import javax.swing.JPanel;
+
 /**
  *
  * @author 16176
@@ -15,6 +21,10 @@ public class PrescriptionJPanel extends javax.swing.JPanel {
      */
     public PrescriptionJPanel() {
         initComponents();
+    }
+
+    PrescriptionJPanel(JPanel userprocessContainer, PrescriptionList presList, UserAccount ua, Enterprise ent, DoctorOrganization docOrg) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
