@@ -45,9 +45,9 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblEnterprise = new javax.swing.JTable();
         networkLbl = new javax.swing.JLabel();
-        networkCmbBox = new javax.swing.JComboBox<>();
+        networkCmbBox = new javax.swing.JComboBox();
         enterpriseLbl = new javax.swing.JLabel();
-        enterpriseCmbBox = new javax.swing.JComboBox<>();
+        enterpriseCmbBox = new javax.swing.JComboBox();
         usernameLbl = new javax.swing.JLabel();
         usernameTxtField = new javax.swing.JTextField();
         passwordLbl = new javax.swing.JLabel();
@@ -79,7 +79,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
 
         networkLbl.setText("Network:");
 
-        networkCmbBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        networkCmbBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         networkCmbBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 networkCmbBoxActionPerformed(evt);
@@ -88,7 +88,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
 
         enterpriseLbl.setText("Enterprise:");
 
-        enterpriseCmbBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        enterpriseCmbBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         enterpriseCmbBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 enterpriseCmbBoxActionPerformed(evt);
@@ -226,12 +226,12 @@ for(Network ntw : system.getNetworkList()){
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
-    private javax.swing.JComboBox<String> enterpriseCmbBox;
+    private javax.swing.JComboBox enterpriseCmbBox;
     private javax.swing.JLabel enterpriseLbl;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel nameLbl;
     private javax.swing.JTextField nameTxtField;
-    private javax.swing.JComboBox<String> networkCmbBox;
+    private javax.swing.JComboBox networkCmbBox;
     private javax.swing.JLabel networkLbl;
     private javax.swing.JLabel passwordLbl;
     private javax.swing.JTextField passwordTxtField;
