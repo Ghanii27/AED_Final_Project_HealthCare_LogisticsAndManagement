@@ -4,17 +4,31 @@
  */
 package ui.SystemAdminWorkArea;
 
+import Schema.DataGenerator;
+import Schema.EcoSystem;
+import javax.swing.JPanel;
+
 /**
  *
  * @author 16176
  */
 public class ViewReportsJPanel extends javax.swing.JPanel {
+    JPanel userProcessContainer;
+    EcoSystem system;
+    private DataGenerator dataGen;
+    
 
     /**
      * Creates new form ViewReportsJPanel
      */
     public ViewReportsJPanel() {
         initComponents();
+        this.userProcessContainer=userProcessContainer;
+        this.system=system;
+    }
+
+    ViewReportsJPanel(JPanel userprocessContainer, EcoSystem system) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**

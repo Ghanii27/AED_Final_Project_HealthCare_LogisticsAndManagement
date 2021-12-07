@@ -4,17 +4,30 @@
  */
 package ui.SystemAdminWorkArea;
 
+import Schema.EcoSystem;
+import Schema.Enterprise.AddressList;
+import javax.swing.JPanel;
+
 /**
  *
  * @author 16176
  */
 public class ManageEnterpiseJPanel extends javax.swing.JPanel {
+    private JPanel userprocessContainer;
+    private EcoSystem system;
+    private AddressList addressList;
+    
 
     /**
      * Creates new form ManageEnterpiseJPanel
      */
-    public ManageEnterpiseJPanel() {
+    public ManageEnterpiseJPanel(JPanel userprocessContainer, EcoSystem system) {
         initComponents();
+        this.userprocessContainer = userprocessContainer;
+        this.system=system;
+        addressList=new AddressList();
+        populateTable();
+        populateComboBox();
     }
 
     /**
@@ -37,6 +50,14 @@ public class ManageEnterpiseJPanel extends javax.swing.JPanel {
             .addGap(0, 300, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void populateTable() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void populateComboBox() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

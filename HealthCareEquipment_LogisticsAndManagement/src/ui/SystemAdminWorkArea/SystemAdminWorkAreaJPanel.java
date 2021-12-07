@@ -9,11 +9,13 @@ import Schema.Enterprise.AddressList;
 import Schema.Enterprise.Enterprise;
 import Schema.Network.Network;
 import Schema.Organization.Organization;
+import java.awt.CardLayout;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
+import ui.SystemAdminWorkArea.ViewReportsJPanel;
 
 /**
  *
@@ -176,6 +178,10 @@ model.reload();
 
         jPanel2.add(jScrollPane1);
 
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("JTree");
+        javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("System");
+        treeNode1.add(treeNode2);
+        jTree1.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         jScrollPane2.setViewportView(jTree1);
 
         jPanel2.add(jScrollPane2);
@@ -186,7 +192,7 @@ model.reload();
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(splitPane)
+            .addComponent(splitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 834, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,19 +201,33 @@ model.reload();
     }// </editor-fold>//GEN-END:initComponents
 
     private void SysAdminViewReportsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SysAdminViewReportsActionPerformed
-        // TODO add your handling code here:
+      ui.SystemAdminWorkArea.ViewReportsJPanel showReports = new  ui.SystemAdminWorkArea.ViewReportsJPanel(userprocessContainer, system);
+     userprocessContainer.add("showReports", showReports);
+     CardLayout crdlyt = (CardLayout) userprocessContainer.getLayout();
+     crdlyt.next(userprocessContainer);       // TODO add your handling code here:
     }//GEN-LAST:event_SysAdminViewReportsActionPerformed
 
     private void btnManageEnterpriseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageEnterpriseActionPerformed
-        // TODO add your handling code here:
+     ManageEnterpiseJPanel mngEntJPanel = new  ManageEnterpiseJPanel(userprocessContainer, system);
+     userprocessContainer.add("mngEntJPanel", mngEntJPanel);
+     CardLayout crdlyt = (CardLayout) userprocessContainer.getLayout();
+     crdlyt.next(userprocessContainer);
+     // TODO add your handling code here:
     }//GEN-LAST:event_btnManageEnterpriseActionPerformed
 
     private void btnManageNetworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageNetworkActionPerformed
-        // TODO add your handling code here:
+      ManageNetworkJPanel manageNtwrkJPnl = new ManageNetworkJPanel(userprocessContainer,system);
+      userprocessContainer.add("manageNtwrkJPnl",manageNtwrkJPnl);
+      CardLayout crdlyt = (CardLayout) userprocessContainer.getLayout();
+     crdlyt.next(userprocessContainer);
+      // TODO add your handling code here:
     }//GEN-LAST:event_btnManageNetworkActionPerformed
 
     private void btnManageEnterpriseAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManageEnterpriseAdminActionPerformed
-        // TODO add your handling code here:
+      ManageEnterpriseAdminJPanel manageAdminJPnl = new ManageEnterpriseAdminJPanel(userprocessContainer,system);
+      userprocessContainer.add("manageNtwrkJPnl",manageAdminJPnl);
+      CardLayout crdlyt = (CardLayout) userprocessContainer.getLayout();
+     crdlyt.next(userprocessContainer);        // TODO add your handling code here:
     }//GEN-LAST:event_btnManageEnterpriseAdminActionPerformed
 
 

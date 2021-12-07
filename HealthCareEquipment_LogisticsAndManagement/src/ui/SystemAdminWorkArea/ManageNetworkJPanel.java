@@ -4,17 +4,25 @@
  */
 package ui.SystemAdminWorkArea;
 
+import Schema.EcoSystem;
+import javax.swing.JPanel;
+
 /**
  *
  * @author 16176
  */
 public class ManageNetworkJPanel extends javax.swing.JPanel {
+    private JPanel userprocessContainer;
+    private EcoSystem system;
 
     /**
      * Creates new form ManageNetworkJPanel
      */
-    public ManageNetworkJPanel() {
+    public ManageNetworkJPanel(JPanel userprocessContainer, EcoSystem system) {
         initComponents();
+        this.userprocessContainer=userprocessContainer;
+        this.system=system;
+        populateNetworkTable();
     }
 
     /**
@@ -37,6 +45,10 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
             .addGap(0, 300, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void populateNetworkTable() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

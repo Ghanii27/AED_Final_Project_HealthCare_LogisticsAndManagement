@@ -4,18 +4,30 @@
  */
 package ui.SystemAdminWorkArea;
 
+import Schema.EcoSystem;
+import javax.swing.JPanel;
+
 /**
  *
  * @author 16176
  */
 public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
+    private JPanel userProcessContainer;
+    private EcoSystem system;
+    
 
     /**
      * Creates new form ManageEnterpriseAdminJPanel
      */
-    public ManageEnterpriseAdminJPanel() {
+    public ManageEnterpriseAdminJPanel(JPanel userProcessContainer, EcoSystem system) {
         initComponents();
+        this.userProcessContainer=userProcessContainer;
+        this.system=system;
+        populateTable();
+        populateNetworkCOmboBox();
     }
+
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -37,6 +49,14 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
             .addGap(0, 300, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void populateTable() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void populateNetworkCOmboBox() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
