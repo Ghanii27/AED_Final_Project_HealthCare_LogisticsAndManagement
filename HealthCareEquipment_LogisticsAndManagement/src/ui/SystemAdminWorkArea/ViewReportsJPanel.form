@@ -44,11 +44,11 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Component id="networkLevelRepLbl1" min="-2" max="-2" attributes="0"/>
+                              <Component id="entLevelRepLbl1" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="32767" attributes="0"/>
-                              <Component id="networkLevelRepLbl2" min="-2" max="-2" attributes="0"/>
+                              <Component id="orgLevelRepLbl" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -66,7 +66,7 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="ordReport2" min="-2" max="-2" attributes="0"/>
+                                          <Component id="orgReport2" min="-2" max="-2" attributes="0"/>
                                           <Component id="orgReport1" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
@@ -95,17 +95,17 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="ntwReport2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="networkLevelRepLbl1" min="-2" max="-2" attributes="0"/>
+                      <Component id="entLevelRepLbl1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="entReport1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="entReport2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="networkLevelRepLbl2" min="-2" max="-2" attributes="0"/>
+                      <Component id="orgLevelRepLbl" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="orgReport1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="ordReport2" min="-2" max="-2" attributes="0"/>
+                      <Component id="orgReport2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="755" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -121,18 +121,21 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Report 1"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ntwReport1ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="ntwReport2">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Report 2"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="networkLevelRepLbl1">
+            <Component class="javax.swing.JLabel" name="entLevelRepLbl1">
               <Properties>
                 <Property name="text" type="java.lang.String" value="ENTERPRISE LEVEL REPORTS &gt;&gt;"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="orgReport1">
+            <Component class="javax.swing.JButton" name="entReport1">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Report 1"/>
               </Properties>
@@ -142,19 +145,19 @@
                 <Property name="text" type="java.lang.String" value="Report 2"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="networkLevelRepLbl2">
+            <Component class="javax.swing.JLabel" name="orgLevelRepLbl">
               <Properties>
                 <Property name="text" type="java.lang.String" value="ORGANIZATION LEVEL REPORTS &gt;&gt;"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="ordReport2">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Report 2"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="entReport1">
+            <Component class="javax.swing.JButton" name="orgReport1">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Report 1"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="orgReport2">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Report 2"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -169,15 +172,38 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="1185" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="414" max="32767" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="1086" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="323" max="32767" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
           </Layout>
+          <SubComponents>
+            <Container class="javax.swing.JPanel" name="jPanel3">
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <EmptySpace min="0" pref="771" max="32767" attributes="0"/>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <EmptySpace min="0" pref="763" max="32767" attributes="0"/>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+            </Container>
+          </SubComponents>
         </Container>
       </SubComponents>
     </Container>
