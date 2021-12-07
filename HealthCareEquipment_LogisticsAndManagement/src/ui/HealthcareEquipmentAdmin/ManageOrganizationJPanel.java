@@ -4,17 +4,23 @@
  */
 package ui.HealthcareEquipmentAdmin;
 
+import javax.swing.JPanel;
+import Schema.Organization.OrganizationDirectory;
+
 /**
  *
  * @author 16176
  */
 public class ManageOrganizationJPanel extends javax.swing.JPanel {
-
+private OrganizationDirectory directory;
+private JPanel userprocessContainer;
     /**
      * Creates new form ManageOrganizationJPanel
      */
-    public ManageOrganizationJPanel() {
+    public ManageOrganizationJPanel(JPanel userprocessContainer, OrganizationDirectory directory) {
         initComponents();
+        this.userprocessContainer=userprocessContainer;
+        this.directory = directory;
     }
 
     /**

@@ -4,17 +4,30 @@
  */
 package ui.HealthcareEquipmentAdmin;
 
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+import Schema.Enterprise.Enterprise;
+import ui.HospitalAdminRole.*;
+
+
+
 /**
  *
  * @author 16176
  */
 public class AdminWorkAreaJPanel extends javax.swing.JPanel {
+    JPanel userProcessContainer;
+    Enterprise enterprise;
+    
 
     /**
      * Creates new form AdminWorkAreaJPanel
      */
-    public AdminWorkAreaJPanel() {
+    public AdminWorkAreaJPanel(JPanel userProcessContainer, Enterprise enterprise) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.enterprise = enterprise;
+        valueLabel.setText(enterprise.getName());
     }
 
     /**
@@ -26,19 +39,80 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        headerLbl = new javax.swing.JLabel();
+        enterpriseLbl = new javax.swing.JLabel();
+        valueLbl = new javax.swing.JLabel();
+        manageOrgBtn = new javax.swing.JButton();
+        manageemployeeBtn = new javax.swing.JButton();
+        manageuserBtn = new javax.swing.JButton();
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        headerLbl.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        headerLbl.setText("MY Work Area - Administrative Role");
+        jPanel1.add(headerLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 130, 450, 40));
+
+        enterpriseLbl.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        enterpriseLbl.setText("Enterprise : ");
+        jPanel1.add(enterpriseLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 200, -1, -1));
+
+        valueLbl.setText("<Value>");
+        jPanel1.add(valueLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 200, -1, -1));
+
+        manageOrgBtn.setText("Manage Organization");
+        manageOrgBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageOrgBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(manageOrgBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 260, 230, -1));
+
+        manageemployeeBtn.setText("Manage Employee");
+        jPanel1.add(manageemployeeBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 340, 230, -1));
+
+        manageuserBtn.setText("Manage User");
+        jPanel1.add(manageuserBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 420, 230, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void manageOrgBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageOrgBtnActionPerformed
+       ManageOrganizationJPanel manageOrgJPanel = new ManageOrganizationJPanel(userProcessContainer, enterprise.getOrganizationDirectory());
+       userProcessContainer.add("manageemployeeJPanel", manageemployeeJPanel);
+       CardLayout Layout = (CardLayout) userProcessContainer.getLayout();
+       layout.next(userProcessContainer);
+    }//GEN-LAST:event_manageOrgBtnActionPerformed
+ 
+    private void manageemployeeBtnActionPerformed(java.awt.event.ActionEvent evt){
+        ManageEmployeeJPanel manageemployeeJPanel = new ManageEmployeeJPanel(userProcessContainer, enterprise.getOrganizationDirectory());
+        CardLayout Layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+        
+    }
+    
+    private void manageuserBtnActionPerformed(java.awt.event.ActionEvent evt) {
+        ManageUserAccountJPanel muajp = new ManageUserAccountJPanel(userProcessContainer, enterprise.getOrganizationDirectory());
+        CardLayout Layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel enterpriseLbl;
+    private javax.swing.JLabel headerLbl;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton manageOrgBtn;
+    private javax.swing.JButton manageemployeeBtn;
+    private javax.swing.JButton manageuserBtn;
+    private javax.swing.JLabel valueLbl;
     // End of variables declaration//GEN-END:variables
 }
