@@ -33,19 +33,47 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        headerLbl = new javax.swing.JLabel();
+        enterpriseLbl = new javax.swing.JLabel();
+        valueLbl = new javax.swing.JLabel();
+        manageOrgBtn = new javax.swing.JButton();
+        manageEmpBtn = new javax.swing.JButton();
+        manageUserBtn = new javax.swing.JButton();
+
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        headerLbl.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        headerLbl.setText("My Work Area - Administrative Role");
+        add(headerLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 40, -1, -1));
+
+        enterpriseLbl.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        enterpriseLbl.setText("Enterprise:");
+        add(enterpriseLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 130, -1, -1));
+
+        valueLbl.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        valueLbl.setText("<value>");
+        add(valueLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 130, -1, -1));
+
+        manageOrgBtn.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        manageOrgBtn.setText("Manage Organization");
+        add(manageOrgBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 210, 260, -1));
+
+        manageEmpBtn.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        manageEmpBtn.setText("Manage Employee");
+        add(manageEmpBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 280, 260, -1));
+
+        manageUserBtn.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        manageUserBtn.setText("Manage User");
+        add(manageUserBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 350, 260, -1));
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel enterpriseLbl;
+    private javax.swing.JLabel headerLbl;
+    private javax.swing.JButton manageEmpBtn;
+    private javax.swing.JButton manageOrgBtn;
+    private javax.swing.JButton manageUserBtn;
+    private javax.swing.JLabel valueLbl;
     // End of variables declaration//GEN-END:variables
 }
