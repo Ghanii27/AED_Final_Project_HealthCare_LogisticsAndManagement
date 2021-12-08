@@ -26,19 +26,67 @@ public class ProcessSupplierWorkRequestJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        headerLbl = new javax.swing.JLabel();
+        deliveryLbl = new javax.swing.JLabel();
+        deliveryTxt = new javax.swing.JTextField();
+        backBtn = new javax.swing.JButton();
+        updateBtn = new javax.swing.JButton();
+
+        headerLbl.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        headerLbl.setText("PROCESSING SUPPLIER REQUEST");
+
+        deliveryLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        deliveryLbl.setText("Select Date of Delivery:");
+
+        backBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        backBtn.setText("<<Back");
+
+        updateBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        updateBtn.setText("Update Status");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(351, 351, 351)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(backBtn)
+                            .addComponent(deliveryLbl))
+                        .addGap(51, 51, 51)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(deliveryTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(updateBtn)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(242, 242, 242)
+                        .addComponent(headerLbl)))
+                .addContainerGap(526, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(64, 64, 64)
+                .addComponent(headerLbl)
+                .addGap(61, 61, 61)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(deliveryLbl)
+                    .addComponent(deliveryTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(84, 84, 84)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(backBtn)
+                    .addComponent(updateBtn))
+                .addContainerGap(1021, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backBtn;
+    private javax.swing.JLabel deliveryLbl;
+    private javax.swing.JTextField deliveryTxt;
+    private javax.swing.JLabel headerLbl;
+    private javax.swing.JButton updateBtn;
     // End of variables declaration//GEN-END:variables
 }
