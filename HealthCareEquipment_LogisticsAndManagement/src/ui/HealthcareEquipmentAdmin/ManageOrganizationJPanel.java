@@ -148,20 +148,19 @@ private void populateTable(){
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
-        userProcessContainer.remove(this);
-        CardLayout.Layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-        
-        
-    }//GEN-LAST:event_backBtnActionPerformed
-
     private void addOrgBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addOrgBtnActionPerformed
         userProcessContainer.remove(this);
         CardLayout. layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
-        
+
     }//GEN-LAST:event_addOrgBtnActionPerformed
+
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        userProcessContainer.remove(this);
+        CardLayout.Layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+
+    }//GEN-LAST:event_backBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
