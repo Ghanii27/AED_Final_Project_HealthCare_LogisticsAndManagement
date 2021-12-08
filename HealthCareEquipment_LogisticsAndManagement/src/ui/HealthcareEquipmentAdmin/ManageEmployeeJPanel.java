@@ -4,7 +4,15 @@
  */
 package ui.HealthcareEquipmentAdmin;
 
+import java.awt.CardLayout;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+import ui.HospitalAdminRole.*;
+import Schema.Employee.employee;
+import Schema.Organization.OrganizationDirectory;
+import Schema.Organization.Organization;
+
+
 
 /**
  *
@@ -199,7 +207,15 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
     }
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt){
         userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);   
+    }
+    private void orgCmbBoxActionPerformed(java.awt.event.ActionEvent evt){
+        Organization organization = (Organization) orgCmbBox.getSelectedItem();
+        if (organization != null){
+            populateTable(organization);
         
+    }
         
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
