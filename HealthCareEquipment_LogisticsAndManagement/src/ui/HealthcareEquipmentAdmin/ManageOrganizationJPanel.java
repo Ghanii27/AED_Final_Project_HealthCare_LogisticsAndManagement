@@ -6,6 +6,12 @@ package ui.HealthcareEquipmentAdmin;
 
 import javax.swing.JPanel;
 import Schema.Organization.OrganizationDirectory;
+import java.awt.CardLayout;
+import javax.swing.table.DefaultTableModel;
+import Schema.Oraganization.Organization.Type;
+import Schema.Organization.Organization
+import ui.HospitalAdminRole.*;
+
 
 /**
  *
@@ -21,8 +27,22 @@ private JPanel userprocessContainer;
         initComponents();
         this.userprocessContainer=userprocessContainer;
         this.directory = directory;
+        
+        populateTable();
+        populateCombo();
     }
-
+private void populateTable(){
+    DefaultTableModel model = (DefaultTableModel) orgTbl.getModel();
+    model.setRowCount(0);
+    for (Organization organization : directory.getOrganizationList()){
+        Object[] row = new Object[2];
+        row[0] = organization.getOrganizationID();
+        row[1] = organization.getName();
+        model.addRow(row);
+        
+    }
+    
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -84,6 +104,11 @@ private JPanel userprocessContainer;
         });
 
         addOrgBtn.setText("Add Organization");
+        addOrgBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addOrgBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -121,8 +146,19 @@ private JPanel userprocessContainer;
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
-        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout.Layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+        
+        
     }//GEN-LAST:event_backBtnActionPerformed
+
+    private void addOrgBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addOrgBtnActionPerformed
+        userProcessContainer.remove(this);
+        CardLayout. layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+        
+    }//GEN-LAST:event_addOrgBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
