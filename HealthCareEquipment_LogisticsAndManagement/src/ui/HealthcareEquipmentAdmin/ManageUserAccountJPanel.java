@@ -4,6 +4,17 @@
  */
 package ui.HealthcareEquipmentAdmin;
 
+import java.awt.CardLayout;
+import javax.management.relation.Role;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+import ui.HospitalAdminRole.*;
+import Schema.Employee.Employee;
+import Schema.Enterprise.Enterprise;
+import Schema.Organization.Organization;
+import Schema.Role.Role;
+import Schema.UserAccount.UserAccount;
+
 /**
  *
  * @author 16176
@@ -11,12 +22,54 @@ package ui.HealthcareEquipmentAdmin;
 public class ManageUserAccountJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form ManageUserAccountJPanel
+     * Creates new form ManageUserAccountJPane
+     * 
      */
-    public ManageUserAccountJPanel() {
+    private Jpanel container;
+    private Enterprise enterprise;
+    
+    public ManageUserAccountJPanel(JPanel container, Enterprise enterprise) {
         initComponents();
+        this.enterprise = enterprise;
+        this.container = container;
+        
+        popOrganizationComboBox();
+        popData();
+        
     }
-
+    public void popOrganizationComboBox(){
+        orgCmbBox.removeAllItems();
+        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
+            orgCmbBox.addItem(organization);
+        }
+    }
+    public void  populateEmployeeComboBox(Organization organization){
+        empCmbBox.removeAllItems();
+        for (Employee employee : organization.getEmployeeDirectory().getEmployeeList()){
+            empCmbBox.addItem(employee);
+        }
+    }
+    private void populateRoleComboBox(Organization organization){
+        roleCmbBox.removeAllItems();
+        for (Role role : organization.getSupportedRole()){
+            roleCmbBox.addItem(role);
+        
+    }
+}
+    public void popData(){
+        DefaultTableModel model = (DefaultTableModel) userTbl.getModel();
+        model.setRowCount(0);
+        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
+            for (UserAccount ua : organization.getUserAccountDirectory().getUserAccountList()){
+                Object row[] = new Object[2];
+                row[0] = ua;
+                row[1] = ua.getRole();
+                ((DefaultTableModel)userTbl.getModel()).addRow(row);
+                
+            }
+        }
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -31,13 +84,15 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         orgLbl = new javax.swing.JLabel();
         orgCmbBox = new javax.swing.JComboBox<>();
         empLbl = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        empCmbBox = new javax.swing.JComboBox<>();
         roleLbl = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        roleCmbBox = new javax.swing.JComboBox<>();
         usernameLbl = new javax.swing.JLabel();
         nameTxt = new javax.swing.JTextField();
         passwordLbl = new javax.swing.JLabel();
         passwordTxt = new javax.swing.JTextField();
+        backBtn = new javax.swing.JButton();
+        createuserBtn = new javax.swing.JButton();
 
         userTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -71,14 +126,19 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         orgLbl.setText("Organization  :");
 
         orgCmbBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        orgCmbBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                orgCmbBoxActionPerformed(evt);
+            }
+        });
 
         empLbl.setText("Employee      :");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        empCmbBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         roleLbl.setText("Role             :");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        roleCmbBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         usernameLbl.setText("User Name    :");
 
@@ -87,6 +147,20 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         passwordTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 passwordTxtActionPerformed(evt);
+            }
+        });
+
+        backBtn.setText("<< Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
+
+        createuserBtn.setText("Create");
+        createuserBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createuserBtnActionPerformed(evt);
             }
         });
 
@@ -106,7 +180,7 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(roleLbl)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(roleCmbBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(empLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -114,15 +188,21 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
                                     .addGap(68, 68, 68)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(orgCmbBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(empCmbBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(usernameLbl)
-                                    .addComponent(passwordLbl))
-                                .addGap(70, 70, 70)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(nameTxt)
-                                    .addComponent(passwordTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE))))))
+                                    .addComponent(passwordLbl)
+                                    .addComponent(backBtn))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(70, 70, 70)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(nameTxt)
+                                            .addComponent(passwordTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(197, 197, 197)
+                                        .addComponent(createuserBtn)))))))
                 .addContainerGap(666, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -137,11 +217,11 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(empLbl)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(empCmbBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(roleLbl)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(roleCmbBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(usernameLbl)
@@ -150,7 +230,11 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(passwordLbl)
                     .addComponent(passwordTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(275, Short.MAX_VALUE))
+                .addGap(78, 78, 78)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(backBtn)
+                    .addComponent(createuserBtn))
+                .addContainerGap(168, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -158,17 +242,45 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordTxtActionPerformed
 
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        container.remove(this);
+        CardLayout layout = (CardLayout) container.getLayout();
+        layout.previous(container);
+    }//GEN-LAST:event_backBtnActionPerformed
+
+    private void createuserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createuserBtnActionPerformed
+        String userName = nameTxt.getText();
+        String password = passwordTxt.getText();
+                Organization organization = (Organization) orgCmbBox.getSelectedItem();
+                Employee employee = (Employee) empCmbBox.getSelectedItem();
+                Role role = (Role) roleCmbBox.getSelectedItem();
+                
+                organization.getUserAccountDirectory().createUserAccount(userName, password, employee, role);
+                popData();
+                
+    }//GEN-LAST:event_createuserBtnActionPerformed
+
+    private void orgCmbBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orgCmbBoxActionPerformed
+        Organization organization = (Organization) orgCmbBox.getSelectedItem();
+        if (organization != null){
+            populateEmployeeComboBox(organization);
+            populateRoleComboBox(organization);
+        }
+    }//GEN-LAST:event_orgCmbBoxActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backBtn;
+    private javax.swing.JButton createuserBtn;
+    private javax.swing.JComboBox<String> empCmbBox;
     private javax.swing.JLabel empLbl;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField nameTxt;
     private javax.swing.JComboBox<String> orgCmbBox;
     private javax.swing.JLabel orgLbl;
     private javax.swing.JLabel passwordLbl;
     private javax.swing.JTextField passwordTxt;
+    private javax.swing.JComboBox<String> roleCmbBox;
     private javax.swing.JLabel roleLbl;
     private javax.swing.JTable userTbl;
     private javax.swing.JLabel usernameLbl;
