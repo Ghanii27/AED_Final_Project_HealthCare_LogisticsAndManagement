@@ -26,19 +26,111 @@ public class ProcessRequestJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        trpaLbl = new javax.swing.JLabel();
+        etdLbl = new javax.swing.JLabel();
+        timeCmbBox = new javax.swing.JComboBox<>();
+        timezoneCmbBox = new javax.swing.JComboBox<>();
+        vehiclenumLbl = new javax.swing.JLabel();
+        vehiclenumTxt = new javax.swing.JTextField();
+        backBtn = new javax.swing.JButton();
+        notifythroughmailBtn = new javax.swing.JButton();
+
+        trpaLbl.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        trpaLbl.setText("TRANSPORT REQUEST PROCESS AREA");
+
+        etdLbl.setText("Expected Time Of Delivery :");
+
+        timeCmbBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1:00", "2:00", "3:00", "4:00", "5:00", "6:00", "7:00", "8:00", "9:00", "10:00", "11:00", "12:00" }));
+        timeCmbBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                timeCmbBoxActionPerformed(evt);
+            }
+        });
+
+        timezoneCmbBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AM", "PM" }));
+
+        vehiclenumLbl.setText("Vehicle Number:");
+
+        vehiclenumTxt.setText("jTextField1");
+        vehiclenumTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                vehiclenumTxtActionPerformed(evt);
+            }
+        });
+
+        backBtn.setText("<< Back");
+
+        notifythroughmailBtn.setText("Intimate Hospital through Mail");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(437, 437, 437)
+                        .addComponent(trpaLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 782, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(318, 318, 318)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(vehiclenumLbl)
+                                    .addComponent(etdLbl)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(517, 517, 517)
+                                .addComponent(backBtn)))
+                        .addGap(119, 119, 119)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(notifythroughmailBtn)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(timeCmbBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(79, 79, 79)
+                                    .addComponent(timezoneCmbBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(vehiclenumTxt)))))
+                .addContainerGap(401, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(99, 99, 99)
+                .addComponent(trpaLbl)
+                .addGap(74, 74, 74)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(etdLbl)
+                    .addComponent(timeCmbBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(timezoneCmbBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(72, 72, 72)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(vehiclenumLbl)
+                    .addComponent(vehiclenumTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(79, 79, 79)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(backBtn)
+                    .addComponent(notifythroughmailBtn))
+                .addContainerGap(566, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void timeCmbBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timeCmbBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_timeCmbBoxActionPerformed
+
+    private void vehiclenumTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vehiclenumTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_vehiclenumTxtActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backBtn;
+    private javax.swing.JLabel etdLbl;
+    private javax.swing.JButton notifythroughmailBtn;
+    private javax.swing.JComboBox<String> timeCmbBox;
+    private javax.swing.JComboBox<String> timezoneCmbBox;
+    private javax.swing.JLabel trpaLbl;
+    private javax.swing.JLabel vehiclenumLbl;
+    private javax.swing.JTextField vehiclenumTxt;
     // End of variables declaration//GEN-END:variables
 }
