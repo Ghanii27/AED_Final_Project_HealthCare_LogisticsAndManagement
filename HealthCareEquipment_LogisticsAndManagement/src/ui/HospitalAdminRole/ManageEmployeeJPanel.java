@@ -4,24 +4,57 @@
  */
 package ui.HospitalAdminRole;
 
+import Schema.Employee.Employee;
+import Schema.Organization.Organization;
 import Schema.Organization.OrganizationDirectory;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author 16176
  */
 public class ManageEmployeeJPanel extends javax.swing.JPanel {
+    private OrganizationDirectory orgDir;
+    private JPanel upContainer;
+    
 
     /**
      * Creates new form ManageEmployeeJPanel
      */
-    public ManageEmployeeJPanel() {
+    public ManageEmployeeJPanel(JPanel userprocessContainer, OrganizationDirectory organizationDirectory) {
         initComponents();
+        this.upContainer=upContainer;
+        this.orgDir=orgDir;
+        populateOrgCmbBox();
+        populateOrgEmpCmbBox();
+       
     }
-
-    ManageEmployeeJPanel(JPanel userprocessContainer, OrganizationDirectory organizationDirectory) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void populateOrgCmbBox() {
+     orgCmbBox.removeAllItems();
+     for(Organization org : orgDir.getOrganizationList()){
+         orgCmbBox.addItem(org);
+     }
+    }
+    
+        public void populateOrgEmpCmbBox() {
+            orgEmpCmb.removeAllItems();
+            for(Organization org : orgDir.getOrganizationList()){
+                orgEmpCmb.addItem(org);
+            }
+       
+    }
+            private void populateTable(Organization org) {
+      DefaultTableModel dtModel = (DefaultTableModel) orgTbl.getModel();
+      dtModel.setRowCount(0);
+      for (Employee emp : org.getEmployeeDirectory().getEmployeeList()){
+          Object[]row = new Object[2];
+          row[0]=emp.getEmployeeId();
+          row[1]=emp.getEmployeeName();
+          dtModel.addRow(row);
+          
+      }
     }
 
     /**
@@ -35,11 +68,11 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
 
         headerLbl = new javax.swing.JLabel();
         orgLbl = new javax.swing.JLabel();
-        orgCmbBox = new javax.swing.JComboBox<>();
+        orgCmbBox = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         orgTbl = new javax.swing.JTable();
         org1Lbl = new javax.swing.JLabel();
-        orgEmpCmb = new javax.swing.JComboBox<>();
+        orgEmpCmb = new javax.swing.JComboBox();
         name = new javax.swing.JLabel();
         nameTextField1 = new javax.swing.JTextField();
         backBtn = new javax.swing.JButton();
@@ -51,7 +84,12 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         orgLbl.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         orgLbl.setText("Organization :");
 
-        orgCmbBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        orgCmbBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        orgCmbBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                orgCmbBoxActionPerformed(evt);
+            }
+        });
 
         orgTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -81,7 +119,12 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         org1Lbl.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         org1Lbl.setText("Organization :");
 
-        orgEmpCmb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        orgEmpCmb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        orgEmpCmb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                orgEmpCmbActionPerformed(evt);
+            }
+        });
 
         name.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         name.setText(" Name             :");
@@ -93,8 +136,18 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         });
 
         backBtn.setText("<< Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
 
         addEmpBtn.setText("Create Employee");
+        addEmpBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addEmpBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -161,7 +214,31 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_nameTextField1ActionPerformed
 
+    private void addEmpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addEmpBtnActionPerformed
+Organization org = (Organization) orgEmpCmb.getSelectedItem();
+String empName = nameTextField1.getText();
+org.getEmployeeDirectory().createEmployee(empName);
+// TODO add your handling code here:
+    }//GEN-LAST:event_addEmpBtnActionPerformed
 
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+ upContainer.remove(this);
+ CardLayout lyt = (CardLayout) upContainer.getLayout();
+lyt.previous(upContainer);// TODO add your handling code here:
+    }//GEN-LAST:event_backBtnActionPerformed
+
+    private void orgEmpCmbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orgEmpCmbActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_orgEmpCmbActionPerformed
+
+    private void orgCmbBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orgCmbBoxActionPerformed
+Organization org = (Organization) orgCmbBox.getSelectedItem();
+if(org!=null){
+    populateTable(org);
+// TODO add your handling code here:
+    }//GEN-LAST:event_orgCmbBoxActionPerformed
+
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addEmpBtn;
     private javax.swing.JButton backBtn;
@@ -170,9 +247,14 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel name;
     private javax.swing.JTextField nameTextField1;
     private javax.swing.JLabel org1Lbl;
-    private javax.swing.JComboBox<String> orgCmbBox;
-    private javax.swing.JComboBox<String> orgEmpCmb;
+    private javax.swing.JComboBox orgCmbBox;
+    private javax.swing.JComboBox orgEmpCmb;
     private javax.swing.JLabel orgLbl;
     private javax.swing.JTable orgTbl;
     // End of variables declaration//GEN-END:variables
+
+
+
+
+
 }

@@ -4,25 +4,70 @@
  */
 package ui.HospitalAdminRole;
 
+import Schema.Employee.Employee;
 import Schema.Enterprise.Enterprise;
+import Schema.Organization.Organization;
 import Schema.Organization.OrganizationDirectory;
+import Schema.Role.Role;
+import Schema.UserAccount.UserAccount;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author 16176
  */
 public class ManageUserAccountJPanel extends javax.swing.JPanel {
+    private JPanel userprocesscontainer;
+    private Enterprise ent;
+    
 
     /**
      * Creates new form ManageUserAccountJPanel
      */
-    public ManageUserAccountJPanel() {
+    public ManageUserAccountJPanel(JPanel userprocessContainer, Enterprise ent) {
         initComponents();
+        this.ent=ent;
+        this.userprocesscontainer=userprocesscontainer;
+        
+        populateOrgCmbBox();
+        popData();
     }
 
-    ManageUserAccountJPanel(JPanel userprocessContainer, Enterprise ent) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        public void populateOrgCmbBox() {
+orgCmbBox1.removeAllItems();
+for (Organization organization : ent.getOrganizationDirectory().getOrganizationList()) {
+orgCmbBox1.addItem(organization);
+}
+    }
+
+        public void popData() {
+DefaultTableModel model = (DefaultTableModel)  userTbl1.getModel();
+model.setRowCount(0);
+for (Organization organization : ent.getOrganizationDirectory().getOrganizationList()) {
+for (UserAccount ua : organization.getUserAccountDirectory().getUserAccountList()) {
+Object row[] = new Object[2];
+row[0] = ua;
+row[1] = ua.getRole();
+((DefaultTableModel) userTbl1.getModel()).addRow(row);
+}
+}
+    }
+        
+        
+public void populateRoleCmbBox(Organization org) {
+roleCmbBox1.removeAllItems();
+for (Role role : org.getSupportedRole()){
+roleCmbBox1.addItem(role);
+}
+    }
+
+public void populateEmpCmbBox(Organization org) {
+empCmbBox1.removeAllItems();
+for (Employee emp : org.getEmployeeDirectory().getEmployeeList()){
+empCmbBox1.addItem(emp);
+}
     }
 
     /**
@@ -44,9 +89,9 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         orgLbl1 = new javax.swing.JLabel();
         roleLbl1 = new javax.swing.JLabel();
         createuserBtn1 = new javax.swing.JButton();
-        empCmbBox1 = new javax.swing.JComboBox<>();
-        roleCmbBox1 = new javax.swing.JComboBox<>();
-        orgCmbBox1 = new javax.swing.JComboBox<>();
+        empCmbBox1 = new javax.swing.JComboBox();
+        roleCmbBox1 = new javax.swing.JComboBox();
+        orgCmbBox1 = new javax.swing.JComboBox();
         empLbl1 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -103,11 +148,11 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
             }
         });
 
-        empCmbBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        empCmbBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        roleCmbBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        roleCmbBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        orgCmbBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        orgCmbBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         orgCmbBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 orgCmbBox1ActionPerformed(evt);
@@ -203,7 +248,9 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtn1ActionPerformed
-        // TODO add your handling code here:
+ userprocesscontainer.remove(this);
+ CardLayout lyt = (CardLayout) userprocesscontainer.getLayout();
+lyt.previous(userprocesscontainer);// TODO add your handling code here:
     }//GEN-LAST:event_backBtn1ActionPerformed
 
     private void passwordTxt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordTxt1ActionPerformed
@@ -211,29 +258,46 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_passwordTxt1ActionPerformed
 
     private void createuserBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createuserBtn1ActionPerformed
-        // TODO add your handling code here:
+String userName =   nameTxt1.getText();
+String password = passwordTxt1.getText();
+Organization org = (Organization) orgCmbBox1.getSelectedItem();
+Employee emp = (Employee) empCmbBox1.getSelectedItem();
+Role role = (Role) roleCmbBox1.getSelectedItem();
+org.getUserAccountDirectory().createUserAccount(userName, password, emp, role);
+popData();// TODO add your handling code here:
+        
     }//GEN-LAST:event_createuserBtn1ActionPerformed
 
     private void orgCmbBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orgCmbBox1ActionPerformed
-        // TODO add your handling code here:
+Organization org = (Organization) orgCmbBox1.getSelectedItem();
+if (org!=null){
+populateEmpCmbBox(org);
+populateRoleCmbBox(org);// TODO add your handling code here:
     }//GEN-LAST:event_orgCmbBox1ActionPerformed
 
-
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn1;
     private javax.swing.JButton createuserBtn1;
-    private javax.swing.JComboBox<String> empCmbBox1;
+    private javax.swing.JComboBox empCmbBox1;
     private javax.swing.JLabel empLbl1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField nameTxt1;
-    private javax.swing.JComboBox<String> orgCmbBox1;
+    private javax.swing.JComboBox orgCmbBox1;
     private javax.swing.JLabel orgLbl1;
     private javax.swing.JLabel passwordLbl1;
     private javax.swing.JTextField passwordTxt1;
-    private javax.swing.JComboBox<String> roleCmbBox1;
+    private javax.swing.JComboBox roleCmbBox1;
     private javax.swing.JLabel roleLbl1;
     private javax.swing.JTable userTbl1;
     private javax.swing.JLabel usernameLbl1;
     // End of variables declaration//GEN-END:variables
+
+
+
+
+
+
+
 }
