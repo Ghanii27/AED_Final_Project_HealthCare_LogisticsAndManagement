@@ -6,25 +6,85 @@ package ui.PharmacyRole;
 
 import Schema.Enterprise.Enterprise;
 import Schema.Network.Network;
+import Schema.Organization.Organization;
 import Schema.Organization.PharmacyOrganization;
+import Schema.PharmaInventory.PharmaInventory;
+import Schema.PharmaInventory.PharmaInventoryList;
 import Schema.UserAccount.UserAccount;
+import Schema.WorkQueue.PharmacyWorkRequest;
+import Schema.WorkQueue.SupplierWorkRequest;
+import Schema.WorkQueue.WorkRequest;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author 16176
  */
 public class PharmaWorkAreaJPanel extends javax.swing.JPanel {
+    JPanel upContainer;
+    private UserAccount ua;
+    private Enterprise ent;
+    private PharmaInventoryList pil;
+    private Organization org;
+    private PharmacyOrganization pharmorg;
+    private Network network;
 
     /**
      * Creates new form PharmaWorkAreaJPanel
      */
-    public PharmaWorkAreaJPanel() {
+    public PharmaWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Enterprise enterprise, PharmacyOrganization pharmacyOrganization, Network network) {
         initComponents();
+        this.upContainer=userProcessContainer;
+        this.ua=ua;
+        this.ent=enterprise;
+        this.pil= pil;
+       // this.org=(Phar)
+        this.pharmorg=(PharmacyOrganization) org;
+        this.network=network;
+        refreshTable();
+        populateDoctorTable();
     }
 
-    public PharmaWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Enterprise enterprise, PharmacyOrganization pharmacyOrganization, Network network) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     public void refreshTable(){
+      
+       int rowCount = jTable1.getRowCount();
+        DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+        for(int i=rowCount-1;i>=0;i--) {
+            model.removeRow(i);
+        }
+      for(PharmaInventory pi : pharmorg.getMedList()){
+            Object row[] = new Object[6];
+            row[0] = pi;
+            row[1] = pi.getSerialNumber();
+            row[2]= pi.getAvailableQuantity();
+            row[3]=pi.getRequiredQuantity();
+            row[4]= pi.getReorderLevel();
+            row[5]=pi.getReorderStatus();
+            model.addRow(row);
+        }
+      
+      }   
+     
+     public void populateDoctorTable(){
+          DefaultTableModel model = (DefaultTableModel)docReqTbl.getModel();
+            model.setRowCount(0);
+            for(WorkRequest request : pharmorg.getWorkQueue().getWorkRequestList()){
+            Object[] row = new Object[4];
+            String medication = ((PharmacyWorkRequest) request).getMedicationName();
+            System.out.println("****"+medication);
+            row[0] = medication;
+            int quantity=((PharmacyWorkRequest) request).getQuantity();
+            row[1] = quantity;
+            //row[2] = request.getReceiver() == null ? null : request.getReceiver().getEmployee().getName();
+            row[2] = ((PharmacyWorkRequest) request).getStatus();
+            model.addRow(row);
+        }
+          
+        
+        
     }
 
     /**
@@ -108,15 +168,35 @@ public class PharmaWorkAreaJPanel extends javax.swing.JPanel {
 
         backBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         backBtn.setText("<<BACK");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
 
         addmedBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         addmedBtn.setText("ADD MEDICINE");
+        addmedBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addmedBtnActionPerformed(evt);
+            }
+        });
 
         viewdetailsBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         viewdetailsBtn.setText("VIEW DETAILS >>");
+        viewdetailsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewdetailsBtnActionPerformed(evt);
+            }
+        });
 
         viewreqBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         viewreqBtn.setText("VIEW REQUESTS");
+        viewreqBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewreqBtnActionPerformed(evt);
+            }
+        });
 
         viewreqfromDocBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         viewreqfromDocBtn.setText("VIEW REQUESTS FROM DOCTORS");
@@ -209,9 +289,7 @@ public class PharmaWorkAreaJPanel extends javax.swing.JPanel {
                             .addComponent(mednameLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(mednameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(11, 11, 11))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addComponent(viewdetailsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                    .addComponent(viewdetailsBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(availQtyLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -280,8 +358,130 @@ public class PharmaWorkAreaJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void invStatusCheckBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_invStatusCheckBtnActionPerformed
-        // TODO add your handling code here:
+for(PharmaInventory mi : pharmorg.getMedList()){
+
+            if(mi.getAvailableQuantity()<=mi.getReorderLevel()){
+                if(!mi.getReorderStatus().equals("Y")){
+                    SupplierWorkRequest request=new SupplierWorkRequest();
+
+                    mi.setReorderStatus("Y");
+                    request.setMedicationName(mi.getMedicineName());
+                    request.setQuantity(mi.getRequiredQuantity());
+                    request.setSender(ua);
+
+                    ua.getWorkQueue().getWorkRequestList().add(request);
+                    for(Enterprise enterprise :network.getEnterpriseDirectory().getEnterpriseList() ){
+                        System.out.println("***** Organization Name:" +enterprise.getName());
+                        for(Organization organization:enterprise.getOrganizationDirectory().getOrganizationList()){
+                            System.out.println("***** Organization Name:" +organization.getName());
+                            if(organization.getName().equals("Supplier Organization")){
+                                System.out.println("True");
+                                // for( Organization organization :enterprise.getOrganizationDirectory().getOrganizationList()){
+                                    System.out.println("***** organization Name"+organization.getName());
+                                    // if(organization.getName().equals("EquipmentOrganization")){
+                                        organization.getWorkQueue().getWorkRequestList().add(request);
+                                    }
+                                }
+
+                            }
+
+                        }
+
+                    }
+                }
+             JOptionPane.showMessageDialog(null, "Inventory status checked and updated!", "Warning", JOptionPane.INFORMATION_MESSAGE);        // TODO add your handling code here:
     }//GEN-LAST:event_invStatusCheckBtnActionPerformed
+
+    private void addmedBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addmedBtnActionPerformed
+PharmaInventory p=new PharmaInventory();
+       String name=mednameTxt.getText();
+       String error_message="";
+       String avail=availQtyTxt.getText();
+       try{
+          Integer.parseInt(avail);
+       }
+       catch(NumberFormatException e){
+           JOptionPane.showMessageDialog(null,"Available quantity is not a valid field!");
+          
+       }
+       p.setMedicineName(mednameTxt.getText());
+       int availableQuantity= Integer.parseInt(availQtyTxt.getText());
+       p.setAvailableQuantity(availableQuantity);
+       String serialnumber=serialnumTxt.getText();
+       try{
+           Integer.parseInt(serialnumber);
+       }
+       catch(NumberFormatException e){
+           JOptionPane.showMessageDialog(null,"serial number must be integer!");
+       }
+       int serialNumber= Integer.parseInt(serialnumTxt.getText());
+       p.setSerialNumber(serialNumber);
+       String req=reqQtyTxt.getText();
+       try
+       {
+        Integer.parseInt(req);
+       }
+       catch(NumberFormatException e){
+           
+           JOptionPane.showMessageDialog(null,"Required quantity must be integer!");
+       }
+       int requiredQuantity= Integer.parseInt(reqQtyTxt.getText());
+       p.setRequiredQuantity(requiredQuantity);
+       
+       String reorder=recorderTxt.getText();
+       try
+       {
+        Integer.parseInt(reorder);
+       }
+       catch(NumberFormatException e){
+           
+           JOptionPane.showMessageDialog(null,"Reorder level must be integer!");
+       }
+       int reorderLevel= Integer.parseInt(recorderTxt.getText());
+       p.setReorderLevel(reorderLevel);
+       pharmorg.addMedicine(p);
+       p.setReorderStatus("N");
+
+       
+        DefaultTableModel dtm =(DefaultTableModel) jTable1.getModel();
+
+        dtm.setRowCount(0);
+        for(PharmaInventory pi : pharmorg.getMedList()){
+            Object row[] = new Object[5];
+            row[0] = pi;
+            row[1] = pi.getSerialNumber();
+            row[2]= pi.getAvailableQuantity();
+            row[3]=pi.getRequiredQuantity();
+            row[4]= pi.getReorderLevel();
+            dtm.addRow(row);
+        }
+
+        JOptionPane.showMessageDialog(null, "Medicine Added Successfully", "Warning", JOptionPane.INFORMATION_MESSAGE);        // TODO add your handling code here:
+    }//GEN-LAST:event_addmedBtnActionPerformed
+
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+upContainer.remove(this);
+        CardLayout layout = (CardLayout) upContainer.getLayout();
+        layout.previous(upContainer);        // TODO add your handling code here:
+    }//GEN-LAST:event_backBtnActionPerformed
+
+    private void viewdetailsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewdetailsBtnActionPerformed
+int row = jTable1.getSelectedRow();
+        if(row<0){
+            JOptionPane.showMessageDialog(null, "Pls select a row!!", "Warning", JOptionPane.WARNING_MESSAGE);
+        }
+        PharmaInventory pi = (PharmaInventory)jTable1.getValueAt(row, 0);
+
+        CardLayout layout = (CardLayout) upContainer.getLayout();
+        upContainer.add("UpdateEntryJPanel", new UpdateEntryJPanel(upContainer, ua, ent,pi));
+        layout.next(upContainer);        // TODO add your handling code here:
+    }//GEN-LAST:event_viewdetailsBtnActionPerformed
+
+    private void viewreqBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewreqBtnActionPerformed
+CardLayout layout = (CardLayout) upContainer.getLayout();
+        upContainer.add("ViewrequestJPanel", new ViewrequestJPanel( upContainer, ua, ent, org));
+        layout.next(upContainer);        // TODO add your handling code here:
+    }//GEN-LAST:event_viewreqBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

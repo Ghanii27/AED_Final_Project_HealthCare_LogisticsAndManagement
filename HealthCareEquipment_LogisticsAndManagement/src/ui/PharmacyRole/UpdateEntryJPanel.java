@@ -4,17 +4,45 @@
  */
 package ui.PharmacyRole;
 
+import Schema.Enterprise.Enterprise;
+import Schema.Organization.Organization;
+import Schema.Organization.PharmacyOrganization;
+import Schema.PharmaInventory.PharmaInventory;
+import Schema.PharmaInventory.PharmaInventoryList;
+import Schema.UserAccount.UserAccount;
+import java.awt.CardLayout;
+import java.awt.Component;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 /**
  *
  * @author 16176
  */
 public class UpdateEntryJPanel extends javax.swing.JPanel {
+        JPanel userProcessContainer;
+    private UserAccount userAccount;
+    private Enterprise enterprise;
+    private PharmaInventoryList pil;
+    private Organization org;
+    private PharmacyOrganization pharmorg;
+    private PharmaInventory pi;
 
     /**
      * Creates new form UpdateEntryJPanel
      */
-    public UpdateEntryJPanel() {
+    public UpdateEntryJPanel(JPanel upContainer, UserAccount ua, Enterprise ent, PharmaInventory pi) {
         initComponents();
+        this.userProcessContainer=userProcessContainer;
+        this.userAccount=userAccount;
+        this.enterprise=enterprise;
+        this.pil= pil;
+        this.pharmorg= pharmorg;
+        this.pi=pi;
+        serialnumTxt.setText(String.valueOf(pi.getSerialNumber()));
+        availabilityTxt.setText(String.valueOf(pi.getAvailableQuantity()));
+        mednameTxt.setText(pi.getMedicineName());
+        
     }
 
     /**
@@ -51,12 +79,27 @@ public class UpdateEntryJPanel extends javax.swing.JPanel {
 
         backBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         backBtn.setText("<<Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
 
         saveBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         saveBtn.setText("Save");
+        saveBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveBtnActionPerformed(evt);
+            }
+        });
 
         updateBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         updateBtn.setText("Update");
+        updateBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -113,6 +156,41 @@ public class UpdateEntryJPanel extends javax.swing.JPanel {
                 .addContainerGap(464, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        PharmaWorkAreaJPanel pwjp = (PharmaWorkAreaJPanel) component;
+        pwjp.refreshTable();
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);        // TODO add your handling code here:
+    }//GEN-LAST:event_backBtnActionPerformed
+
+    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
+pi.setMedicineName(mednameTxt.getText());
+       int availableQuantity= Integer.parseInt(availabilityTxt.getText());
+        pi.setAvailableQuantity(availableQuantity);
+        int serialNumber= Integer.parseInt(serialnumTxt.getText());
+        pi.setSerialNumber(serialNumber);
+        
+        
+        JOptionPane.showMessageDialog(null, "Medicine updated Successfully", "Warning", JOptionPane.INFORMATION_MESSAGE);
+        
+         if(pi.getAvailableQuantity()<=pi.getReorderLevel()){
+            
+            
+            
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_saveBtnActionPerformed
+
+    private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
+
+        mednameTxt.setEditable(false);
+        serialnumTxt.setEditable(false);
+        availabilityTxt.setEditable(true);
+        saveBtn.setEnabled(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_updateBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

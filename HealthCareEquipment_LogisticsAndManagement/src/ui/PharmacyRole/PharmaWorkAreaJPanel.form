@@ -146,10 +146,7 @@
                                       </Group>
                                       <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="viewdetailsBtn" min="-2" pref="38" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="viewdetailsBtn" alignment="1" min="-2" pref="38" max="-2" attributes="0"/>
                               </Group>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="103" groupAlignment="3" attributes="0">
@@ -316,6 +313,9 @@
                         </Property>
                         <Property name="text" type="java.lang.String" value="&lt;&lt;BACK"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="backBtnActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="addmedBtn">
                       <Properties>
@@ -324,6 +324,9 @@
                         </Property>
                         <Property name="text" type="java.lang.String" value="ADD MEDICINE"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addmedBtnActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="viewdetailsBtn">
                       <Properties>
@@ -332,6 +335,9 @@
                         </Property>
                         <Property name="text" type="java.lang.String" value="VIEW DETAILS &gt;&gt;"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewdetailsBtnActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="viewreqBtn">
                       <Properties>
@@ -340,6 +346,9 @@
                         </Property>
                         <Property name="text" type="java.lang.String" value="VIEW REQUESTS"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewreqBtnActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JButton" name="viewreqfromDocBtn">
                       <Properties>
