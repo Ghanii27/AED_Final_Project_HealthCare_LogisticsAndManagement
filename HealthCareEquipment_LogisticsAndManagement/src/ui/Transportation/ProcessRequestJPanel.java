@@ -4,6 +4,8 @@
  */
 package ui.Transportation;
 
+import javax.swing.JPanel;
+
 /**
  *
  * @author 16176
@@ -13,8 +15,18 @@ public class ProcessRequestJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ProcessRequestJPanel
      */
-    public ProcessRequestJPanel() {
+    
+    JPanel userProcessContainer;
+    TransportationWorkRequest request;
+    private UserAccount userAccount;
+    private Organization organization;
+    private EcoSystem system;
+    
+    public ProcessRequestJPanel(JPanel userProcessContainer,TransportationWorkRequest request) {
         initComponents();
+        this.userProcessContainer=userProcessContainer;
+        this.request=request;
+        
     }
 
     /**
@@ -61,6 +73,11 @@ public class ProcessRequestJPanel extends javax.swing.JPanel {
         backBtn.setText("<< Back");
 
         notifythroughmailBtn.setText("Intimate Hospital through Mail");
+        notifythroughmailBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                notifythroughmailBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -121,6 +138,19 @@ public class ProcessRequestJPanel extends javax.swing.JPanel {
     private void vehiclenumTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vehiclenumTxtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_vehiclenumTxtActionPerformed
+
+    private void notifythroughmailBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notifythroughmailBtnActionPerformed
+        request.setTime(timeCmbBox.getSelectedItem().toString() +" "+ timezoneCmbBox.getSelectedItem().toString()+" "+"VehicleNumber" +vehicleNumber.getText());
+        String[] to = {"yashwanth.3b8@gmail.com"};
+        sendMailToCommunityMember(to,
+                "Alert from Transportation department",
+                "The delivery details are for the quipment "+request.getEquipmentinfo()+" are" +request.getTime(),
+                "doctortesting.test@gmail.com",
+                "doctororganization");
+        JOptionpane.showMessegeDialog(null,"Email sent successfully");
+        
+        
+    }//GEN-LAST:event_notifythroughmailBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
