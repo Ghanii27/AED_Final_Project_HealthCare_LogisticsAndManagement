@@ -5,6 +5,7 @@
 package ui.AdministrativeRole;
 
 import Schema.Enterprise.Enterprise;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
 
 /**
@@ -12,17 +13,18 @@ import javax.swing.JPanel;
  * @author 16176
  */
 public class AdminWorkAreaJPanel extends javax.swing.JPanel {
-
-    /**
+    JPanel upContainer;
+    Enterprise ent;
+        /**
      * Creates new form AdminWorkAreaJPanel
      */
-    public AdminWorkAreaJPanel() {
+    public AdminWorkAreaJPanel(JPanel userProcessContainer, Enterprise enterprise) {
         initComponents();
+        this.upContainer=upContainer;
+        this.ent=ent;
+        valueLbl.setText(ent.getName());
     }
 
-    public AdminWorkAreaJPanel(JPanel userProcessContainer, Enterprise enterprise) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -56,16 +58,52 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
 
         manageOrgBtn.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         manageOrgBtn.setText("Manage Organization");
+        manageOrgBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageOrgBtnActionPerformed(evt);
+            }
+        });
         add(manageOrgBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 210, 260, -1));
 
         manageEmpBtn.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         manageEmpBtn.setText("Manage Employee");
+        manageEmpBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageEmpBtnActionPerformed(evt);
+            }
+        });
         add(manageEmpBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 280, 260, -1));
 
         manageUserBtn.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         manageUserBtn.setText("Manage User");
+        manageUserBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageUserBtnActionPerformed(evt);
+            }
+        });
         add(manageUserBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 350, 260, -1));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void manageUserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageUserBtnActionPerformed
+ui.HospitalAdminRole.ManageUserAccountJPanel  mngUA = new   ui.HospitalAdminRole.ManageUserAccountJPanel(upContainer, ent) ;
+upContainer.add("ManageUserAccountJPanel",mngUA);
+CardLayout cly = (CardLayout) upContainer.getLayout();
+cly.next(upContainer);        // TODO add your handling code here:
+    }//GEN-LAST:event_manageUserBtnActionPerformed
+
+    private void manageEmpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageEmpBtnActionPerformed
+ui.HospitalAdminRole.ManageEmployeeJPanel mngEmpJPanel = new ui.HospitalAdminRole.ManageEmployeeJPanel(upContainer, ent.getOrganizationDirectory());
+upContainer.add("mngEmpJPanel", mngEmpJPanel);
+CardLayout lyt = (CardLayout) upContainer.getLayout();
+lyt.next(upContainer);        // TODO add your handling code here:
+    }//GEN-LAST:event_manageEmpBtnActionPerformed
+
+    private void manageOrgBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageOrgBtnActionPerformed
+        ui.HospitalAdminRole.ManageOrganizationJPanel manageOrgJPanel = new ui.HospitalAdminRole.ManageOrganizationJPanel(upContainer, ent.getOrganizationDirectory());
+        upContainer.add("manageOrgJPanel", manageOrgJPanel);
+        CardLayout layout = (CardLayout) upContainer.getLayout();
+        layout.next(upContainer);        // TODO add your handling code here:
+    }//GEN-LAST:event_manageOrgBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

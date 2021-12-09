@@ -4,17 +4,25 @@
  */
 package ui.Supplier;
 
+import Schema.WorkQueue.SupplierWorkRequest;
+import javax.swing.JPanel;
+
 /**
  *
  * @author 16176
  */
 public class ProcessSupplierWorkRequestJPanel extends javax.swing.JPanel {
+    JPanel upContainer;
+    SupplierWorkRequest suppWorkReq;
+    
 
     /**
      * Creates new form ProcessSupplierWorkRequestJPanel
      */
-    public ProcessSupplierWorkRequestJPanel() {
+    public ProcessSupplierWorkRequestJPanel(JPanel upContainer,SupplierWorkRequest suppWorkReq) {
         initComponents();
+        this.upContainer=upContainer;
+        this.suppWorkReq=suppWorkReq;
     }
 
     /**

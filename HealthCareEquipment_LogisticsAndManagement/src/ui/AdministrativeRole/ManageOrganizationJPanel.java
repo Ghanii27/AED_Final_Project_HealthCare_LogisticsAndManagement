@@ -4,19 +4,52 @@
  */
 package ui.AdministrativeRole;
 
+import Schema.Organization.Organization;
+import Schema.Organization.Organization.OrganizationType;
+import Schema.Organization.OrganizationDirectory;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author 16176
  */
 public class ManageOrganizationJPanel extends javax.swing.JPanel {
-
+    private OrganizationDirectory orgDir;
+    private JPanel upContainer;
     /**
      * Creates new form ManageOrganizationJPanel
      */
-    public ManageOrganizationJPanel() {
+    public ManageOrganizationJPanel(JPanel userProcessContainer,OrganizationDirectory directory) {
         initComponents();
-    }
+                this.upContainer = upContainer;
+        this.orgDir = orgDir;
+        
+        populateTable();
+        populateCombo(); }
 
+            private void populateCombo(){
+        orgtypeCmbBox.removeAllItems();
+        for (OrganizationType type : Organization.OrganizationType.values()){
+            if (!type.getValue().equals(OrganizationType.Admin.getValue()))
+                orgtypeCmbBox.addItem(type);
+        }
+    }
+            
+                private void populateTable(){
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        
+        model.setRowCount(0);
+        
+        for (Organization organization : orgDir.getOrganizationList()){
+            Object[] row = new Object[2];
+            row[0] = organization.getOrganizationID();
+            row[1] = organization.getName();
+            
+            model.addRow(row);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,7 +63,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
         headerLbl = new javax.swing.JLabel();
         orgtypeLbl = new javax.swing.JLabel();
-        orgtypeCmbBox = new javax.swing.JComboBox<>();
+        orgtypeCmbBox = new javax.swing.JComboBox();
         backBtn = new javax.swing.JButton();
         addOrgBtn = new javax.swing.JButton();
 
@@ -69,13 +102,23 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         orgtypeLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         orgtypeLbl.setText("Organization Type:");
 
-        orgtypeCmbBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        orgtypeCmbBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         backBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         backBtn.setText("<< Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
 
         addOrgBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         addOrgBtn.setText("Add Organization");
+        addOrgBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addOrgBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -122,6 +165,18 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void addOrgBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addOrgBtnActionPerformed
+        OrganizationType type = (OrganizationType) orgtypeCmbBox.getSelectedItem();
+        orgDir.createOrganization(type);
+        populateTable();        // TODO add your handling code here:
+    }//GEN-LAST:event_addOrgBtnActionPerformed
+
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        upContainer.remove(this);
+        CardLayout crd = (CardLayout) upContainer.getLayout();
+        crd.previous(upContainer);        // TODO add your handling code here:
+    }//GEN-LAST:event_backBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addOrgBtn;
@@ -129,7 +184,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel headerLbl;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JComboBox<String> orgtypeCmbBox;
+    private javax.swing.JComboBox orgtypeCmbBox;
     private javax.swing.JLabel orgtypeLbl;
     // End of variables declaration//GEN-END:variables
 }

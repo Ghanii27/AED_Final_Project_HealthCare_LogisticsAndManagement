@@ -6,7 +6,11 @@ package ui.Supplier;
 
 import Schema.EcoSystem;
 import Schema.Organization.Organization;
+import Schema.Organization.SupplierOrganization;
 import Schema.UserAccount.UserAccount;
+import Schema.WorkQueue.SupplierWorkRequest;
+import Schema.WorkQueue.WorkRequest;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
 
 /**
@@ -14,17 +18,18 @@ import javax.swing.JPanel;
  * @author 16176
  */
 public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
+    private JPanel upContainer;
+    private EcoSystem system;
+    private UserAccount ua;
+    private SupplierOrganization suppOrg;
 
     /**
      * Creates new form SupplierWorkAreaJPanel
      */
-    public SupplierWorkAreaJPanel() {
+    public SupplierWorkAreaJPanel(JPanel userProcessContainer, EcoSystem business, UserAccount account, Organization organization) {
         initComponents();
     }
 
-    public SupplierWorkAreaJPanel(JPanel userProcessContainer, EcoSystem business, UserAccount account, Organization organization) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -159,10 +164,10 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
 
         request.setStatus("Processing");
 
-        ProcessSupplierWorkRequest processWorkRequestJPanel = new ProcessSupplierWorkRequest(userProcessContainer, request);
-        userProcessContainer.add("processWorkRequestJPanel", processWorkRequestJPanel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
+        ProcessSupplierWorkRequestJPanel processWorkRequestJPanel = new ProcessSupplierWorkRequestJPanel(upContainer, request);
+        upContainer.add("processWorkRequestJPanel", processWorkRequestJPanel);
+        CardLayout layout = (CardLayout) upContainer.getLayout();
+        layout.next(upContainer);
 
     }//GEN-LAST:event_processBtnActionPerformed
 
@@ -175,7 +180,7 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
         }
 
         WorkRequest request = (WorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
-        request.setReceiver(userAccount);
+        request.setReceiver(ua);
         request.setStatus("Assigned");
         populateTable();
     }//GEN-LAST:event_assignBtnActionPerformed
@@ -194,4 +199,8 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton processBtn;
     private javax.swing.JTable workRequestJTable;
     // End of variables declaration//GEN-END:variables
+
+    private void populateTable() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

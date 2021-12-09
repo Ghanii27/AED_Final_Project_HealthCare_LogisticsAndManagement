@@ -145,6 +145,7 @@ JPanel blankPanel = new JPanel();
 jPanel2.add("blank",blankPanel );
 CardLayout layoutCard = (CardLayout) jPanel2.getLayout();
 layoutCard.next(jPanel2);
+db4o.storeSystem(system);
 
 // TODO add your handling code here:
     }//GEN-LAST:event_logoutJButtonActionPerformed
