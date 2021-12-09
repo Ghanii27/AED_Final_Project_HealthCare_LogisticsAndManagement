@@ -200,7 +200,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
     private void enterpriseCmbBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterpriseCmbBoxActionPerformed
      Enterprise ent =(Enterprise) enterpriseCmbBox.getSelectedItem();
      if(ent != null){
-populateEnterpriseComboBox ();   // TODO add your handling code here:
+//populateEnterpriseComboBox ();   // TODO add your handling code here:
     }//GEN-LAST:event_enterpriseCmbBoxActionPerformed
     }
     private void networkCmbBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_networkCmbBoxActionPerformed
