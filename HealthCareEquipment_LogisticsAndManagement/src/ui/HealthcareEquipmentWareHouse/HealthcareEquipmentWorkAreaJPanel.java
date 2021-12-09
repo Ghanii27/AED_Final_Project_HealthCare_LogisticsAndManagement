@@ -5,28 +5,78 @@
 package ui.HealthcareEquipmentWareHouse;
 
 import Schema.EcoSystem;
+import Schema.Enterprise.Enterprise;
 import Schema.Network.Network;
 import Schema.Organization.Organization;
 import Schema.UserAccount.UserAccount;
+import Schema.WorkQueue.HealthcareEquipmentWorkRequest;
+import Schema.WorkQueue.TransportationWorkRequest;
+import Schema.WorkQueue.WorkRequest;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author 16176
  */
 public class HealthcareEquipmentWorkAreaJPanel extends javax.swing.JPanel {
+    private JPanel upContainer;
+    private EcoSystem sys;
+    private UserAccount ua;
+    private Organization org;
+    private Network ntw;
+    private Enterprise ent;
+    private Organization transportOrganization;
 
     /**
      * Creates new form HealthcareEquipmentWorkAreaJPanel
      */
-    public HealthcareEquipmentWorkAreaJPanel() {
-        initComponents();
-    }
-
     public HealthcareEquipmentWorkAreaJPanel(JPanel userProcessContainer, EcoSystem business, UserAccount account, Organization organization, Network network) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        initComponents();
+        this.upContainer = upContainer;
+        this.ua = ua;
+        this.sys = sys;
+        this.org = org;
+        this.ntw=ntw;
+        populateHealthCareEquipmentReqTbl();
     }
+    
+     public void populateHealthCareEquipmentReqTbl(){
+        
+        DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+        
+        model.setRowCount(0);
+        
+        for(WorkRequest request : org.getWorkQueue().getWorkRequestList()){
+            Object[] row = new Object[6];
+            row[0]=((HealthcareEquipmentWorkRequest) request);
+            String urgencyLevel = ((HealthcareEquipmentWorkRequest) request).getUrgencyLevel();
+            int quantity = ((HealthcareEquipmentWorkRequest) request).getQuantity();
+            row[1] = urgencyLevel;
+            row[2]=quantity;
+            row[3]=request.getSender();
+            
+            row[4]=request.getReceiver();
+            
+            model.addRow(row);
+        }
+}
 
+     public void populateTransportWorkRequest(){
+        DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+        
+        model.setRowCount(0);
+        Object row[]=new Object[4];
+        for(WorkRequest request : ua.getWorkQueue().getWorkRequestList()){
+            row[0]=((TransportationWorkRequest) request);
+            row[1]=request.getReceiver();
+            row[2]=request.getStatus();
+            row[3]=((TransportationWorkRequest)request).getTime();
+        }
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -47,15 +97,35 @@ public class HealthcareEquipmentWorkAreaJPanel extends javax.swing.JPanel {
 
         assignBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         assignBtn.setText("ASSIGN TO ME");
+        assignBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                assignBtnActionPerformed(evt);
+            }
+        });
 
         backBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         backBtn.setText("<<Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
 
         processReqBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         processReqBtn.setText("PROCESS REQUEST>>>");
+        processReqBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                processReqBtnActionPerformed(evt);
+            }
+        });
 
         viewReqBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         viewReqBtn.setText("VIEW REQUEST STATUS>>");
+        viewReqBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewReqBtnActionPerformed(evt);
+            }
+        });
 
         refreshBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         refreshBtn.setText("REFRESH");
@@ -131,6 +201,102 @@ public class HealthcareEquipmentWorkAreaJPanel extends javax.swing.JPanel {
                         .addGap(353, 353, 353))))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void processReqBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processReqBtnActionPerformed
+ int selectedRow = jTable1.getSelectedRow();
+        
+        if (selectedRow < 0){
+             JOptionPane.showMessageDialog(null,"Please select a row");
+            return;
+        }
+        
+        HealthcareEquipmentWorkRequest request = (HealthcareEquipmentWorkRequest)jTable1.getValueAt(selectedRow, 0);
+       // String result="Request sent to transport department for delivery"?"Request sent to transport department for delivery":request.setExpectedArivalTime(request.getMessage());
+        request.setStatus("Request sent to transport department for delivery");
+        
+       
+        TransportationWorkRequest transportrequest=new TransportationWorkRequest();
+        transportrequest=new TransportationWorkRequest();
+        transportrequest.setSender(ua);
+        transportrequest.setStatus("Sent");
+        transportrequest.setHospitalName(request.getHospitalName());
+        transportrequest.setEquipmentinfo(("Name: "+request.getEquipmentName())+","+ "Qauntity: " +( request.getQuantity()));
+        transportrequest.setUrgency(request.getUrgencyLevel());
+        request.setExpectedArrivalTime(request.getMessage());
+        request.setTransportrequestStatus("Y");
+        
+        //userAccount.getWorkQueue().getWorkRequestList().add(transportrequest);
+         if(ntw.getName().equals(this.ntw.getName())){
+            for(Enterprise enterprise :ntw.getEnterpriseDirectory().getEnterpriseList() ){
+                System.out.println("****" +enterprise.getName());
+                System.out.println("******"+enterprise.getEnterpriseType());
+                //if(enterprise.getEnterpriseType().equals("MedicalEquipmentWareHouse")){
+                //  Enterprise.EnterpriseType type=null;
+                    //if(enterprise.getEnterpriseType().equals("MedicalEquipmentWareHouse")){
+                  //if (type==Enterprise.EnterpriseType.MedicalEquipmentWareHouse) { 
+                  for(Organization organization:enterprise.getOrganizationDirectory().getOrganizationList()){
+                      System.out.println("***** Organization Name:" +organization.getName());
+                   if(organization.getName().equals("Transportation Organization")){
+                      System.out.println("True");
+                   // for( Organization organization :enterprise.getOrganizationDirectory().getOrganizationList()){
+                        System.out.println("***** organization Name"+organization.getName());
+                       // if(organization.getName().equals("EquipmentOrganization")){
+                        // organization.getWorkQueue().getWorkRequestList().add(transportrequest);
+                         
+                      JOptionPane.showMessageDialog(null, "Transport department has been notified! "
+                              + "The request id is : "+transportrequest.getUniqueId());
+                      int requestId=transportrequest.getUniqueId();
+                      System.out.println("***" +requestId);
+                      transportrequest.setRequestId(requestId);
+                      ua.getWorkQueue().getWorkRequestList().add(transportrequest);
+                       organization.getWorkQueue().getWorkRequestList().add(transportrequest);
+                      
+                   }  
+                        
+                   }
+                   }
+                  
+         CardLayout layout = (CardLayout) upContainer.getLayout();
+          upContainer.add("ProcessRequest", new ViewTransportationRequestJPanel(upContainer,ua));//userProcessContainer,userAccount,organization,enterprise,system,network));
+         layout.next(upContainer);
+        
+         }
+        else{
+          CardLayout layout = (CardLayout) upContainer.getLayout();
+          upContainer.add("ProcessRequest", new ViewTransportationRequestJPanel(upContainer,ua));//userProcessContainer,userAccount,organization,enterprise,system,network));
+         layout.next(upContainer);
+         
+        }
+       // populateTransportWorkRequest();
+           // TODO add your handling code here:
+    }//GEN-LAST:event_processReqBtnActionPerformed
+
+    private void assignBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignBtnActionPerformed
+int selectedRow = jTable1.getSelectedRow();
+        
+        if (selectedRow < 0){
+           JOptionPane.showMessageDialog(null, "Please select a row!");
+        }
+        
+        HealthcareEquipmentWorkRequest request = (HealthcareEquipmentWorkRequest)jTable1.getValueAt(selectedRow, 0);
+        request.setReceiver(ua);
+        request.setStatus("Pending");
+        request.setTransportrequestStatus("N");
+        
+        populateHealthCareEquipmentReqTbl();        // TODO add your handling code here:
+    }//GEN-LAST:event_assignBtnActionPerformed
+
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+upContainer.remove(this);
+        CardLayout layout = (CardLayout) upContainer.getLayout();
+        layout.previous(upContainer);        // TODO add your handling code here:
+    }//GEN-LAST:event_backBtnActionPerformed
+
+    private void viewReqBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewReqBtnActionPerformed
+CardLayout layout = (CardLayout) upContainer.getLayout();
+        upContainer.add("ProcessRequest", new ViewTransportationRequestJPanel(upContainer,ua));//userProcessContainer,userAccount,organization,enterprise,system,network));
+        layout.next(upContainer);        // TODO add your handling code here:
+    }//GEN-LAST:event_viewReqBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

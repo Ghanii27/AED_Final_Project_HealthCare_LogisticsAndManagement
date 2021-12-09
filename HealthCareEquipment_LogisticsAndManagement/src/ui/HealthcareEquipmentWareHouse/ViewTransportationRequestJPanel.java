@@ -4,19 +4,63 @@
  */
 package ui.HealthcareEquipmentWareHouse;
 
+import Schema.UserAccount.UserAccount;
+import Schema.WorkQueue.TransportationWorkRequest;
+import Schema.WorkQueue.WorkRequest;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author 16176
  */
 public class ViewTransportationRequestJPanel extends javax.swing.JPanel {
+    JPanel userProcessContainer;
+    TransportationWorkRequest request;
+    private UserAccount ua;
 
     /**
      * Creates new form ViewTransportationRequestJPanel
      */
-    public ViewTransportationRequestJPanel() {
+    public ViewTransportationRequestJPanel(JPanel upContainer, UserAccount ua) {
         initComponents();
+        this.userProcessContainer=userProcessContainer;
+        this.request=request;
+        this.ua=ua;
+        populateTable();
     }
-
+public void populateTable(){
+        
+          DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+        
+        model.setRowCount(0);
+        Object row[]=new Object[6];
+        for(WorkRequest request : ua.getWorkQueue().getWorkRequestList()){
+            row[0]=request.getSender();
+            row[1]=request.getReceiver();
+            row[2]=((TransportationWorkRequest)request).getHospitalName();
+            row[3]=((TransportationWorkRequest)request).getMessage();
+            //row[3]=request.getStatus();
+           // row[4]=((TransportationWorkRequest)request).getTime();
+            request.setMessage(((TransportationWorkRequest)request).getTime());
+            if(((TransportationWorkRequest)request).getMessage()==null){
+                row[3]="Waiting for update";
+            }
+            else{
+             //result == null ? "Waiting" : result;
+            String result="Delivery Time: "+((TransportationWorkRequest)request).getMessage();
+            request.setMessage(result);
+//            ((MedicalEquipmentWorkRequest)request).setExpectedArivalTime(result);
+            row[3]=result;
+            System.out.println("*******"+((TransportationWorkRequest)request).getRequestId());
+           // row[4]=((TransportationWorkRequest)request).getRequestId();
+            row[4]=((TransportationWorkRequest)request).getEquipmentinfo();
+             
+        }
+            model.addRow(row);
+        }
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -55,6 +99,11 @@ public class ViewTransportationRequestJPanel extends javax.swing.JPanel {
 
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton2.setText("REFRESH");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -93,6 +142,10 @@ public class ViewTransportationRequestJPanel extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+ populateTable();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

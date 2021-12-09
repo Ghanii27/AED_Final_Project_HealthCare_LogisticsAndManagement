@@ -10,7 +10,7 @@ import Schema.UserAccount.UserAccount;
  *
  * @author 16176
  */
-public class TransportationWorkRequest {
+public class TransportationWorkRequest  extends WorkRequest {
     private String senderName;
     private String time;
     private String timezone;
