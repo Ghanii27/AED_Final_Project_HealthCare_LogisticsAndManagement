@@ -23,10 +23,12 @@ public class UserAccountDirectory {
         return userAccountList;
     }
  public UserAccount authenticateUser(String username, String password){
-     for (UserAccount ua : userAccountList)
-         if (ua.getUsername().equals(username) && ua.getPassword ().equals(password)){
+     for (UserAccount ua : userAccountList) {
+         System.out.println("Name: " + ua.getUsername() + " Password: " + ua.getPassword());
+        if (ua.getUsername().equals(username) && ua.getPassword ().equals(password)){
              return ua;
-         }
+        }
+     }
      return null;
  }   
  public UserAccount createUserAccount(String username, String password, Employee employee, Role role){

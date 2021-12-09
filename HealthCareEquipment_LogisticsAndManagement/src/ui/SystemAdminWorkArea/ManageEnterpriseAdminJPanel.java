@@ -198,9 +198,11 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void enterpriseCmbBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterpriseCmbBoxActionPerformed
-        // TODO add your handling code here:
+     Enterprise ent =(Enterprise) enterpriseCmbBox.getSelectedItem();
+     if(ent != null){
+populateEnterpriseComboBox ();   // TODO add your handling code here:
     }//GEN-LAST:event_enterpriseCmbBoxActionPerformed
-
+    }
     private void networkCmbBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_networkCmbBoxActionPerformed
      Network network =(Network) networkCmbBox.getSelectedItem();
      if(network != null){
@@ -280,9 +282,9 @@ for(Network ntw : system.getNetworkList()){
     private javax.swing.JTextField usernameTxtField;
     // End of variables declaration//GEN-END:variables
 
-private void populateEnterpriseComboBox(Network network) {
+private void populateEnterpriseComboBox(Network ntw) {
 enterpriseCmbBox.removeAllItems();
-    for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
+    for(Enterprise enterprise : ntw.getEnterpriseDirectory().getEnterpriseList()){
      enterpriseCmbBox.addItem(enterprise);
 }
     }

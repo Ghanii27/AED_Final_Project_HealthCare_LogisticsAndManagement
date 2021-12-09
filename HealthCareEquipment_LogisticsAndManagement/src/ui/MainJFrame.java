@@ -206,7 +206,7 @@ userNameJTextField.setEnabled(false);
 PasswordField.setEnabled(false);
 logoutJButton.setEnabled(true);
 
-
+//System.out.println(system.getUserAccountDirectory();
     }//GEN-LAST:event_loginJButtonActionPerformed
 
     private void PasswordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PasswordFieldActionPerformed
