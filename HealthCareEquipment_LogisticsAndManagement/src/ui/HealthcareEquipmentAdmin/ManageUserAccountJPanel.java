@@ -5,7 +5,6 @@
 package ui.HealthcareEquipmentAdmin;
 
 import java.awt.CardLayout;
-import javax.management.relation.Role;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import ui.HospitalAdminRole.*;
@@ -25,7 +24,7 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
      * Creates new form ManageUserAccountJPane
      * 
      */
-    private Jpanel container;
+    private JPanel container;
     private Enterprise enterprise;
     
     public ManageUserAccountJPanel(JPanel container, Enterprise enterprise) {
@@ -49,9 +48,9 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
             empCmbBox.addItem(employee);
         }
     }
-    private void populateRoleComboBox(Organization organization){
+    private void populateRoleComboBox(Organization org){
         roleCmbBox.removeAllItems();
-        for (Role role : organization.getSupportedRole()){
+        for (Role role : org.getSupportedRole()){
             roleCmbBox.addItem(role);
         
     }
@@ -82,11 +81,11 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         userTbl = new javax.swing.JTable();
         orgLbl = new javax.swing.JLabel();
-        orgCmbBox = new javax.swing.JComboBox<>();
+        orgCmbBox = new javax.swing.JComboBox();
         empLbl = new javax.swing.JLabel();
-        empCmbBox = new javax.swing.JComboBox<>();
+        empCmbBox = new javax.swing.JComboBox();
         roleLbl = new javax.swing.JLabel();
-        roleCmbBox = new javax.swing.JComboBox<>();
+        roleCmbBox = new javax.swing.JComboBox();
         usernameLbl = new javax.swing.JLabel();
         nameTxt = new javax.swing.JTextField();
         passwordLbl = new javax.swing.JLabel();
@@ -125,7 +124,7 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
 
         orgLbl.setText("Organization  :");
 
-        orgCmbBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        orgCmbBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         orgCmbBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 orgCmbBoxActionPerformed(evt);
@@ -134,11 +133,11 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
 
         empLbl.setText("Employee      :");
 
-        empCmbBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        empCmbBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         roleLbl.setText("Role             :");
 
-        roleCmbBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        roleCmbBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         usernameLbl.setText("User Name    :");
 
@@ -272,15 +271,15 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
     private javax.swing.JButton createuserBtn;
-    private javax.swing.JComboBox<String> empCmbBox;
+    private javax.swing.JComboBox empCmbBox;
     private javax.swing.JLabel empLbl;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField nameTxt;
-    private javax.swing.JComboBox<String> orgCmbBox;
+    private javax.swing.JComboBox orgCmbBox;
     private javax.swing.JLabel orgLbl;
     private javax.swing.JLabel passwordLbl;
     private javax.swing.JTextField passwordTxt;
-    private javax.swing.JComboBox<String> roleCmbBox;
+    private javax.swing.JComboBox roleCmbBox;
     private javax.swing.JLabel roleLbl;
     private javax.swing.JTable userTbl;
     private javax.swing.JLabel usernameLbl;

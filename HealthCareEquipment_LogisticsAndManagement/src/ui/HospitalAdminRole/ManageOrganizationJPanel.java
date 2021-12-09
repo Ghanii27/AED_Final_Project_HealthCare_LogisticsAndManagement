@@ -4,18 +4,33 @@
  */
 package ui.HospitalAdminRole;
 
+import Schema.Organization.Organization;
+import Schema.Organization.Organization.OrganizationType;
+import Schema.Organization.OrganizationDirectory;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author 16176
  */
 public class ManageOrganizationJPanel extends javax.swing.JPanel {
+    private OrganizationDirectory orgDir;
+    private JPanel userProcessContainer;
+    
 
     /**
      * Creates new form ManageOrganizationJPanel
      */
-    public ManageOrganizationJPanel() {
+    public ManageOrganizationJPanel(JPanel userprocessContainer, OrganizationDirectory organizationDirectory) {
         initComponents();
+        this.userProcessContainer=userProcessContainer;
+        this.orgDir = orgDir;
+        populateTable();
+        populateCombo();
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -30,7 +45,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         orgTbl = new javax.swing.JTable();
         orgtypeLbl = new javax.swing.JLabel();
-        orgCmbBox = new javax.swing.JComboBox<>();
+        orgCmbBox = new javax.swing.JComboBox();
         backBtn = new javax.swing.JButton();
         addOrgBtn = new javax.swing.JButton();
 
@@ -65,7 +80,12 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         orgtypeLbl.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         orgtypeLbl.setText("Organization Type :");
 
-        orgCmbBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        orgCmbBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        orgCmbBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                orgCmbBoxActionPerformed(evt);
+            }
+        });
 
         backBtn.setText("<<Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -127,15 +147,19 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         userProcessContainer.remove(this);
-        CardLayout.Layout = (CardLayout) userProcessContainer.getLayout();
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void addOrgBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addOrgBtnActionPerformed
-        userProcessContainer.remove(this);
-        CardLayout. layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
+OrganizationType orgType = (OrganizationType) orgCmbBox.getSelectedItem();
+orgDir.createOrganization(orgType);
+populateTable();
     }//GEN-LAST:event_addOrgBtnActionPerformed
+
+    private void orgCmbBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orgCmbBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_orgCmbBoxActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -143,8 +167,28 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
     private javax.swing.JButton backBtn;
     private javax.swing.JLabel headerLbl;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JComboBox<String> orgCmbBox;
+    private javax.swing.JComboBox orgCmbBox;
     private javax.swing.JTable orgTbl;
     private javax.swing.JLabel orgtypeLbl;
     // End of variables declaration//GEN-END:variables
+
+    private void populateTable() {
+DefaultTableModel model = (DefaultTableModel) orgTbl.getModel();
+model.setRowCount(0);
+for (Organization org : orgDir.getOrganizationList()){
+Object[] row = new Object[2];
+row[0] = org.getOrganizationID();
+row[1] = org.getName();
+model.addRow(row);
+}
+    }
+    
+    
+    private void populateCombo() {
+ orgCmbBox.removeAllItems();
+for (OrganizationType type : Organization.OrganizationType.values()){
+if (!type.getValue().equals(OrganizationType.Admin.getValue()))
+orgCmbBox.addItem(type);
+}
+    }
 }

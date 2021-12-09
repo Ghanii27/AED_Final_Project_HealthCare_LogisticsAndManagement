@@ -4,17 +4,27 @@
  */
 package ui.HospitalAdminRole;
 
+import Schema.Enterprise.Enterprise;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author 16176
  */
 public class AdminWorkAreaJPanel extends javax.swing.JPanel {
+    JPanel userprocessContainer;
+    Enterprise ent;
+    
 
     /**
      * Creates new form AdminWorkAreaJPanel
      */
-    public AdminWorkAreaJPanel() {
+    public AdminWorkAreaJPanel(JPanel userprocessContainer, Enterprise ent ) {
         initComponents();
+        this.userprocessContainer=userprocessContainer;
+        this.ent=ent;
+        valueLbl.setText(ent.getName());
     }
 
     /**
@@ -49,8 +59,18 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         });
 
         manageemployeeBtn.setText("Manage Employee");
+        manageemployeeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageemployeeBtnActionPerformed(evt);
+            }
+        });
 
         manageuserBtn.setText("Manage User");
+        manageuserBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageuserBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -97,11 +117,27 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void manageOrgBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageOrgBtnActionPerformed
-        ManageOrganizationJPanel manageOrgJPanel = new ManageOrganizationJPanel(userProcessContainer, enterprise.getOrganizationDirectory());
-        userProcessContainer.add("manageemployeeJPanel", manageemployeeJPanel);
-        CardLayout Layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
+        ManageOrganizationJPanel manageOrgJPanel = new ManageOrganizationJPanel(userprocessContainer, ent.getOrganizationDirectory());
+        userprocessContainer.add("manageOrgJPanel", manageOrgJPanel);
+        CardLayout layout = (CardLayout) userprocessContainer.getLayout();
+        layout.next(userprocessContainer);
     }//GEN-LAST:event_manageOrgBtnActionPerformed
+
+    private void manageemployeeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageemployeeBtnActionPerformed
+ManageEmployeeJPanel mngEmpJPanel = new ManageEmployeeJPanel(userprocessContainer, ent.getOrganizationDirectory());
+userprocessContainer.add("mngEmpJPanel", mngEmpJPanel);
+CardLayout lyt = (CardLayout) userprocessContainer.getLayout();
+lyt.next(userprocessContainer);
+// TODO add your handling code here:
+    }//GEN-LAST:event_manageemployeeBtnActionPerformed
+
+    private void manageuserBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageuserBtnActionPerformed
+ManageUserAccountJPanel  mngUA = new   ManageUserAccountJPanel(userprocessContainer, ent) ;
+userprocessContainer.add("ManageUserAccountJPanel",mngUA);
+CardLayout cly = (CardLayout) userprocessContainer.getLayout();
+cly.next(userprocessContainer);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_manageuserBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

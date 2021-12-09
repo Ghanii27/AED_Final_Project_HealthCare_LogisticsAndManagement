@@ -8,8 +8,8 @@ import javax.swing.JPanel;
 import Schema.Organization.OrganizationDirectory;
 import java.awt.CardLayout;
 import javax.swing.table.DefaultTableModel;
-import Schema.Oraganization.Organization.Type;
-import Schema.Organization.Organization
+import Schema.Organization.Organization;
+import Schema.Organization.Organization.OrganizationType;
 import ui.HospitalAdminRole.*;
 
 
@@ -18,7 +18,7 @@ import ui.HospitalAdminRole.*;
  * @author 16176
  */
 public class ManageOrganizationJPanel extends javax.swing.JPanel {
-private OrganizationDirectory directory;
+private OrganizationDirectory orgDirectory;
 private JPanel userprocessContainer;
     /**
      * Creates new form ManageOrganizationJPanel
@@ -26,7 +26,7 @@ private JPanel userprocessContainer;
     public ManageOrganizationJPanel(JPanel userprocessContainer, OrganizationDirectory directory) {
         initComponents();
         this.userprocessContainer=userprocessContainer;
-        this.directory = directory;
+        this.orgDirectory = directory;
         
         populateTable();
         populateCombo();
@@ -34,7 +34,7 @@ private JPanel userprocessContainer;
 private void populateTable(){
     DefaultTableModel model = (DefaultTableModel) orgTbl.getModel();
     model.setRowCount(0);
-    for (Organization organization : directory.getOrganizationList()){
+    for (Organization organization : orgDirectory.getOrganizationList()){
         Object[] row = new Object[2];
         row[0] = organization.getOrganizationID();
         row[1] = organization.getName();
@@ -55,7 +55,7 @@ private void populateTable(){
         jScrollPane2 = new javax.swing.JScrollPane();
         orgTbl = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        orgCmbBox = new javax.swing.JComboBox<>();
+        orgCmbBox = new javax.swing.JComboBox();
         backBtn = new javax.swing.JButton();
         addOrgBtn = new javax.swing.JButton();
 
@@ -94,7 +94,12 @@ private void populateTable(){
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         jLabel1.setText("Organization Type :");
 
-        orgCmbBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        orgCmbBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        orgCmbBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                orgCmbBoxActionPerformed(evt);
+            }
+        });
 
         backBtn.setText("<<Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -149,18 +154,21 @@ private void populateTable(){
     }// </editor-fold>//GEN-END:initComponents
 
     private void addOrgBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addOrgBtnActionPerformed
-        userProcessContainer.remove(this);
-        CardLayout. layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-
+OrganizationType orgType = (OrganizationType) orgCmbBox.getSelectedItem();
+orgDirectory.createOrganization(orgType);
+populateTable();
     }//GEN-LAST:event_addOrgBtnActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
-        userProcessContainer.remove(this);
-        CardLayout.Layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
+        userprocessContainer.remove(this);
+        CardLayout crd = (CardLayout) userprocessContainer.getLayout();
+        crd.previous(userprocessContainer);
 
     }//GEN-LAST:event_backBtnActionPerformed
+
+    private void orgCmbBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orgCmbBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_orgCmbBoxActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -168,7 +176,15 @@ private void populateTable(){
     private javax.swing.JButton backBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JComboBox<String> orgCmbBox;
+    private javax.swing.JComboBox orgCmbBox;
     private javax.swing.JTable orgTbl;
     // End of variables declaration//GEN-END:variables
+
+    private void populateCombo() {
+orgCmbBox.removeAllItems();
+for (OrganizationType orgType : Organization.OrganizationType.values()){
+    if(!orgType.getValue().equals(OrganizationType.Admin.getValue()))
+        orgCmbBox.addItem(orgType);
+}
+    }
 }

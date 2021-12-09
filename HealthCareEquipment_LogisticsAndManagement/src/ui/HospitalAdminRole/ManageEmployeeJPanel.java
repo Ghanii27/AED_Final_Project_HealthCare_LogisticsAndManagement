@@ -4,6 +4,9 @@
  */
 package ui.HospitalAdminRole;
 
+import Schema.Organization.OrganizationDirectory;
+import javax.swing.JPanel;
+
 /**
  *
  * @author 16176
@@ -15,6 +18,10 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
      */
     public ManageEmployeeJPanel() {
         initComponents();
+    }
+
+    ManageEmployeeJPanel(JPanel userprocessContainer, OrganizationDirectory organizationDirectory) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**

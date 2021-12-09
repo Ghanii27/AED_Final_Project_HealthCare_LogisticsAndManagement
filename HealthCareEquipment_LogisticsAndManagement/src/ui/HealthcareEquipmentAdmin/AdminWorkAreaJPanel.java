@@ -27,7 +27,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
-        valueLabel.setText(enterprise.getName());
+        valueLbl.setText(enterprise.getName());
     }
 
     /**
@@ -94,21 +94,23 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void manageOrgBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageOrgBtnActionPerformed
        ManageOrganizationJPanel manageOrgJPanel = new ManageOrganizationJPanel(userProcessContainer, enterprise.getOrganizationDirectory());
-       userProcessContainer.add("manageemployeeJPanel", manageemployeeJPanel);
-       CardLayout Layout = (CardLayout) userProcessContainer.getLayout();
+       userProcessContainer.add("manageOrgJPanel", manageOrgJPanel);
+       CardLayout layout = (CardLayout) userProcessContainer.getLayout();
        layout.next(userProcessContainer);
     }//GEN-LAST:event_manageOrgBtnActionPerformed
  
     private void manageemployeeBtnActionPerformed(java.awt.event.ActionEvent evt){
         ManageEmployeeJPanel manageemployeeJPanel = new ManageEmployeeJPanel(userProcessContainer, enterprise.getOrganizationDirectory());
-        CardLayout Layout = (CardLayout) userProcessContainer.getLayout();
+         userProcessContainer.add("manageemployeeJPanel",manageemployeeJPanel );
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
         
     }
     
     private void manageuserBtnActionPerformed(java.awt.event.ActionEvent evt) {
-        ManageUserAccountJPanel muajp = new ManageUserAccountJPanel(userProcessContainer, enterprise.getOrganizationDirectory());
-        CardLayout Layout = (CardLayout) userProcessContainer.getLayout();
+        ManageUserAccountJPanel muajp = new ManageUserAccountJPanel(userProcessContainer, enterprise);
+         userProcessContainer.add("ManageUserAccountJPanel",muajp );
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }
 
