@@ -15,6 +15,15 @@ public class DoctorPrescription {
     private String NameOfMedicine;
     private int NoOfDays;
     private int TimesInADay;
+    private String daignosis;
+
+    public String getDaignosis() {
+        return daignosis;
+    }
+
+    public void setDaignosis(String daignosis) {
+        this.daignosis = daignosis;
+    }
     private Date DateOfPrescription;
     private String networkName;
 

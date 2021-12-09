@@ -8,7 +8,7 @@ package Schema.WorkQueue;
  *
  * @author 16176
  */
-public class HealthcareEquipmentWorkRequest {
+public class HealthcareEquipmentWorkRequest extends WorkRequest {
     private float actualprice;
     private float loanedprice;
     private String equipmentName;

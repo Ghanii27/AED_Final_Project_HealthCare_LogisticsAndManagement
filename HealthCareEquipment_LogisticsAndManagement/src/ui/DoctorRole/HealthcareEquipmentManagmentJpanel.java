@@ -10,8 +10,16 @@ import Schema.Enterprise.MedicalEquipEnterprise;
 import Schema.Network.Network;
 import Schema.Organization.DoctorOrganization;
 import Schema.Organization.EquipmentHandlingOrganization;
+import Schema.Organization.Organization;
 import Schema.UserAccount.UserAccount;
+import Schema.WorkQueue.HealthcareEquipmentWorkRequest;
+import Schema.WorkQueue.WorkRequest;
+import java.awt.CardLayout;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Random;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -52,11 +60,11 @@ populateTable();
 
         HeaderLbl = new javax.swing.JLabel();
         MedEquipLbl = new javax.swing.JLabel();
-        equipnameCmbBox = new javax.swing.JComboBox<>();
+        equipnameCmbBox = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         urgencyLbl = new javax.swing.JLabel();
-        equipnameCmbBox1 = new javax.swing.JComboBox<>();
+        equipnameCmbBox1 = new javax.swing.JComboBox();
         qtyLbl = new javax.swing.JLabel();
         qtyTxtFld = new javax.swing.JSpinner();
         backBtn = new javax.swing.JButton();
@@ -70,7 +78,7 @@ populateTable();
         MedEquipLbl.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         MedEquipLbl.setText("MEDICAL EQUIPMENT:");
 
-        equipnameCmbBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Please Select--", "Item 1", "Item 2", "Item 3", "Item 4" }));
+        equipnameCmbBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Please Select--", "Item 1", "Item 2", "Item 3", "Item 4" }));
         equipnameCmbBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 equipnameCmbBoxActionPerformed(evt);
@@ -90,7 +98,7 @@ populateTable();
         urgencyLbl.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         urgencyLbl.setText("URGENCY LEVEL:");
 
-        equipnameCmbBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--Please Select--", "Item 1", "Item 2", "Item 3", "Item 4" }));
+        equipnameCmbBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Please Select--", "Item 1", "Item 2", "Item 3", "Item 4" }));
         equipnameCmbBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 equipnameCmbBox1ActionPerformed(evt);
@@ -101,8 +109,18 @@ populateTable();
         qtyLbl.setText("QUANTITY:");
 
         backBtn.setText("<<Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
 
         sendReqBtn.setText("SEND REQUEST");
+        sendReqBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sendReqBtnActionPerformed(evt);
+            }
+        });
 
         refreshBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         refreshBtn.setText("REFRESH");
@@ -130,18 +148,19 @@ populateTable();
                                     .addComponent(qtyTxtFld, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addGap(243, 243, 243)
-                            .addComponent(HeaderLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(refreshBtn))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addGap(260, 260, 260)
+                            .addComponent(MedEquipLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(equipnameCmbBox, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(772, 772, 772))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGap(243, 243, 243)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1093, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(MedEquipLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(equipnameCmbBox, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(HeaderLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(refreshBtn))))))
                 .addContainerGap(176, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -155,9 +174,9 @@ populateTable();
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(MedEquipLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(equipnameCmbBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
+                .addGap(54, 54, 54)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(equipnameCmbBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(urgencyLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -181,13 +200,90 @@ populateTable();
         // TODO add your handling code here:
     }//GEN-LAST:event_equipnameCmbBox1ActionPerformed
 
+    private void sendReqBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendReqBtnActionPerformed
+        HealthcareEquipmentWorkRequest request = new HealthcareEquipmentWorkRequest();
+        request.setEquipmentName(equipnameCmbBox.getSelectedItem().toString());
+        request.setSender(ua);
+        request.setStatus("Sent");
+        request.setUrgencyLevel(equipnameCmbBox1.getSelectedItem().toString());
+        
+        request.setQuantity(Integer.parseInt(qtyTxtFld.getValue().toString()));
+        
+        Date date = new Date();
+        int min = 20;
+        int max = 40;       
+        Random rand = new Random();
+
+        int n1 = rand.nextInt((max - min)) + 1;
+        int n2 = rand.nextInt(10) + 1;
+        
+        request.setActualprice(n1);
+        request.setHospitalName(ent.getName());
+        
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        request.setRequestDate(dateFormat.format(date));
+        
+        
+        request.setLoanedprice(n2);
+        
+        Organization org = null;
+        //Enterprise.EnterpriseType type=null;
+        for (Organization organization : ent.getOrganizationDirectory().getOrganizationList()) {
+            if (organization instanceof DoctorOrganization) {
+                org = organization;
+                System.out.println("****" + org);
+                break;
+            }
+        }
+        // if (org!=null){
+
+        org.getWorkQueue().getWorkRequestList().add(request);
+        ua.getWorkQueue().getWorkRequestList().add(request);
+        // equiporg.getWorkQueue().getWorkRequestList().add(request);
+        System.out.println("****** " + org.getName());
+        System.out.println("******" + ent.getName());
+        System.out.println("**** " + ntw.getName());
+        for (Network network : system.getNetworkList()) {
+
+            if (ntw.getName().equals(this.ntw.getName())) {
+                for (Enterprise ent : ntw.getEnterpriseDirectory().getEnterpriseList()) {
+                    System.out.println("****" + ent.getName());
+                    System.out.println("******" + ent.getEnterpriseType());
+                    //if(enterprise.getEnterpriseType().equals("MedicalEquipmentWareHouse")){
+                    //  Enterprise.EnterpriseType type=null;
+                    //if(enterprise.getEnterpriseType().equals("MedicalEquipmentWareHouse")){
+                    //if (type==Enterprise.EnterpriseType.MedicalEquipmentWareHouse) { 
+                    for (Organization organization : ent.getOrganizationDirectory().getOrganizationList()) {
+                        System.out.println("***** Organizatio Name:" + organization.getName());
+                        if (org.getName().equals("Equipment Organization")) {
+                            System.out.println("True");
+                            // for( Organization organization :enterprise.getOrganizationDirectory().getOrganizationList()){
+                            System.out.println("***** organization Name" + organization.getName());
+                            // if(organization.getName().equals("EquipmentOrganization")){
+                            organization.getWorkQueue().getWorkRequestList().add(request);
+                        }
+                    }
+                }
+
+            }
+ua.getWorkQueue().getWorkRequestList().add(request);
+populateTable();
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_sendReqBtnActionPerformed
+
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        userprocessContainer.remove(this);
+        CardLayout layout = (CardLayout) userprocessContainer.getLayout();
+        layout.previous(userprocessContainer);        // TODO add your handling code here:
+    }//GEN-LAST:event_backBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel HeaderLbl;
     private javax.swing.JLabel MedEquipLbl;
     private javax.swing.JButton backBtn;
-    private javax.swing.JComboBox<String> equipnameCmbBox;
-    private javax.swing.JComboBox<String> equipnameCmbBox1;
+    private javax.swing.JComboBox equipnameCmbBox;
+    private javax.swing.JComboBox equipnameCmbBox1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel qtyLbl;
@@ -197,7 +293,29 @@ populateTable();
     private javax.swing.JLabel urgencyLbl;
     // End of variables declaration//GEN-END:variables
 
-    private void populateTable() {
+    private void populateTable() {       
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+        model.setRowCount(0);
+        for (WorkRequest request : docOrg.getWorkQueue().getWorkRequestList()) {
+            //for(WorkRequest request : equiporg.getWorkQueue().getWorkRequestList()){
+            Object[] row = new Object[9];
+
+            row[0] = ((HealthcareEquipmentWorkRequest) request);
+            String urgencyLevel = ((HealthcareEquipmentWorkRequest) request).getUrgencyLevel();
+            row[1] = urgencyLevel;
+            int quantity = ((HealthcareEquipmentWorkRequest) request).getQuantity();
+            row[2] = quantity;
+            row[3] = request.getSender();
+            row[4] = ((HealthcareEquipmentWorkRequest) request).getReceiver();
+            row[5] = request.getStatus();
+            String expectedArrivalTime = ((HealthcareEquipmentWorkRequest) request).getExpectedArrivalTime();
+            row[6] = request.getRequestDate();
+            row[7] = ((HealthcareEquipmentWorkRequest) request).getActualprice();
+            row[8] = ((HealthcareEquipmentWorkRequest) request).getLoanedprice();
+
+            model.addRow(row);
+        }
        
     }
 }

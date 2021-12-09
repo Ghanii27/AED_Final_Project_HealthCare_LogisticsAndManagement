@@ -4,27 +4,68 @@
  */
 package ui.DoctorRole;
 
+import Schema.Doctor.DoctorPrescription;
 import Schema.Doctor.PrescriptionList;
 import Schema.Enterprise.Enterprise;
 import Schema.Organization.DoctorOrganization;
+import Schema.Organization.Organization;
+import Schema.Organization.PharmacyOrganization;
 import Schema.UserAccount.UserAccount;
+import Schema.WorkQueue.DoctorWorkRequest;
+import Schema.WorkQueue.PharmacyWorkRequest;
+import Schema.WorkQueue.WorkRequest;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author 16176
  */
 public class PrescriptionJPanel extends javax.swing.JPanel {
+    private PrescriptionList presList;
+    private DoctorOrganization docOrg;
+    private Enterprise ent;
+    private UserAccount ua;
+    private JPanel upContainer;
+    private DoctorPrescription pres;
+    private DoctorWorkRequest docreq;
 
     /**
      * Creates new form PrescriptionJPanel
      */
-    public PrescriptionJPanel() {
-        initComponents();
+    public PrescriptionJPanel(JPanel userprocessContainer, PrescriptionList presList, UserAccount ua, Enterprise ent, DoctorOrganization docOrg) {
+         initComponents();
+        this.upContainer = upContainer;
+        this.ua = ua;
+        this.ent = ent;
+        this.docOrg = docOrg;
+       
+         populateWorkReqTable();
     }
+public void populateWorkReqTable() {
 
-    PrescriptionJPanel(JPanel userprocessContainer, PrescriptionList presList, UserAccount ua, Enterprise ent, DoctorOrganization docOrg) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+        model.setRowCount(0);
+
+        for (WorkRequest request : ua.getWorkQueue().getWorkRequestList()) {
+            Object[] row = new Object[4];
+            //UserAccount ua = ((DoctorWorkRequest) request).getReceiver();
+            String medication = ((PharmacyWorkRequest) request).getMedicationName();
+            System.out.println("****" + medication);
+            row[0] = (PharmacyWorkRequest) request;
+            int quantity = ((PharmacyWorkRequest) request).getQuantity();
+            row[1] = quantity;
+            row[2] = request.getReceiver();
+            String result = request.getStatus();
+            row[3] = result == null ? "Waiting" : result;
+
+            model.addRow(row);
+
+        }
+
     }
 
     /**
@@ -95,6 +136,11 @@ public class PrescriptionJPanel extends javax.swing.JPanel {
 
         saveBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         saveBtn.setText("SAVE PRESCRIPTION");
+        saveBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveBtnActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -116,6 +162,11 @@ public class PrescriptionJPanel extends javax.swing.JPanel {
 
         backBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         backBtn.setText("<<BACK");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel6.setText("Date:");
@@ -223,6 +274,76 @@ public class PrescriptionJPanel extends javax.swing.JPanel {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
+        DoctorPrescription p = new DoctorPrescription();
+
+        p.setDaignosis(jTextField1.getText());
+
+        p.setNameOfMedicine(medicationCmbBox.getSelectedItem().toString());
+
+        p.setNoOfDays((Integer) timesSpin.getValue());
+
+        p.setNoOfDays((Integer) forSpin.getValue());
+        p.setNetworkName(ent.getName());
+        String age = ageTxt.getText();
+        boolean flag = true;
+        try {
+            Integer.parseInt(age);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Age should be an integer!");
+            flag = false;
+        }
+
+        if (p.getDaignosis().equals("")) {
+            JOptionPane.showMessageDialog(null, " Diagnosis cannot be empty!");
+            flag = false;
+        } else if (nameTxt.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Patient name cannot be empty!");
+            flag = false;
+
+        }
+        if (flag == true) {
+            docOrg.addPrescription(p);
+
+            PharmacyWorkRequest request = new PharmacyWorkRequest();
+
+            request.setMedicationName(medicationCmbBox.getSelectedItem().toString());
+            request.setQuantity(((Integer) timesSpin.getValue()) * ((Integer) forSpin.getValue()));
+            request.setSender(ua);
+            request.setStatus("Sent");
+
+            JOptionPane.showMessageDialog(null, "Prescription added successfully");
+
+            System.out.println("****" + ent.getName());
+            Organization org = null;
+
+            for (Organization organization : ent.getOrganizationDirectory().getOrganizationList()) {
+                if (organization instanceof PharmacyOrganization) {
+                    org = organization;
+                    System.out.println("****" + org);
+                    break;
+                }
+            }
+            if (org != null) {
+
+                org.getWorkQueue().getWorkRequestList().add(request);
+                //org.getOpWorkqueue().getOpworkRequestList().add(request);
+                ua.getWorkQueue().getWorkRequestList().add(request);
+            }
+
+            populateWorkReqTable();
+        }
+
+
+              // TODO add your handling code here:
+    }//GEN-LAST:event_saveBtnActionPerformed
+
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+upContainer.remove(this);
+        CardLayout crd = (CardLayout) upContainer.getLayout();
+        crd.previous(upContainer);        // TODO add your handling code here:
+    }//GEN-LAST:event_backBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
