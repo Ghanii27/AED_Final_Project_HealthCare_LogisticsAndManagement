@@ -5,6 +5,8 @@
 package ui.Supplier;
 
 import Schema.WorkQueue.SupplierWorkRequest;
+import java.util.Calendar;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -51,6 +53,11 @@ public class ProcessSupplierWorkRequestJPanel extends javax.swing.JPanel {
 
         updateBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         updateBtn.setText("Update Status");
+        updateBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -88,6 +95,17 @@ public class ProcessSupplierWorkRequestJPanel extends javax.swing.JPanel {
                 .addContainerGap(1021, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
+suppWorkReq.setStatus("Completed");
+ //       int year=dateFld.getCalendar().get(Calendar.YEAR);
+     //   int month=dateFld.getCalendar().get(Calendar.MONTH);
+    //    int day=dateFld.getCalendar().get(Calendar.DAY_OF_MONTH);
+    //    String result=year+"-"+month+"-"+day;
+     //   deliveryTxt.setText(result);
+        
+        JOptionPane.showMessageDialog(null, "Request updated successfully!");        // TODO add your handling code here:
+    }//GEN-LAST:event_updateBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

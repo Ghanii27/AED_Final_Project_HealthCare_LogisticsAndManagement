@@ -4,18 +4,67 @@
  */
 package ui.PharmacyRole;
 
+import Schema.EcoSystem;
+import Schema.Enterprise.Enterprise;
+import Schema.Organization.Organization;
+import Schema.UserAccount.UserAccount;
+import Schema.WorkQueue.OperationsWorkRequest;
+import Schema.WorkQueue.SupplierWorkRequest;
+import Schema.WorkQueue.WorkRequest;
+import java.awt.CardLayout;
+import java.awt.Component;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author 16176
  */
 public class ViewrequestJPanel extends javax.swing.JPanel {
-
+private JPanel userProcessContainer;
+    private EcoSystem business;
+    private UserAccount userAccount;
+    private Organization organization;
+    private OperationsWorkRequest operationWorkRequest;
+    private Enterprise enterprise;
     /**
      * Creates new form ViewrequestJPanel
      */
-    public ViewrequestJPanel() {
+    public ViewrequestJPanel(JPanel upContainer, UserAccount ua, Enterprise ent, Organization org) {
         initComponents();
+        this.userProcessContainer=userProcessContainer;
+        this.userAccount=userAccount;
+        this.enterprise=enterprise;
+        this.organization= organization;
+        populateTable();
+        
     }
+public void populateTable(){
+DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+model.setRowCount(0);
+model.setRowCount(0);
+        for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()){
+            Object[] row = new Object[5];
+            row[0] = ((SupplierWorkRequest) request).getMedicationName();
+            row[1] = ((SupplierWorkRequest) request).getQuantity();
+            row[2] = request.getReceiver();
+            String result = ((SupplierWorkRequest) request).getStatus();
+            row[3] = result == null ? "Waiting" : result;
+            if(((SupplierWorkRequest) request).getDeliveryTime()==null){
+                row[4]="Details yet to be updated by supplier";
+            }
+            else{
+            row[4]  = "Expected delivery time " +((SupplierWorkRequest) request).getDeliveryTime();
+                    }
+            
+            model.addRow(row);
+        }
+       
+       
+       
+   }
+    
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -47,9 +96,19 @@ public class ViewrequestJPanel extends javax.swing.JPanel {
 
         backBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         backBtn.setText("<<BACK");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
 
         refreshBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         refreshBtn.setText("REFRESH");
+        refreshBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -84,6 +143,20 @@ public class ViewrequestJPanel extends javax.swing.JPanel {
                 .addContainerGap(426, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        PharmaWorkAreaJPanel pwjp = (PharmaWorkAreaJPanel) component;
+        pwjp.refreshTable();
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);        // TODO add your handling code here:
+    }//GEN-LAST:event_backBtnActionPerformed
+
+    private void refreshBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_refreshBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

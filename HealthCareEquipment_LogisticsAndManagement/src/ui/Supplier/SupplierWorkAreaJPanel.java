@@ -12,6 +12,7 @@ import Schema.WorkQueue.SupplierWorkRequest;
 import Schema.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -28,6 +29,11 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
      */
     public SupplierWorkAreaJPanel(JPanel userProcessContainer, EcoSystem business, UserAccount account, Organization organization) {
         initComponents();
+        this.upContainer = upContainer;
+        this.ua = ua;
+        this.system = system;
+        this.suppOrg = (SupplierOrganization)organization ;
+        populateTable();
     }
 
 
@@ -201,6 +207,20 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void populateTable() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        DefaultTableModel model = (DefaultTableModel)workRequestJTable.getModel();
+        model.setRowCount(0);
+        
+        for(WorkRequest request : suppOrg.getWorkQueue().getWorkRequestList()){
+            Object[] row = new Object[6];
+            row[0] = ((SupplierWorkRequest) request);
+            row[1]=((SupplierWorkRequest) request).getQuantity();
+            row[2] = request.getSender().getEmployee().getEmployeeName();
+            row[3] = request.getReceiver() == null ? null : request.getReceiver().getEmployee().getEmployeeName();
+            row[4] = request.getStatus();
+            row[5]=((SupplierWorkRequest) request).getDeliveryTime();
+            //row[5]= ((SupplierWorkRequest) request).getMedicationName();
+            
+            model.addRow(row);
+        }
     }
 }
