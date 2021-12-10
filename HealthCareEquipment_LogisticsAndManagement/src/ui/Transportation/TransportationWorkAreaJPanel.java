@@ -104,8 +104,18 @@ public class TransportationWorkAreaJPanel extends javax.swing.JPanel {
         });
 
         assignBtn.setText("Assign");
+        assignBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                assignBtnActionPerformed(evt);
+            }
+        });
 
         processreqBtn.setText("Process request");
+        processreqBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                processreqBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -158,6 +168,28 @@ public class TransportationWorkAreaJPanel extends javax.swing.JPanel {
     private void refreshBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBtnActionPerformed
         populateTable();
     }//GEN-LAST:event_refreshBtnActionPerformed
+
+    private void processreqBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processreqBtnActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = workreqTble.getSelectedRow();
+        if (selectedRow < 0){JOptionPane.showMessageDialog(null, "Please select a row!");
+    }//GEN-LAST:event_processreqBtnActionPerformed
+TransportationWorkRequest request = (TransportationWorkRequest)workreqTble.getValueAt(selectedRow, 0);
+request.setStatus("Processing");
+CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+userProcessContainer.add("ProcessRequest", new userinterface.Transporttaion.ProcessRequestJPanel(userProcessContainer,request));
+layout.next(userProcessContainer);
+
+    private void assignBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignBtnActionPerformed
+        int selectdRow = workreqTble.getSelectedRow();
+        if (selectedRow < 0){
+        return;
+        
+        }
+        TransportationWorkRequest request = (TransportationWorkRequest)workreqTble.getValueAt(selectedRow, 0);
+        request.setReceiver(account);
+        request.setStatus("Assigned");
+    }//GEN-LAST:event_assignBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
