@@ -4,6 +4,9 @@
  */
 package ui.Transportation;
 
+import java.awt.CardLayout;
+import java.awt.Component;
+import java.util.Properties;
 import javax.swing.JPanel;
 
 /**
@@ -71,6 +74,11 @@ public class ProcessRequestJPanel extends javax.swing.JPanel {
         });
 
         backBtn.setText("<< Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
 
         notifythroughmailBtn.setText("Intimate Hospital through Mail");
         notifythroughmailBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -134,7 +142,32 @@ public class ProcessRequestJPanel extends javax.swing.JPanel {
     private void timeCmbBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timeCmbBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_timeCmbBoxActionPerformed
-
+public void sendMailToCommunityMember(String to[], String subject, String message, String from, String password)
+{
+    String host = "smtp.gmail.com"
+            Properties props = System.getProperties();
+            props.put("mail.smtp.user", from);
+            props.put("mail.smtp.port", 674);
+            props.put("mail.smtp.host", host);
+            props.put("mail.smtp.auth", "true");
+            props.put("mail.smtp.startttls.enable", "true")
+                    Session session = Session.getDefaultInstance(props);
+                    MimeMessage mimeMessage = new MimeMessage(session);
+                    try{
+                        mimeMessage.setFrom(new InternetAddress(from));
+                        InternetAddress[] toAddr = new InternetAddress[to.length];
+                        for(int i=0;i<to.length;i++){
+                            toAddr[i] = new InternetAddress(to[i]);
+                        }
+                       for(int i=0;i<toAddr.length;i++){
+                           mimeMessage.addRecipients(Message.RecipientType.TO, toAddr);
+                       } 
+                    }
+                    
+                    
+                  
+            
+}
     private void vehiclenumTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vehiclenumTxtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_vehiclenumTxtActionPerformed
@@ -147,7 +180,7 @@ public class ProcessRequestJPanel extends javax.swing.JPanel {
                 "The delivery details are for the quipment "+request.getEquipmentinfo()+" are" +request.getTime(),
                 "doctortesting.test@gmail.com",
                 "doctororganization");
-        JOptionpane.showMessegeDialog(null,"Email sent successfully");
+        JOptionpanel.showMessegeDialog(null,"Email sent successfully");
         
         // compose the messege
         //Get the session object
@@ -177,6 +210,17 @@ public class ProcessRequestJPanel extends javax.swing.JPanel {
         */        
         
     }//GEN-LAST:event_notifythroughmailBtnActionPerformed
+
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        TransportationWorkAreaJPanel dwjp = (TransportationWorkAreaJPanel) component;
+        dwjp.populateTable();
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+        
+    }//GEN-LAST:event_backBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
