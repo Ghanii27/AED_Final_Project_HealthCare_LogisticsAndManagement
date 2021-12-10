@@ -4,15 +4,36 @@
  */
 package ui.Transportation;
 
+import com.db4o.cs.internal.messages.Message;
+import com.sun.xml.internal.messaging.saaj.packaging.mime.MessagingException;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.util.Properties;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import Schema.EcoSystem;
+import Schema.Organization.organization;
+import Schema.UserAccount.UserAccount;
+import Schema.WorkQueue.TransportationWorkRequest;
+import com.sun.mail.smtp.SMTPTransport;
+import javax.mail.Transport;
+import javax.mail.Session;
+import javax.mail.PasswordAuthentication;
+import javax.mail.MessagingException;
+import mail.Message;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.mimeMessage;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import userinterface.HealthcareEquipmentWareHouse.ViewTransportationRequestJPanel;
+
+
 
 /**
  *
  * @author 16176
  */
+import com.sun.xml.internal.ws.api.server.SDDocument;
 public class ProcessRequestJPanel extends javax.swing.JPanel {
 
     /**
@@ -162,6 +183,14 @@ public void sendMailToCommunityMember(String to[], String subject, String messag
                        for(int i=0;i<toAddr.length;i++){
                            mimeMessage.addRecipients(Message.RecipientType.TO, toAddr);
                        } 
+                       mimeMessage.setSubject("Notification from Transport Department");
+                       mimeMessage.setText(message);
+                       SMIPTransport transport = (SMTPTransport)session.getTransport("smtp");
+                       transport.connect(host,from,password);
+                       transport.sendMessage(mimeMessage, mimeMessage.getAllRecipients());
+                       transport.close();
+                    }catch(MessagingException me){
+                        JOptionPane.showMessageDialog(null, me);
                     }
                     
                     
