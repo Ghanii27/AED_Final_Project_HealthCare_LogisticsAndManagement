@@ -39,7 +39,7 @@ public class TransportationWorkAreaJPanel extends javax.swing.JPanel {
         populateTable();
         
     }
-    public void populate Table(){
+    public void populateTable(){
         DefaultTableModel model = (DefaultTableModel)workreqTble.getModel();
         model.setRowCount(0);
         for(WorkRequest request : organization.getWorkQueue().getWorkRequestList()){
@@ -47,17 +47,13 @@ public class TransportationWorkAreaJPanel extends javax.swing.JPanel {
             row[0] = ((TransportationWorkRequest) request);
             row[1] = request.getSender().getEmployee().getName();
             row[2] = ((TransportationWorkRequest) request).getEquipmentinfo();
-            row[3] = ((TransporttaionWorkRequest) request). getHospitalName();
+            row[3] = ((TransportationWorkRequest) request). getHospitalName();
             row[4] = ((TransportationWorkRequest) request). getUrgency();
             row[5] = request.getStatus();
             row[6] = ((TransportationWorkRequest) request. getTime());
             model.addRow(row);
         }
         
-
-    public TransportationWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -158,7 +154,7 @@ public class TransportationWorkAreaJPanel extends javax.swing.JPanel {
                 .addContainerGap(613, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    }
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         userProcessContainer.remove(this);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
@@ -177,7 +173,7 @@ public class TransportationWorkAreaJPanel extends javax.swing.JPanel {
 TransportationWorkRequest request = (TransportationWorkRequest)workreqTble.getValueAt(selectedRow, 0);
 request.setStatus("Processing");
 CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-userProcessContainer.add("ProcessRequest", new userinterface.Transporttaion.ProcessRequestJPanel(userProcessContainer,request));
+userProcessContainer.add("ProcessRequest", new ui.Transportation.ProcessRequestJPanel(userProcessContainer,request));
 layout.next(userProcessContainer);
 
     private void assignBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignBtnActionPerformed

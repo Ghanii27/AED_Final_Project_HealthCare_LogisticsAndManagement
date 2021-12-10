@@ -25,7 +25,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.mimeMessage;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import userinterface.HealthcareEquipmentWareHouse.ViewTransportationRequestJPanel;
+import ui.HealthcareEquipmentWareHouse.ViewTransportationRequestJPanel;
 
 
 
@@ -202,14 +202,14 @@ public void sendMailToCommunityMember(String to[], String subject, String messag
     }//GEN-LAST:event_vehiclenumTxtActionPerformed
 
     private void notifythroughmailBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_notifythroughmailBtnActionPerformed
-        request.setTime(timeCmbBox.getSelectedItem().toString() +" "+ timezoneCmbBox.getSelectedItem().toString()+" "+"VehicleNumber" +vehicleNumber.getText());
+        request.setTime(timeCmbBox.getSelectedItem().toString() +" "+ timezoneCmbBox.getSelectedItem().toString()+" "+"VehicleNumber" +vehiclenumTxt.getText());
         String[] to = {"yashwanth.3b8@gmail.com"};
         sendMailToCommunityMember(to,
                 "Alert from Transportation department",
                 "The delivery details are for the quipment "+request.getEquipmentinfo()+" are" +request.getTime(),
                 "doctortesting.test@gmail.com",
                 "doctororganization");
-        JOptionpanel.showMessegeDialog(null,"Email sent successfully");
+        JOptionPane.showMessageDialog(null,"Email sent successfully");
         
         // compose the messege
         //Get the session object
@@ -244,8 +244,8 @@ public void sendMailToCommunityMember(String to[], String subject, String messag
         userProcessContainer.remove(this);
         Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
-        TransportationWorkAreaJPanel dwjp = (TransportationWorkAreaJPanel) component;
-        dwjp.populateTable();
+        TransportationWorkAreaJPanel twjp = (TransportationWorkAreaJPanel) component;
+        twjp.populateTable();
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
         
