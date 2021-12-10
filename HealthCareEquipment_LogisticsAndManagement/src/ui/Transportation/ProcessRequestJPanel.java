@@ -149,6 +149,32 @@ public class ProcessRequestJPanel extends javax.swing.JPanel {
                 "doctororganization");
         JOptionpane.showMessegeDialog(null,"Email sent successfully");
         
+        // compose the messege
+        //Get the session object
+        /*Properties props = new Properties();
+        props.put("mail.smtp.socketGactory.class",
+          "javax.netssl.SSLSocketFactory");
+        props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.socketFactory.port","854"
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smitp.port", "854");
+        Session session = Session.getDefaultInstance(props,
+        new javax.mail.Authenticator(){
+        protected PasswordAuthentication getPasswordAuthentication(){
+        return new PasswordAuthentication("yashwanth.3b8@gmail.com","lifeear2fear");//change accordingly
+        }
+        });
+        //compose message
+        MimeMessage message = new MimeMessage(session);
+        message.setFrom(new InternetAddress("yashwanth.3b8@gmail.com"));//change accordingly
+        message.addRecipient(Message.recipientType.TO,new InternetAddress(to));
+        message.setSubject("Hi");
+        message.setText("Testing");
+        //send message
+        Transport.send(message);
+        System.out.println(message sent successfully");
+        }catch (MessagingException mex) {mex.printStackTrace():}
+        */        
         
     }//GEN-LAST:event_notifythroughmailBtnActionPerformed
 
