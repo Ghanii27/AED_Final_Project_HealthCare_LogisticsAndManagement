@@ -7,7 +7,15 @@ package ui.Transportation;
 import Schema.EcoSystem;
 import Schema.Organization.Organization;
 import Schema.UserAccount.UserAccount;
+import Schema.Organization.TransportOrganization;
+import Schema.WorkQueue.WorkRequest;
+import Schema.WorkQueue.TransportationWorkRequest;
+import Schema.WorkQueue.HealthcareEquipmentWorkRequest;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+import java.swing.JOptionPane;
+
 
 /**
  *
@@ -18,9 +26,34 @@ public class TransportationWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form TransportationWorkAreaJPanel
      */
-    public TransportationWorkAreaJPanel() {
+    JPanel userProcessContainer;
+    private UserAccount account;
+    private Organization organization;
+    private EcoSystem system;
+    public TransportationWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem Schema){
         initComponents();
+        this.userProcessContainer=userProcessContainer;
+        this.account=account;
+        this.organization=(TransportOrganization)organization;
+        this.system=system;
+        populateTable();
+        
     }
+    public void populate Table(){
+        DefaultTableModel model = (DefaultTableModel)workreqTble.getModel();
+        model.setRowCount(0);
+        for(WorkRequest request : organization.getWorkQueue().getWorkRequestList()){
+            Object[] row = new Object[7];
+            row[0] = ((TransportationWorkRequest) request);
+            row[1] = request.getSender().getEmployee().getName();
+            row[2] = ((TransportationWorkRequest) request).getEquipmentinfo();
+            row[3] = ((TransporttaionWorkRequest) request). getHospitalName();
+            row[4] = ((TransportationWorkRequest) request). getUrgency();
+            row[5] = request.getStatus();
+            row[6] = ((TransportationWorkRequest) request. getTime());
+            model.addRow(row);
+        }
+        
 
     public TransportationWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -57,6 +90,11 @@ public class TransportationWorkAreaJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(workreqTble);
 
         refreshBtn.setText("Refresh");
+        refreshBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                refreshBtnActionPerformed(evt);
+            }
+        });
 
         backBtn.setText("<< Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -112,8 +150,14 @@ public class TransportationWorkAreaJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
-        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
     }//GEN-LAST:event_backBtnActionPerformed
+
+    private void refreshBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBtnActionPerformed
+        populateTable();
+    }//GEN-LAST:event_refreshBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
