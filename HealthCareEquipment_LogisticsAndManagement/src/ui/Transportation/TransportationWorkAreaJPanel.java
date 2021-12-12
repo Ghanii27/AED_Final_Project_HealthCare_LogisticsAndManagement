@@ -14,7 +14,7 @@ import Schema.WorkQueue.HealthcareEquipmentWorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
-import java.swing.JOptionPane;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -50,9 +50,10 @@ public class TransportationWorkAreaJPanel extends javax.swing.JPanel {
             row[3] = ((TransportationWorkRequest) request). getHospitalName();
             row[4] = ((TransportationWorkRequest) request). getUrgency();
             row[5] = request.getStatus();
-            row[6] = ((TransportationWorkRequest) request.getTime());
+            row[6] = request.getRequestDate();
             model.addRow(row);
         }
+    }
         
 
     /**
@@ -154,7 +155,7 @@ public class TransportationWorkAreaJPanel extends javax.swing.JPanel {
                 .addContainerGap(613, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-    }
+    
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         userProcessContainer.remove(this);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
@@ -175,9 +176,10 @@ request.setStatus("Processing");
 CardLayout layout = (CardLayout) userProcessContainer.getLayout();
 userProcessContainer.add("ProcessRequest", new ui.Transportation.ProcessRequestJPanel(userProcessContainer,request));
 layout.next(userProcessContainer);
-
+    }
+    
     private void assignBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignBtnActionPerformed
-        int selectdRow = workreqTble.getSelectedRow();
+        int selectedRow = workreqTble.getSelectedRow();
         if (selectedRow < 0){
         return;
         

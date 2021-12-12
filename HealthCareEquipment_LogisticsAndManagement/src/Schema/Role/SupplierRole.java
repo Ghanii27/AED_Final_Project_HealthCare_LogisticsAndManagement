@@ -24,5 +24,10 @@ public class SupplierRole extends Role {
 public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business,Network network) {
 return new SupplierWorkAreaJPanel(userProcessContainer,business,account,organization);
 }
+
+@Override
+public String toString() {
+    return "Support Role";
+}
     
 }

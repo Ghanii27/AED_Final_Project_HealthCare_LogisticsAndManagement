@@ -51,6 +51,7 @@ public void populateWorkReqTable() {
         model.setRowCount(0);
 
         for (WorkRequest request : ua.getWorkQueue().getWorkRequestList()) {
+            try {
             Object[] row = new Object[4];
             //UserAccount ua = ((DoctorWorkRequest) request).getReceiver();
             String medication = ((PharmacyWorkRequest) request).getMedicationName();
@@ -61,8 +62,9 @@ public void populateWorkReqTable() {
             row[2] = request.getReceiver();
             String result = request.getStatus();
             row[3] = result == null ? "Waiting" : result;
-
             model.addRow(row);
+            }
+            catch (ClassCastException ignored) {}
 
         }
 

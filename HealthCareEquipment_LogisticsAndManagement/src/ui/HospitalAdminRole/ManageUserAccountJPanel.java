@@ -48,7 +48,7 @@ model.setRowCount(0);
 for (Organization organization : ent.getOrganizationDirectory().getOrganizationList()) {
 for (UserAccount ua : organization.getUserAccountDirectory().getUserAccountList()) {
 Object row[] = new Object[2];
-row[0] = ua;
+row[0] = ua.getUsername();
 row[1] = ua.getRole();
 ((DefaultTableModel) userTbl1.getModel()).addRow(row);
 }

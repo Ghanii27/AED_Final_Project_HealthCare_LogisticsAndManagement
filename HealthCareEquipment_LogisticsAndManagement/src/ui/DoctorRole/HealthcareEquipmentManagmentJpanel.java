@@ -256,7 +256,7 @@ populateTable();
                     //if (type==Enterprise.EnterpriseType.MedicalEquipmentWareHouse) { 
                     for (Organization organization : ent.getOrganizationDirectory().getOrganizationList()) {
                         System.out.println("***** Organizatio Name:" + organization.getName());
-                        if (org.getName().equals("Equipment Organization")) {
+                        if (organization.getName().equals("Equipment Organization")) {
                             System.out.println("True");
                             // for( Organization organization :enterprise.getOrganizationDirectory().getOrganizationList()){
                             System.out.println("***** organization Name" + organization.getName());

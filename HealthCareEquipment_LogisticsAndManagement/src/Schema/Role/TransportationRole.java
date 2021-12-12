@@ -22,4 +22,9 @@ public class TransportationRole extends Role {
 public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business,Network network) {
 return new TransportationWorkAreaJPanel(userProcessContainer,account,organization,business);
 }
+
+@Override
+public String toString() {
+    return "Transportation Role";
+}
 }

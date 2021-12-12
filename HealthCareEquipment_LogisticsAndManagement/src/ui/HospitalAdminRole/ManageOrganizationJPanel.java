@@ -154,7 +154,6 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
 
     private void addOrgBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addOrgBtnActionPerformed
 OrganizationType orgType = (OrganizationType) orgCmbBox.getSelectedItem();
-if(!orgDir.getOrganizationList().contains(orgType))
 orgDir.createOrganization(orgType);
 populateTable();
     }//GEN-LAST:event_addOrgBtnActionPerformed

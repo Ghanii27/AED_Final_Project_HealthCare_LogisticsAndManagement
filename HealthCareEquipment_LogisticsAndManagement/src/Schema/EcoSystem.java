@@ -33,7 +33,7 @@ return business;
 
 
 
-private EcoSystem() {
+public EcoSystem() {
 super(null);
 networkList = new ArrayList<>();
 }

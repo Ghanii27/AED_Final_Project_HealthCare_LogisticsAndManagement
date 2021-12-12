@@ -13,6 +13,7 @@ import Schema.Role.AdminRole;
 import Schema.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.awt.Component;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -216,6 +217,12 @@ Enterprise ent = (Enterprise) enterpriseCmbBox.getSelectedItem();
 String username = usernameTxtField.getText();
 String password = String.valueOf(jPasswordField1.getPassword());
 String name = nameTxtField.getText();
+for (UserAccount ua: ent.getUserAccountDirectory().getUserAccountList()) {
+    if (ua.getUsername().equals(name)) {
+        JOptionPane.showMessageDialog(this, "Username is already taken, please select a different username");
+        return;
+    }
+}   
 Employee employee = ent.getEmployeeDirectory().createEmployee(name);
 UserAccount ua = ent.getUserAccountDirectory().createUserAccount(username, password, employee, new AdminRole());
 //system.getUserAccountDirectory().createUserAccount(username, password, employee, new AdminRole());

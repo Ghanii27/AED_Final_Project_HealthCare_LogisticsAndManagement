@@ -24,6 +24,11 @@ public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, O
 return new AdminWorkAreaJPanel(userProcessContainer, enterprise);
 }
 
+@Override
+public String toString() {
+    return "Admin Role";
+}
+
 
 }
 

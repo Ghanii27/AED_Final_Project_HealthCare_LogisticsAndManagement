@@ -181,6 +181,14 @@ Network network = (Network) networkCmbBox.getSelectedItem();
 
         String name = nameTxtField.getText();
        
+        for (Enterprise e: network.getEnterpriseDirectory().getEnterpriseList()) {
+            if (e.getName().equals(name)) {
+                JOptionPane.showMessageDialog(this, "Enterprise name already exists Please select a different name.");
+                return;
+            }
+                
+        
+        }
 
         Enterprise enterprise = network.getEnterpriseDirectory().createAndAddEnterprise(name, type);
         

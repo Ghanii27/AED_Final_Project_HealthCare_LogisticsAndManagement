@@ -18,6 +18,8 @@ import Schema.UserAccount.UserAccount;
  * @author ganes
  */
 public abstract class Role {
+
+
     
     public enum RoleType{
         Admin("Admin"), 

@@ -24,4 +24,9 @@ public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, O
 return new PharmaWorkAreaJPanel(userProcessContainer, account, enterprise, (PharmacyOrganization)organization,network);
 //return new PharmaManagementJPanel();
 }
+
+@Override
+public String toString() {
+    return "Pharnacist Role";
+}
 }

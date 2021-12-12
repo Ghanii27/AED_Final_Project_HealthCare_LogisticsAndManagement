@@ -14,23 +14,16 @@ import javax.swing.JPanel;
 import Schema.EcoSystem;
 import Schema.Organization.Organization;
 import Schema.UserAccount.UserAccount;
-import Schema.WorkQueue.TransportationWorkRequest;
-//import com.sun.mail.smtp.SMTPTransport;
-//import javax.mail.Transport;
-//import javax.mail.Session;
-//import javax.mail.PasswordAuthentication;
-//import javax.mail.MessagingException;
-//import mail.Message;
-//import javax.mail.internet.InternetAddress;
-//import javax.mail.internet.mimeMessage;
-//import javax.comm.*;    
+import Schema.WorkQueue.TransportationWorkRequest;  
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import ui.HealthcareEquipmentWareHouse.ViewTransportationRequestJPanel;
 
 
 
-/**
+
+
+/*
  *
  * @author 16176
  */
@@ -174,26 +167,27 @@ public void sendMailToCommunityMember(String to[], String subject, String messag
             props.put("mail.smtp.host", host);
             props.put("mail.smtp.auth", "true");
             props.put("mail.smtp.startttls.enable", "true");
-                    Session session = Session.getDefaultInstance(props);
-                    MimeMessage mimeMessage = new MimeMessage(session);
-                    try{
-                        mimeMessage.setFrom(new InternetAddress(from));
-                        InternetAddress[] toAddr = new InternetAddress[to.length];
-                        for(int i=0;i<to.length;i++){
-                            toAddr[i] = new InternetAddress(to[i]);
-                        }
-                       for(int i=0;i<toAddr.length;i++){
-                           mimeMessage.addRecipients(Message.RecipientType.TO, toAddr);
-                       } 
-                       mimeMessage.setSubject("Notification from Transport Department");
-                       mimeMessage.setText(message);
-                       SMIPTransport transport = (SMTPTransport)session.getTransport("smtp");
-                       transport.connect(host,from,password);
-                       transport.sendMessage(mimeMessage, mimeMessage.getAllRecipients());
-                       transport.close();
-                    }catch(MessagingException me){
-                        JOptionPane.showMessageDialog(null, me);
-                    }
+//                    Session session = Session.getDefaultInstance(props);
+//                    MimeMessage mimeMessage = new MimeMessage(session);
+//                    try{
+//                        mimeMessage.setFrom(new InternetAddress(from));
+//                        InternetAddress[] toAddr = new InternetAddress[to.length];
+//                        for(int i=0;i<to.length;i++){
+//                            toAddr[i] = new InternetAddress(to[i]);
+//                        }
+//                       for(int i=0;i<toAddr.length;i++){
+//                           mimeMessage.addRecipients(Message.RecipientType.TO, toAddr);
+//                       } 
+//                       mimeMessage.setSubject("Notification from Transport Department");
+//                       mimeMessage.setText(message);
+//                       SMIPTransport transport = (SMTPTransport)session.getTransport("smtp");
+//                       transport.connect(host,from,password);
+//                       transport.sendMessage(mimeMessage, mimeMessage.getAllRecipients());
+//                       transport.close();
+//                    }catch(MessagingException me){
+//                        JOptionPane.showMessageDialog(null, me);
+//                    }
+JOptionPane.showMessageDialog(this, "Notification from Transport Department");
                     
                     
                   

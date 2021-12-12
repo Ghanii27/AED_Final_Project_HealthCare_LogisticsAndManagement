@@ -48,7 +48,7 @@ public class HealthcareEquipmentWorkAreaJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
         
         model.setRowCount(0);
-        
+        System.out.println(org.getWorkQueue().getWorkRequestList().size());
         for(WorkRequest request : org.getWorkQueue().getWorkRequestList()){
             Object[] row = new Object[6];
             row[0]=((HealthcareEquipmentWorkRequest) request);
@@ -212,7 +212,8 @@ public class HealthcareEquipmentWorkAreaJPanel extends javax.swing.JPanel {
         
         HealthcareEquipmentWorkRequest request = (HealthcareEquipmentWorkRequest)jTable1.getValueAt(selectedRow, 0);
        // String result="Request sent to transport department for delivery"?"Request sent to transport department for delivery":request.setExpectedArivalTime(request.getMessage());
-        request.setStatus("Request sent to transport department for delivery");
+       System.out.println("hello");
+       request.setStatus("Request sent to transport department for delivery");
         
        
         TransportationWorkRequest transportrequest=new TransportationWorkRequest();

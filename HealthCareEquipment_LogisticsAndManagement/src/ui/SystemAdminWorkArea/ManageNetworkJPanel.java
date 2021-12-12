@@ -8,6 +8,7 @@ import Schema.EcoSystem;
 import Schema.Network.Network;
 import java.awt.CardLayout;
 import java.awt.Component;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -120,6 +121,12 @@ crdLO.previous(userprocessContainer); // TODO add your handling code here:
 
     private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
 String networkName = nameTxtField.getText();
+for (Network n: system.getNetworkList()) {
+    if (n.getName().equals(networkName)) {
+        JOptionPane.showMessageDialog(this, "Can not insert copies.");
+        return;
+    }
+}
 Network network = system.createAndAddNetwork();
 network.setName(networkName);
 populateNetworkTable();// TODO add your handling code here:

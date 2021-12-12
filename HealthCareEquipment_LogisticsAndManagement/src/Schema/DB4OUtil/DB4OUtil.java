@@ -78,6 +78,8 @@ public class DB4OUtil {
         EcoSystem system;
         if (systems.isEmpty()) {
             system = ConfigureASystem.configure();  // If there's no System in the record, create a new one
+                    conn.store(system);
+        conn.commit();
         } else {
             system = systems.get(systems.size() - 1);
         }
