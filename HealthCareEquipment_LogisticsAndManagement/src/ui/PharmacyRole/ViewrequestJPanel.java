@@ -47,7 +47,7 @@ model.setRowCount(0);
             Object[] row = new Object[5];
             row[0] = ((SupplierWorkRequest) request).getMedicationName();
             row[1] = ((SupplierWorkRequest) request).getQuantity();
-            row[2] = request.getReceiver();
+            row[2] = request.getReceiver().getUsername();
             String result = ((SupplierWorkRequest) request).getStatus();
             row[3] = result == null ? "Waiting" : result;
             if(((SupplierWorkRequest) request).getDeliveryTime()==null){

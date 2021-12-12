@@ -173,7 +173,7 @@ for(Network ntw : system.getNetworkList()){
     private void submitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitBtnActionPerformed
 Network network = (Network) networkCmbBox.getSelectedItem();
         Enterprise.EnterpriseType type = (Enterprise.EnterpriseType) enterprisetypeCmbBox.getSelectedItem();
-
+        System.out.println(enterprisetypeCmbBox.getSelectedItem());
         if (network == null || type == null) {
             JOptionPane.showMessageDialog(null, "Invalid Input!");
             return;
@@ -186,8 +186,6 @@ Network network = (Network) networkCmbBox.getSelectedItem();
                 JOptionPane.showMessageDialog(this, "Enterprise name already exists Please select a different name.");
                 return;
             }
-                
-        
         }
 
         Enterprise enterprise = network.getEnterpriseDirectory().createAndAddEnterprise(name, type);

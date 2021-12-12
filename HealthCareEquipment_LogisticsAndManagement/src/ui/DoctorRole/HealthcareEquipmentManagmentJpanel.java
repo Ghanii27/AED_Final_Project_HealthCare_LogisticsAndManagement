@@ -79,7 +79,7 @@ populateTable();
         MedEquipLbl.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         MedEquipLbl.setText("MEDICAL EQUIPMENT:");
 
-        equipnameCmbBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Please Select--", "Item 1", "Item 2", "Item 3", "Item 4" }));
+        equipnameCmbBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Please Select--", "Stethescope", "Thermometer", "Syringe", "Stretcher", "Blood pressure Kit", "Microscope" }));
         equipnameCmbBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 equipnameCmbBoxActionPerformed(evt);
@@ -99,7 +99,7 @@ populateTable();
         urgencyLbl.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         urgencyLbl.setText("URGENCY LEVEL:");
 
-        equipnameCmbBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Please Select--", "Item 1", "Item 2", "Item 3", "Item 4" }));
+        equipnameCmbBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Please select--", "CRITICAL(<3 HRS)", "MODERATE(<6 HRS)", "LOW(12 HRS)" }));
         equipnameCmbBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 equipnameCmbBox1ActionPerformed(evt);

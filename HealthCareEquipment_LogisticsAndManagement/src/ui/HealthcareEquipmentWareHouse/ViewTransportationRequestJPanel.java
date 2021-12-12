@@ -37,8 +37,8 @@ public void populateTable(){
         model.setRowCount(0);
         Object row[]=new Object[6];
         for(WorkRequest request : ua.getWorkQueue().getWorkRequestList()){
-            row[0]=request.getSender();
-            row[1]=request.getReceiver();
+            row[0]=request.getSender().getUsername();
+            row[1]=request.getReceiver().getUsername();
             row[2]=((TransportationWorkRequest)request).getHospitalName();
             row[3]=((TransportationWorkRequest)request).getMessage();
             //row[3]=request.getStatus();

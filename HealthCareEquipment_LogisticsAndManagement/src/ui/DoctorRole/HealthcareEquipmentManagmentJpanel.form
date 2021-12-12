@@ -120,12 +120,14 @@
     <Component class="javax.swing.JComboBox" name="equipnameCmbBox">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="5">
+          <StringArray count="7">
             <StringItem index="0" value="--Please Select--"/>
-            <StringItem index="1" value="Item 1"/>
-            <StringItem index="2" value="Item 2"/>
-            <StringItem index="3" value="Item 3"/>
-            <StringItem index="4" value="Item 4"/>
+            <StringItem index="1" value="Stethescope"/>
+            <StringItem index="2" value="Thermometer"/>
+            <StringItem index="3" value="Syringe"/>
+            <StringItem index="4" value="Stretcher"/>
+            <StringItem index="5" value="Blood pressure Kit"/>
+            <StringItem index="6" value="Microscope"/>
           </StringArray>
         </Property>
       </Properties>
@@ -222,12 +224,11 @@
     <Component class="javax.swing.JComboBox" name="equipnameCmbBox1">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="5">
-            <StringItem index="0" value="--Please Select--"/>
-            <StringItem index="1" value="Item 1"/>
-            <StringItem index="2" value="Item 2"/>
-            <StringItem index="3" value="Item 3"/>
-            <StringItem index="4" value="Item 4"/>
+          <StringArray count="4">
+            <StringItem index="0" value="--Please select--"/>
+            <StringItem index="1" value="CRITICAL(&lt;3 HRS)"/>
+            <StringItem index="2" value="MODERATE(&lt;6 HRS)"/>
+            <StringItem index="3" value="LOW(12 HRS)"/>
           </StringArray>
         </Property>
       </Properties>

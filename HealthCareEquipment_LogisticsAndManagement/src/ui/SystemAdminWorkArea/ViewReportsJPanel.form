@@ -129,6 +129,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Report 2"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ntwReport2ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="entLevelRepLbl1">
               <Properties>
@@ -139,11 +142,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Report 1"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="entReport1ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="entReport2">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Report 2"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="entReport2ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="orgLevelRepLbl">
               <Properties>
@@ -154,11 +163,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Report 1"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="orgReport1ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="orgReport2">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Report 2"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="orgReport2ActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

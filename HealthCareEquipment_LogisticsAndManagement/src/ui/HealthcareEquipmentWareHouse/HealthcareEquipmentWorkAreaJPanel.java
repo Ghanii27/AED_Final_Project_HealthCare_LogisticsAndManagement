@@ -56,9 +56,9 @@ public class HealthcareEquipmentWorkAreaJPanel extends javax.swing.JPanel {
             int quantity = ((HealthcareEquipmentWorkRequest) request).getQuantity();
             row[1] = urgencyLevel;
             row[2]=quantity;
-            row[3]=request.getSender();
+            row[3]=request.getSender().getUsername();
             
-            row[4]=request.getReceiver();
+            row[4]=request.getReceiver().getUsername();
             
             model.addRow(row);
         }

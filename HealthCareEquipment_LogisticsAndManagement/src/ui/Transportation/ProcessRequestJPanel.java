@@ -82,7 +82,6 @@ public class ProcessRequestJPanel extends javax.swing.JPanel {
 
         vehiclenumLbl.setText("Vehicle Number:");
 
-        vehiclenumTxt.setText("jTextField1");
         vehiclenumTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 vehiclenumTxtActionPerformed(evt);

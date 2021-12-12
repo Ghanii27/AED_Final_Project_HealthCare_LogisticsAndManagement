@@ -69,6 +69,7 @@ public class PharmaWorkAreaJPanel extends javax.swing.JPanel {
       }   
      
      public void populateDoctorTable(){
+         System.out.println("ikkada");
           DefaultTableModel model = (DefaultTableModel)docReqTbl.getModel();
             model.setRowCount(0);
             for(WorkRequest request : pharmorg.getWorkQueue().getWorkRequestList()){
@@ -402,7 +403,7 @@ PharmaInventory p=new PharmaInventory();
        }
        catch(NumberFormatException e){
            JOptionPane.showMessageDialog(null,"Available quantity is not a valid field!");
-          
+          return;
        }
        p.setMedicineName(mednameTxt.getText());
        int availableQuantity= Integer.parseInt(availQtyTxt.getText());
@@ -413,6 +414,7 @@ PharmaInventory p=new PharmaInventory();
        }
        catch(NumberFormatException e){
            JOptionPane.showMessageDialog(null,"serial number must be integer!");
+           return;
        }
        int serialNumber= Integer.parseInt(serialnumTxt.getText());
        p.setSerialNumber(serialNumber);
@@ -422,8 +424,8 @@ PharmaInventory p=new PharmaInventory();
         Integer.parseInt(req);
        }
        catch(NumberFormatException e){
-           
            JOptionPane.showMessageDialog(null,"Required quantity must be integer!");
+           return;
        }
        int requiredQuantity= Integer.parseInt(reqQtyTxt.getText());
        p.setRequiredQuantity(requiredQuantity);
@@ -434,8 +436,8 @@ PharmaInventory p=new PharmaInventory();
         Integer.parseInt(reorder);
        }
        catch(NumberFormatException e){
-           
            JOptionPane.showMessageDialog(null,"Reorder level must be integer!");
+           return;
        }
        int reorderLevel= Integer.parseInt(recorderTxt.getText());
        p.setReorderLevel(reorderLevel);
@@ -469,6 +471,7 @@ upContainer.remove(this);
 int row = jTable1.getSelectedRow();
         if(row<0){
             JOptionPane.showMessageDialog(null, "Pls select a row!!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
         }
         PharmaInventory pi = (PharmaInventory)jTable1.getValueAt(row, 0);
 
