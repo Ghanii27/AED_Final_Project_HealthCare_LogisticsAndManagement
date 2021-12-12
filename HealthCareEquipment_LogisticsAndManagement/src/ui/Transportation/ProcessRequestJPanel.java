@@ -12,17 +12,18 @@ import java.util.Properties;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import Schema.EcoSystem;
-import Schema.Organization.organization;
+import Schema.Organization.Organization;
 import Schema.UserAccount.UserAccount;
 import Schema.WorkQueue.TransportationWorkRequest;
-import com.sun.mail.smtp.SMTPTransport;
-import javax.mail.Transport;
-import javax.mail.Session;
-import javax.mail.PasswordAuthentication;
-import javax.mail.MessagingException;
-import mail.Message;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.mimeMessage;
+//import com.sun.mail.smtp.SMTPTransport;
+//import javax.mail.Transport;
+//import javax.mail.Session;
+//import javax.mail.PasswordAuthentication;
+//import javax.mail.MessagingException;
+//import mail.Message;
+//import javax.mail.internet.InternetAddress;
+//import javax.mail.internet.mimeMessage;
+//import javax.comm.*;    
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import ui.HealthcareEquipmentWareHouse.ViewTransportationRequestJPanel;
@@ -34,6 +35,7 @@ import ui.HealthcareEquipmentWareHouse.ViewTransportationRequestJPanel;
  * @author 16176
  */
 import com.sun.xml.internal.ws.api.server.SDDocument;
+import static java.lang.ProcessBuilder.Redirect.to;
 public class ProcessRequestJPanel extends javax.swing.JPanel {
 
     /**
@@ -165,13 +167,13 @@ public class ProcessRequestJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_timeCmbBoxActionPerformed
 public void sendMailToCommunityMember(String to[], String subject, String message, String from, String password)
 {
-    String host = "smtp.gmail.com"
+    String [] host = {"smtp@gmail.com"};
             Properties props = System.getProperties();
             props.put("mail.smtp.user", from);
             props.put("mail.smtp.port", 674);
             props.put("mail.smtp.host", host);
             props.put("mail.smtp.auth", "true");
-            props.put("mail.smtp.startttls.enable", "true")
+            props.put("mail.smtp.startttls.enable", "true");
                     Session session = Session.getDefaultInstance(props);
                     MimeMessage mimeMessage = new MimeMessage(session);
                     try{

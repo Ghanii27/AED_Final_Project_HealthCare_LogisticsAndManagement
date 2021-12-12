@@ -16,9 +16,9 @@ import java.util.Random;
  * @author 16176
  */
 public class DataGenerator {
-     private static String[] equipmentName = {"Stethescope", "Thermometer", "Syringe", "Stretcher", "Blood pressure Kit", "Microscope"};
+     private static String[] equipmentName = {"Oxygen Cylinders","Covid Testing Kits","PulseOxymeters","Stethescope", "Thermometer", "Syringe", "Beds", "BP Kits", "Diabetes Machines"};
     private static Random rand = new Random();
-    private static String[] network = {"Boston", "Cambridge", "Waltham", "Framingham"};
+    private static String[] network = {"Boston", "Seattle", "Washington DC", "FLORIDA"};
 
     private static String[] beginning = {"kr", "ca", "Ra", "Ho", "Lj", "pg", "kre", "lop", "mat"};
     private static String[] middle = {"air", "cal", "Pla", "ghdo", "kal", "hkg", "pokre", "lojop", "mploat"};
