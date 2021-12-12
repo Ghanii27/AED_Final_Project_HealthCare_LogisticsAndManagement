@@ -23,10 +23,10 @@ private JPanel userprocessContainer;
     /**
      * Creates new form ManageOrganizationJPanel
      */
-    public ManageOrganizationJPanel(JPanel userprocessContainer, OrganizationDirectory directory) {
+    public ManageOrganizationJPanel(JPanel userprocessContainer, OrganizationDirectory orgDirectory) {
         initComponents();
         this.userprocessContainer=userprocessContainer;
-        this.orgDirectory = directory;
+        this.orgDirectory = orgDirectory;
         
         populateTable();
         populateCombo();
@@ -154,7 +154,8 @@ private void populateTable(){
     }// </editor-fold>//GEN-END:initComponents
 
     private void addOrgBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addOrgBtnActionPerformed
-OrganizationType orgType = (OrganizationType) orgCmbBox.getSelectedItem();
+
+        OrganizationType orgType = (OrganizationType) orgCmbBox.getSelectedItem();
 orgDirectory.createOrganization(orgType);
 populateTable();
     }//GEN-LAST:event_addOrgBtnActionPerformed

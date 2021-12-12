@@ -23,7 +23,7 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManageUserAccountJPanel
      */
-    public ManageUserAccountJPanel(JPanel container, Enterprise enterprise) {
+    public ManageUserAccountJPanel(JPanel upContainer, Enterprise ent) {
         initComponents();
         this.ent = ent;
         this.upContainer = upContainer;

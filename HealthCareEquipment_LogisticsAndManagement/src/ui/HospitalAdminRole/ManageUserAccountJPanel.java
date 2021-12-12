@@ -29,7 +29,7 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
     public ManageUserAccountJPanel(JPanel userprocessContainer, Enterprise ent) {
         initComponents();
         this.ent=ent;
-        this.userprocesscontainer=userprocesscontainer;
+        this.userprocesscontainer=userprocessContainer;
         
         populateOrgCmbBox();
         popData();

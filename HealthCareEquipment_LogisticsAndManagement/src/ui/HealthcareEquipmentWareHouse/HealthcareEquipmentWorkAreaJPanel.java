@@ -33,7 +33,7 @@ public class HealthcareEquipmentWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form HealthcareEquipmentWorkAreaJPanel
      */
-    public HealthcareEquipmentWorkAreaJPanel(JPanel userProcessContainer, EcoSystem business, UserAccount account, Organization organization, Network network) {
+    public HealthcareEquipmentWorkAreaJPanel(JPanel upContainer, EcoSystem sys, UserAccount ua, Organization org, Network ntw) {
         initComponents();
         this.upContainer = upContainer;
         this.ua = ua;

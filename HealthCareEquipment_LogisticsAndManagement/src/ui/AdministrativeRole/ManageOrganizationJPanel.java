@@ -21,7 +21,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManageOrganizationJPanel
      */
-    public ManageOrganizationJPanel(JPanel userProcessContainer,OrganizationDirectory directory) {
+    public ManageOrganizationJPanel(JPanel upContainer,OrganizationDirectory orgDir) {
         initComponents();
                 this.upContainer = upContainer;
         this.orgDir = orgDir;

@@ -207,7 +207,8 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
     private void addEmpBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addEmpBtnActionPerformed
           Organization organization = (Organization) orgEmpCmb.getSelectedItem();
         String name = nameTextField1.getText();
-        organization.getEmployeeDirectory().createEmployee(name);      // TODO add your handling code here:
+        organization.getEmployeeDirectory().createEmployee(name);   
+        populateTable(organization);// TODO add your handling code here:
     }//GEN-LAST:event_addEmpBtnActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt){

@@ -32,10 +32,10 @@ private JPanel userProcessContainer;
      */
     public ViewrequestJPanel(JPanel upContainer, UserAccount ua, Enterprise ent, Organization org) {
         initComponents();
-        this.userProcessContainer=userProcessContainer;
-        this.userAccount=userAccount;
-        this.enterprise=enterprise;
-        this.organization= organization;
+        this.userProcessContainer=upContainer;
+        this.userAccount=ua;
+        this.enterprise=ent;
+        this.organization= org;
         populateTable();
         
     }

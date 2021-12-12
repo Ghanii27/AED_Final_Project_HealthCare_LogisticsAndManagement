@@ -33,9 +33,9 @@ private EcoSystem system;
     /**
      * Creates new form DoctorWorkAreaJPanel
      */
-public DoctorWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, DoctorOrganization doctorOrganization, Enterprise enterprise, EcoSystem business, Network network) {
+public DoctorWorkAreaJPanel(JPanel userProcessContainer, UserAccount ua, DoctorOrganization docOrg, Enterprise ent, EcoSystem system, Network ntw) {
 initComponents();
-this.userprocessContainer=userprocessContainer;
+this.userprocessContainer=userProcessContainer;
 this.ua=ua;
 this.docOrg=docOrg;
 this.ent=ent;
@@ -108,7 +108,7 @@ ntw();
     private void medicalequipBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_medicalequipBtnActionPerformed
 CardLayout crd = (CardLayout) userprocessContainer.getLayout();
 userprocessContainer.add("PrescriptionJPanel", new ui.DoctorRole.HealthcareEquipmentManagmentJpanel(userprocessContainer, ua, docOrg,ent,system,ntw));// TODO add your handling code here:
-
+crd.next(userprocessContainer);
     }//GEN-LAST:event_medicalequipBtnActionPerformed
 
     private void prescriptionBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prescriptionBtnActionPerformed

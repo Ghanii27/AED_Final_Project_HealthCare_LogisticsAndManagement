@@ -46,6 +46,7 @@ this.docOrg = docOrg;
 this.ent=ent;
 this.ntw=ntw;
 this.system=system;
+initComponents();
 populateTable();
     }
 

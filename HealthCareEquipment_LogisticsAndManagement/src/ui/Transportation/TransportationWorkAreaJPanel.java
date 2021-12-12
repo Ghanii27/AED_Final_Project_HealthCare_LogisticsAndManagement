@@ -30,7 +30,7 @@ public class TransportationWorkAreaJPanel extends javax.swing.JPanel {
     private UserAccount account;
     private Organization organization;
     private EcoSystem system;
-    public TransportationWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem Schema){
+    public TransportationWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem system){
         initComponents();
         this.userProcessContainer=userProcessContainer;
         this.account=account;
@@ -45,12 +45,12 @@ public class TransportationWorkAreaJPanel extends javax.swing.JPanel {
         for(WorkRequest request : organization.getWorkQueue().getWorkRequestList()){
             Object[] row = new Object[7];
             row[0] = ((TransportationWorkRequest) request);
-            row[1] = request.getSender().getEmployee().getName();
+            row[1] = request.getSender().getEmployee().getEmployeeName();
             row[2] = ((TransportationWorkRequest) request).getEquipmentinfo();
             row[3] = ((TransportationWorkRequest) request). getHospitalName();
             row[4] = ((TransportationWorkRequest) request). getUrgency();
             row[5] = request.getStatus();
-            row[6] = ((TransportationWorkRequest) request. getTime());
+            row[6] = ((TransportationWorkRequest) request.getTime());
             model.addRow(row);
         }
         

@@ -22,7 +22,7 @@ public class ViewTransportationRequestJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ViewTransportationRequestJPanel
      */
-    public ViewTransportationRequestJPanel(JPanel upContainer, UserAccount ua) {
+    public ViewTransportationRequestJPanel(JPanel userProcessContainer, UserAccount ua) {
         initComponents();
         this.userProcessContainer=userProcessContainer;
         this.request=request;

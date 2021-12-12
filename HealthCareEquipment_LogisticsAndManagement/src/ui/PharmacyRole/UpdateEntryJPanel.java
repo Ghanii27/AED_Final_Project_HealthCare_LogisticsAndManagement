@@ -33,9 +33,9 @@ public class UpdateEntryJPanel extends javax.swing.JPanel {
      */
     public UpdateEntryJPanel(JPanel upContainer, UserAccount ua, Enterprise ent, PharmaInventory pi) {
         initComponents();
-        this.userProcessContainer=userProcessContainer;
-        this.userAccount=userAccount;
-        this.enterprise=enterprise;
+        this.userProcessContainer=upContainer;
+        this.userAccount=ua;
+        this.enterprise=ent;
         this.pil= pil;
         this.pharmorg= pharmorg;
         this.pi=pi;

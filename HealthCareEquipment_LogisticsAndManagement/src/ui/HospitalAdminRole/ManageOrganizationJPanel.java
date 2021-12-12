@@ -23,7 +23,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManageOrganizationJPanel
      */
-    public ManageOrganizationJPanel(JPanel userprocessContainer, OrganizationDirectory organizationDirectory) {
+    public ManageOrganizationJPanel(JPanel userProcessContainer, OrganizationDirectory orgDir) {
         initComponents();
         this.userProcessContainer=userProcessContainer;
         this.orgDir = orgDir;
@@ -146,6 +146,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+
         userProcessContainer.remove(this);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
@@ -153,6 +154,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
 
     private void addOrgBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addOrgBtnActionPerformed
 OrganizationType orgType = (OrganizationType) orgCmbBox.getSelectedItem();
+if(!orgDir.getOrganizationList().contains(orgType))
 orgDir.createOrganization(orgType);
 populateTable();
     }//GEN-LAST:event_addOrgBtnActionPerformed

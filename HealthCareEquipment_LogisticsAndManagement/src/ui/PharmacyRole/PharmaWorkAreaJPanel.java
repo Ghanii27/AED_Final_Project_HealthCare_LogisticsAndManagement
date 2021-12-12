@@ -35,7 +35,7 @@ public class PharmaWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form PharmaWorkAreaJPanel
      */
-    public PharmaWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Enterprise enterprise, PharmacyOrganization pharmacyOrganization, Network network) {
+    public PharmaWorkAreaJPanel(JPanel userProcessContainer, UserAccount ua, Enterprise enterprise, PharmacyOrganization org, Network network) {
         initComponents();
         this.upContainer=userProcessContainer;
         this.ua=ua;

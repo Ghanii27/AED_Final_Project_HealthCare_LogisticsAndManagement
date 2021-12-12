@@ -35,7 +35,7 @@ public class PrescriptionJPanel extends javax.swing.JPanel {
     /**
      * Creates new form PrescriptionJPanel
      */
-    public PrescriptionJPanel(JPanel userprocessContainer, PrescriptionList presList, UserAccount ua, Enterprise ent, DoctorOrganization docOrg) {
+    public PrescriptionJPanel(JPanel upContainer, PrescriptionList presList, UserAccount ua, Enterprise ent, DoctorOrganization docOrg) {
          initComponents();
         this.upContainer = upContainer;
         this.ua = ua;

@@ -18,7 +18,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         /**
      * Creates new form AdminWorkAreaJPanel
      */
-    public AdminWorkAreaJPanel(JPanel userProcessContainer, Enterprise enterprise) {
+    public AdminWorkAreaJPanel(JPanel upContainer, Enterprise ent) {
         initComponents();
         this.upContainer=upContainer;
         this.ent=ent;

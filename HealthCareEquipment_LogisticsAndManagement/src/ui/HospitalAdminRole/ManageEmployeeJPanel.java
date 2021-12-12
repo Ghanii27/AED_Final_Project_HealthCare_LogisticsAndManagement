@@ -25,8 +25,8 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
      */
     public ManageEmployeeJPanel(JPanel userprocessContainer, OrganizationDirectory organizationDirectory) {
         initComponents();
-        this.upContainer=upContainer;
-        this.orgDir=orgDir;
+        this.upContainer=userprocessContainer;
+        this.orgDir=organizationDirectory;
         populateOrgCmbBox();
         populateOrgEmpCmbBox();
        

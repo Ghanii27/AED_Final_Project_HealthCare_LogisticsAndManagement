@@ -27,11 +27,11 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
     /**
      * Creates new form SupplierWorkAreaJPanel
      */
-    public SupplierWorkAreaJPanel(JPanel userProcessContainer, EcoSystem business, UserAccount account, Organization organization) {
+    public SupplierWorkAreaJPanel(JPanel upContainer, EcoSystem business, UserAccount userAccount, Organization organization) {
         initComponents();
         this.upContainer = upContainer;
-        this.ua = ua;
-        this.system = system;
+        this.ua = userAccount;
+        this.system = business;
         this.suppOrg = (SupplierOrganization)organization ;
         populateTable();
     }

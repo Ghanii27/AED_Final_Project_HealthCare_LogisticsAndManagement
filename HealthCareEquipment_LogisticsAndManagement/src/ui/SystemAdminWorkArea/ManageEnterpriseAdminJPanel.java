@@ -4,6 +4,7 @@
  */
 package ui.SystemAdminWorkArea;
 
+import Schema.DB4OUtil.DB4OUtil;
 import Schema.EcoSystem;
 import Schema.Employee.Employee;
 import Schema.Enterprise.Enterprise;
@@ -217,6 +218,8 @@ String password = String.valueOf(jPasswordField1.getPassword());
 String name = nameTxtField.getText();
 Employee employee = ent.getEmployeeDirectory().createEmployee(name);
 UserAccount ua = ent.getUserAccountDirectory().createUserAccount(username, password, employee, new AdminRole());
+//system.getUserAccountDirectory().createUserAccount(username, password, employee, new AdminRole());
+//DB4OUtil.getInstance().storeSystem(system);
 populateTable();// TODO add your handling code here:
     }//GEN-LAST:event_submitBtnActionPerformed
 
