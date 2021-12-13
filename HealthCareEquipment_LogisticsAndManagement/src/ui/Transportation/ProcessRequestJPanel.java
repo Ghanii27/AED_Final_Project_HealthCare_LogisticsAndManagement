@@ -66,6 +66,8 @@ public class ProcessRequestJPanel extends javax.swing.JPanel {
         backBtn = new javax.swing.JButton();
         notifythroughmailBtn = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(204, 255, 255));
+
         trpaLbl.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         trpaLbl.setForeground(new java.awt.Color(0, 102, 102));
         trpaLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/transport.png"))); // NOI18N

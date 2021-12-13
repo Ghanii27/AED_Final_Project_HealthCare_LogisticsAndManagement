@@ -95,6 +95,8 @@ empCmbBox1.addItem(emp);
         empLbl1 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(204, 255, 255));
+
         userTbl1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 

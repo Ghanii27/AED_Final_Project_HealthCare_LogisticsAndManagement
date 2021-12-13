@@ -49,6 +49,8 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         backBtn = new javax.swing.JButton();
         addOrgBtn = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(204, 255, 255));
+
         headerLbl.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         headerLbl.setForeground(new java.awt.Color(0, 102, 102));
         headerLbl.setText("Manage Organization");

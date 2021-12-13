@@ -56,6 +56,8 @@ ntw();
         medicalequipBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(204, 255, 255));
+
         prescriptionBtn.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         prescriptionBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/prescription.png"))); // NOI18N
         prescriptionBtn.setText("WRITE PRESCRIPTION");

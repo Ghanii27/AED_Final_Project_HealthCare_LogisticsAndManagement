@@ -64,6 +64,8 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         jPasswordField1 = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(204, 255, 255));
+
         jScrollPane1.setOpaque(false);
 
         tblEnterprise.setModel(new javax.swing.table.DefaultTableModel(

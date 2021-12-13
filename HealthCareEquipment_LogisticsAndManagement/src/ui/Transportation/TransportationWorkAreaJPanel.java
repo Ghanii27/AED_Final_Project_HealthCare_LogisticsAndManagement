@@ -71,6 +71,8 @@ public class TransportationWorkAreaJPanel extends javax.swing.JPanel {
         assignBtn = new javax.swing.JButton();
         processreqBtn = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(204, 255, 255));
+
         TransportationworkareaLbl.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         TransportationworkareaLbl.setForeground(new java.awt.Color(0, 102, 102));
         TransportationworkareaLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/transport.png"))); // NOI18N

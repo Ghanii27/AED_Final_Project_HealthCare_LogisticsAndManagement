@@ -42,6 +42,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         manageEmpBtn = new javax.swing.JButton();
         manageUserBtn = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(204, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         headerLbl.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N

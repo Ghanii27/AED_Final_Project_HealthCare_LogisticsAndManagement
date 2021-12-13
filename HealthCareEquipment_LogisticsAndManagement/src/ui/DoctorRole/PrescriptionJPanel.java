@@ -99,6 +99,8 @@ public void populateWorkReqTable() {
         jTable1 = new javax.swing.JTable();
         backBtn = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(204, 255, 255));
+
         headerLbl.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         headerLbl.setForeground(new java.awt.Color(0, 102, 102));
         headerLbl.setText("Doctor Prescription");
@@ -191,8 +193,7 @@ public void populateWorkReqTable() {
                                         .addGap(18, 18, 18)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(headerLbl)
-                                            .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(53, 53, 53))
+                                            .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()

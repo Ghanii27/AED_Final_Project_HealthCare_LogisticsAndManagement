@@ -60,6 +60,8 @@ private void populateTable(){
         addOrgBtn = new javax.swing.JButton();
         headerLbl = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(204, 255, 255));
+
         orgTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},

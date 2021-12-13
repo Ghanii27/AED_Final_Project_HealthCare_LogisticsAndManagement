@@ -67,6 +67,8 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         backBtn = new javax.swing.JButton();
         addOrgBtn = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(204, 255, 255));
+
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 

@@ -47,6 +47,8 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         submitBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(204, 255, 255));
+
         nameTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 

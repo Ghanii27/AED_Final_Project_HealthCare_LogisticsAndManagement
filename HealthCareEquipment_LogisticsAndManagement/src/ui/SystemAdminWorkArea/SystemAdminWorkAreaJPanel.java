@@ -115,6 +115,8 @@ model.reload();
 
         jLabel1.setText("jLabel1");
 
+        jPanel1.setBackground(new java.awt.Color(204, 255, 255));
+
         btnManageNetwork.setText("Manage Network");
         btnManageNetwork.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -171,6 +173,7 @@ model.reload();
 
         splitPane.setRightComponent(jPanel1);
 
+        jPanel2.setBackground(new java.awt.Color(0, 153, 153));
         jPanel2.add(jScrollPane1);
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("System");

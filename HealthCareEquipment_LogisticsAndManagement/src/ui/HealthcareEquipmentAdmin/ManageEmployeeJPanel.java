@@ -86,6 +86,8 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         addEmpBtn = new javax.swing.JButton();
         headerLbl = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(204, 255, 255));
+
         orgLbl.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         orgLbl.setText("Organization :");
 

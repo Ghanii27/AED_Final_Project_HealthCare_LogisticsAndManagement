@@ -47,6 +47,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         manageemployeeBtn = new javax.swing.JButton();
         manageuserBtn = new javax.swing.JButton();
 
+        jPanel1.setBackground(new java.awt.Color(204, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         headerLbl.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
@@ -72,6 +73,11 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
 
         manageemployeeBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         manageemployeeBtn.setText("Manage Employee");
+        manageemployeeBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageemployeeBtnActionPerformed(evt);
+            }
+        });
         jPanel1.add(manageemployeeBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 340, 230, 40));
 
         manageuserBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -102,15 +108,14 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
        layout.next(userProcessContainer);
     }//GEN-LAST:event_manageOrgBtnActionPerformed
- 
-    private void manageemployeeBtnActionPerformed(java.awt.event.ActionEvent evt){
-        ManageEmployeeJPanel manageemployeeJPanel = new ManageEmployeeJPanel(userProcessContainer, enterprise.getOrganizationDirectory());
+
+    private void manageemployeeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageemployeeBtnActionPerformed
+     ManageEmployeeJPanel manageemployeeJPanel = new ManageEmployeeJPanel(userProcessContainer, enterprise.getOrganizationDirectory());
          userProcessContainer.add("manageemployeeJPanel",manageemployeeJPanel );
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-        
-    }
-    
+        layout.next(userProcessContainer);    // TODO add your handling code here:
+    }//GEN-LAST:event_manageemployeeBtnActionPerformed
+
     private void manageuserBtnActionPerformed(java.awt.event.ActionEvent evt) {
         ManageUserAccountJPanel muajp = new ManageUserAccountJPanel(userProcessContainer, enterprise);
          userProcessContainer.add("ManageUserAccountJPanel",muajp );

@@ -72,6 +72,8 @@ populateTable();
         sendReqBtn = new javax.swing.JButton();
         refreshBtn = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(204, 255, 255));
+
         HeaderLbl.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         HeaderLbl.setForeground(new java.awt.Color(0, 102, 102));
         HeaderLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

@@ -93,6 +93,8 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(204, 255, 255));
+
         headerLbl.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         headerLbl.setForeground(new java.awt.Color(0, 102, 102));
         headerLbl.setText("Manage User Account");
