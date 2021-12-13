@@ -49,9 +49,10 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        headerLbl.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
+        headerLbl.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        headerLbl.setForeground(new java.awt.Color(0, 102, 102));
         headerLbl.setText("MY Work Area - Administrative Role");
-        jPanel1.add(headerLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 130, 450, 40));
+        jPanel1.add(headerLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, 720, 40));
 
         enterpriseLbl.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         enterpriseLbl.setText("Enterprise : ");
@@ -60,19 +61,22 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         valueLbl.setText("<Value>");
         jPanel1.add(valueLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 200, -1, -1));
 
+        manageOrgBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         manageOrgBtn.setText("Manage Organization");
         manageOrgBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 manageOrgBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(manageOrgBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 260, 230, -1));
+        jPanel1.add(manageOrgBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 260, 230, 40));
 
+        manageemployeeBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         manageemployeeBtn.setText("Manage Employee");
-        jPanel1.add(manageemployeeBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 340, 230, -1));
+        jPanel1.add(manageemployeeBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 340, 230, 40));
 
+        manageuserBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         manageuserBtn.setText("Manage User");
-        jPanel1.add(manageuserBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 420, 230, -1));
+        jPanel1.add(manageuserBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 420, 230, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

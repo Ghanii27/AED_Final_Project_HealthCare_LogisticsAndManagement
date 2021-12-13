@@ -18,17 +18,21 @@ public class Doctor {
         return Name;
     }
 
+    
     public void setName(String Name) {
         this.Name = Name;
     }
 
+    
     public PrescriptionList getPrescriptionlist() {
         return prescriptionlist;
     }
 
+    
     public void setPrescriptionlist(PrescriptionList prescriptionlist) {
         this.prescriptionlist = prescriptionlist;
     }
+    
     
     public Doctor(){
         prescriptionlist = new PrescriptionList();

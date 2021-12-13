@@ -128,10 +128,12 @@ public class HealthcareEquipmentWorkAreaJPanel extends javax.swing.JPanel {
         });
 
         refreshBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        refreshBtn.setText("REFRESH");
+        refreshBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/refresh.png"))); // NOI18N
 
-        headerLbl.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        headerLbl.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        headerLbl.setForeground(new java.awt.Color(0, 102, 102));
         headerLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        headerLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/steth.png"))); // NOI18N
         headerLbl.setText("REQUESTS FROM HOSPITALS");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -158,13 +160,10 @@ public class HealthcareEquipmentWorkAreaJPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(642, 642, 642)
-                        .addComponent(headerLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 469, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(488, 488, 488)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(refreshBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(refreshBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(488, 488, 488)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                     .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -174,31 +173,32 @@ public class HealthcareEquipmentWorkAreaJPanel extends javax.swing.JPanel {
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(viewReqBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(processReqBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 909, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 909, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(591, 591, 591)
+                        .addComponent(headerLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 648, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(518, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(112, 112, 112)
-                .addComponent(headerLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(refreshBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37)
-                        .addComponent(processReqBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(viewReqBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(363, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(assignBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(353, 353, 353))))
+                .addGap(191, 191, 191)
+                .addComponent(refreshBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addComponent(processReqBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(viewReqBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(363, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(headerLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(assignBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(353, 353, 353))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -210,41 +210,30 @@ public class HealthcareEquipmentWorkAreaJPanel extends javax.swing.JPanel {
             return;
         }
         
-        HealthcareEquipmentWorkRequest request = (HealthcareEquipmentWorkRequest)jTable1.getValueAt(selectedRow, 0);
-       // String result="Request sent to transport department for delivery"?"Request sent to transport department for delivery":request.setExpectedArivalTime(request.getMessage());
+       HealthcareEquipmentWorkRequest request = (HealthcareEquipmentWorkRequest)jTable1.getValueAt(selectedRow, 0);
        System.out.println("hello");
        request.setStatus("Request sent to transport department for delivery");
-        
-       
-        TransportationWorkRequest transportrequest=new TransportationWorkRequest();
+       TransportationWorkRequest transportrequest=new TransportationWorkRequest();
         transportrequest=new TransportationWorkRequest();
         transportrequest.setSender(ua);
-        transportrequest.setStatus("Sent");
+        
         transportrequest.setHospitalName(request.getHospitalName());
-        transportrequest.setEquipmentinfo(("Name: "+request.getEquipmentName())+","+ "Qauntity: " +( request.getQuantity()));
+        
         transportrequest.setUrgency(request.getUrgencyLevel());
+        transportrequest.setStatus("Sent");
+        transportrequest.setEquipmentinfo(("Name: "+request.getEquipmentName())+","+ "Qauntity: " +( request.getQuantity()));
         request.setExpectedArrivalTime(request.getMessage());
         request.setTransportrequestStatus("Y");
-        
-        //userAccount.getWorkQueue().getWorkRequestList().add(transportrequest);
-         if(ntw.getName().equals(this.ntw.getName())){
+        if(ntw.getName().equals(this.ntw.getName())){
             for(Enterprise enterprise :ntw.getEnterpriseDirectory().getEnterpriseList() ){
                 System.out.println("****" +enterprise.getName());
                 System.out.println("******"+enterprise.getEnterpriseType());
-                //if(enterprise.getEnterpriseType().equals("MedicalEquipmentWareHouse")){
-                //  Enterprise.EnterpriseType type=null;
-                    //if(enterprise.getEnterpriseType().equals("MedicalEquipmentWareHouse")){
-                  //if (type==Enterprise.EnterpriseType.MedicalEquipmentWareHouse) { 
-                  for(Organization organization:enterprise.getOrganizationDirectory().getOrganizationList()){
+                for(Organization organization:enterprise.getOrganizationDirectory().getOrganizationList()){
                       System.out.println("***** Organization Name:" +organization.getName());
                    if(organization.getName().equals("Transportation Organization")){
                       System.out.println("True");
-                   // for( Organization organization :enterprise.getOrganizationDirectory().getOrganizationList()){
-                        System.out.println("***** organization Name"+organization.getName());
-                       // if(organization.getName().equals("EquipmentOrganization")){
-                        // organization.getWorkQueue().getWorkRequestList().add(transportrequest);
-                         
-                      JOptionPane.showMessageDialog(null, "Transport department has been notified! "
+                   System.out.println("***** organization Name"+organization.getName());
+                   JOptionPane.showMessageDialog(null, "A Notification has been sent to concerned Transport Department "
                               + "The request id is : "+transportrequest.getUniqueId());
                       int requestId=transportrequest.getUniqueId();
                       System.out.println("***" +requestId);
@@ -258,13 +247,13 @@ public class HealthcareEquipmentWorkAreaJPanel extends javax.swing.JPanel {
                    }
                   
          CardLayout layout = (CardLayout) upContainer.getLayout();
-          upContainer.add("ProcessRequest", new ViewTransportationRequestJPanel(upContainer,ua));//userProcessContainer,userAccount,organization,enterprise,system,network));
-         layout.next(upContainer);
+          upContainer.add("ProcessRequest", new ViewTransportationRequestJPanel(upContainer,ua));
+          layout.next(upContainer);
         
          }
         else{
           CardLayout layout = (CardLayout) upContainer.getLayout();
-          upContainer.add("ProcessRequest", new ViewTransportationRequestJPanel(upContainer,ua));//userProcessContainer,userAccount,organization,enterprise,system,network));
+          upContainer.add("ProcessRequest", new ViewTransportationRequestJPanel(upContainer,ua));
          layout.next(upContainer);
          
         }
@@ -295,7 +284,7 @@ upContainer.remove(this);
 
     private void viewReqBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewReqBtnActionPerformed
 CardLayout layout = (CardLayout) upContainer.getLayout();
-        upContainer.add("ProcessRequest", new ViewTransportationRequestJPanel(upContainer,ua));//userProcessContainer,userAccount,organization,enterprise,system,network));
+        upContainer.add("ProcessRequest", new ViewTransportationRequestJPanel(upContainer,ua));
         layout.next(upContainer);        // TODO add your handling code here:
     }//GEN-LAST:event_viewReqBtnActionPerformed
 

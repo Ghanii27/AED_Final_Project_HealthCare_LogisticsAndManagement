@@ -17,13 +17,9 @@ public PackageDetailsList(){
 detailsList=new ArrayList<>();
 }
 
-
-
 public ArrayList<PackageDetails> getDetailsList() {
 return detailsList;
 }
-
-
 
 public void setDetailsList(ArrayList<PackageDetails> detailsList) {
 this.detailsList = detailsList;

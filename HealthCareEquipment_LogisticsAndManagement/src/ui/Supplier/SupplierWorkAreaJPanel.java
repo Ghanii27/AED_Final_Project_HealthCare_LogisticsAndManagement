@@ -55,6 +55,8 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
         RefreshBtn = new javax.swing.JButton();
 
         headerLbl.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        headerLbl.setForeground(new java.awt.Color(0, 102, 102));
+        headerLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/supplier.jpg"))); // NOI18N
         headerLbl.setText("SUPPLIER WORK AREA ");
 
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -129,27 +131,27 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
                         .addComponent(processBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(87, 87, 87)
                         .addComponent(RefreshBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 983, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 983, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(300, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(499, 499, 499)
-                .addComponent(headerLbl)
+                .addGap(455, 455, 455)
+                .addComponent(headerLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 601, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addComponent(headerLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addGap(36, 36, 36)
+                .addComponent(headerLbl)
+                .addGap(40, 40, 40)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
+                .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(RefreshBtn)
                     .addComponent(processBtn)
                     .addComponent(assignBtn)
                     .addComponent(backBtn))
-                .addContainerGap(923, Short.MAX_VALUE))
+                .addContainerGap(872, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -218,8 +220,6 @@ public class SupplierWorkAreaJPanel extends javax.swing.JPanel {
             row[3] = request.getReceiver() == null ? null : request.getReceiver().getEmployee().getEmployeeName();
             row[4] = request.getStatus();
             row[5]=((SupplierWorkRequest) request).getDeliveryTime();
-            //row[5]= ((SupplierWorkRequest) request).getMedicationName();
-            
             model.addRow(row);
         }
     }

@@ -25,6 +25,8 @@ public class DoctorRole extends Role {
         return new DoctorWorkAreaJPanel(userProcessContainer,account,(DoctorOrganization)organization,enterprise,business,network);
     }
     
+    
+    
 @Override
 public String toString() {
     return "Doctor Role";

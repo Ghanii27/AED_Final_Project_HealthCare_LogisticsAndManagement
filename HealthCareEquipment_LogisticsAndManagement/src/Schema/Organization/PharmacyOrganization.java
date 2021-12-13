@@ -15,7 +15,7 @@ import java.util.ArrayList;
  * @author krishna
  */
 public class PharmacyOrganization extends Organization{
-    private ArrayList<PharmaInventory> medList;
+private ArrayList<PharmaInventory> medList;
 public PharmacyOrganization()
  {
 super(Organization.OrganizationType.Pharmacy.getValue());

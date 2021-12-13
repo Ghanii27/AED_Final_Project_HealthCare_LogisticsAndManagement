@@ -66,6 +66,7 @@ public class UpdateEntryJPanel extends javax.swing.JPanel {
         updateBtn = new javax.swing.JButton();
 
         headerLbl.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        headerLbl.setForeground(new java.awt.Color(0, 102, 102));
         headerLbl.setText("Update Details");
 
         serialnumLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N

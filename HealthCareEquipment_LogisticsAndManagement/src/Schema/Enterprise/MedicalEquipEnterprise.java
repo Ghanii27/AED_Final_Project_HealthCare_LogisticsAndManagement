@@ -19,8 +19,9 @@ public class MedicalEquipEnterprise extends Enterprise {
     public MedicalEquipEnterprise(String name){
         super(name, Enterprise.EnterpriseType.MedicalEquipmentWareHouse);
         equipmentworkqueue=new WorkQueue();
-        
     }
+    
+    
     @Override
     public ArrayList<Role> getSupportedRole(){
         return null;

@@ -13,7 +13,6 @@ import Schema.UserAccount.UserAccount;
 import javax.swing.JPanel;
 import ui.AdministrativeRole.AdminWorkAreaJPanel;
 
-
 /**
  *
  * @author ganes
@@ -23,6 +22,8 @@ public class AdminRole extends Role {
 public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business,Network network) {
 return new AdminWorkAreaJPanel(userProcessContainer, enterprise);
 }
+
+
 
 @Override
 public String toString() {

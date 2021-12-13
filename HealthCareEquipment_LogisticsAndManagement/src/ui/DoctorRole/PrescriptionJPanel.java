@@ -53,7 +53,6 @@ public void populateWorkReqTable() {
         for (WorkRequest request : ua.getWorkQueue().getWorkRequestList()) {
             try {
             Object[] row = new Object[4];
-            //UserAccount ua = ((DoctorWorkRequest) request).getReceiver();
             String medication = ((PharmacyWorkRequest) request).getMedicationName();
             System.out.println("****" + medication);
             row[0] = (PharmacyWorkRequest) request;
@@ -99,9 +98,9 @@ public void populateWorkReqTable() {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         backBtn = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
 
         headerLbl.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        headerLbl.setForeground(new java.awt.Color(0, 102, 102));
         headerLbl.setText("Doctor Prescription");
 
         nameLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -137,6 +136,7 @@ public void populateWorkReqTable() {
         forLbl.setText("For:");
 
         saveBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        saveBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/prescription.png"))); // NOI18N
         saveBtn.setText("SAVE PRESCRIPTION");
         saveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -170,18 +170,12 @@ public void populateWorkReqTable() {
             }
         });
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel6.setText("Date:");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(550, 550, 550)
-                        .addComponent(headerLbl))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(432, 432, 432)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,13 +185,14 @@ public void populateWorkReqTable() {
                                     .addComponent(ageLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(109, 109, 109)
-                                        .addComponent(jLabel6))
-                                    .addGroup(layout.createSequentialGroup()
                                         .addGap(19, 19, 19)
-                                        .addComponent(ageTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(ageTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(headerLbl)
+                                            .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(53, 53, 53))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -235,14 +230,13 @@ public void populateWorkReqTable() {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addGap(37, 37, 37)
                 .addComponent(headerLbl)
-                .addGap(56, 56, 56)
+                .addGap(61, 61, 61)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nameLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                    .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ageTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ageLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -330,15 +324,12 @@ public void populateWorkReqTable() {
             if (org != null) {
 
                 org.getWorkQueue().getWorkRequestList().add(request);
-                //org.getOpWorkqueue().getOpworkRequestList().add(request);
                 ua.getWorkQueue().getWorkRequestList().add(request);
             }
 
             populateWorkReqTable();
         }
-
-
-              // TODO add your handling code here:
+ // TODO add your handling code here:
     }//GEN-LAST:event_saveBtnActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
@@ -356,7 +347,6 @@ upContainer.remove(this);
     private javax.swing.JLabel forLbl;
     private javax.swing.JSpinner forSpin;
     private javax.swing.JLabel headerLbl;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;

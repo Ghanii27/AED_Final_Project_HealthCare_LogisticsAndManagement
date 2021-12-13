@@ -17,6 +17,8 @@ public class EquipmentHandlingOrganization extends Organization {
     public EquipmentHandlingOrganization(){
         super(Organization.OrganizationType.MedicalEquipment.getValue());
           }
+    
+    
     @Override 
     public ArrayList<Role> getSupportedRole(){
         ArrayList<Role> roles = new ArrayList<>();

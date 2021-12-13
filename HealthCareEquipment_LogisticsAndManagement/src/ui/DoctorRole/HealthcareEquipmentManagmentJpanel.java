@@ -72,14 +72,15 @@ populateTable();
         sendReqBtn = new javax.swing.JButton();
         refreshBtn = new javax.swing.JButton();
 
-        HeaderLbl.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        HeaderLbl.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        HeaderLbl.setForeground(new java.awt.Color(0, 102, 102));
         HeaderLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         HeaderLbl.setText("REQUEST MEDICAL EQUIPMENT");
 
         MedEquipLbl.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         MedEquipLbl.setText("MEDICAL EQUIPMENT:");
 
-        equipnameCmbBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Please Select--", "Stethescope", "Thermometer", "Syringe", "Stretcher", "Blood pressure Kit", "Microscope" }));
+        equipnameCmbBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Please Select--", "Oxygen Cylinder", "Pulse Oxymeter", "Stretcher", "Thermometer", "Stethescope", "Diabetes Machine", "COVID Testing Kits", "Syringes", "Blood pressure Kit", " " }));
         equipnameCmbBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 equipnameCmbBoxActionPerformed(evt);
@@ -99,7 +100,7 @@ populateTable();
         urgencyLbl.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         urgencyLbl.setText("URGENCY LEVEL:");
 
-        equipnameCmbBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Please select--", "CRITICAL(<3 HRS)", "MODERATE(<6 HRS)", "LOW(12 HRS)" }));
+        equipnameCmbBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--Please select--", "VERY CRITICAL(<2 HRS)", "MODERATE(<5 HRS)", "LOW PRIORITY(24 HRS)" }));
         equipnameCmbBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 equipnameCmbBox1ActionPerformed(evt);
@@ -116,7 +117,7 @@ populateTable();
             }
         });
 
-        sendReqBtn.setText("SEND REQUEST");
+        sendReqBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/request.png"))); // NOI18N
         sendReqBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sendReqBtnActionPerformed(evt);
@@ -124,7 +125,7 @@ populateTable();
         });
 
         refreshBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        refreshBtn.setText("REFRESH");
+        refreshBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/refresh.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -136,8 +137,8 @@ populateTable();
                         .addGap(288, 288, 288)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(backBtn)
-                                .addGap(84, 84, 84)
+                                .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(54, 54, 54)
                                 .addComponent(sendReqBtn))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -159,7 +160,7 @@ populateTable();
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1093, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(HeaderLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(HeaderLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 656, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(refreshBtn))))))
                 .addContainerGap(176, Short.MAX_VALUE))
@@ -187,9 +188,9 @@ populateTable();
                     .addComponent(qtyTxtFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(backBtn)
+                    .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(sendReqBtn))
-                .addContainerGap(288, Short.MAX_VALUE))
+                .addContainerGap(195, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -221,14 +222,11 @@ populateTable();
         request.setActualprice(n1);
         request.setHospitalName(ent.getName());
         
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        
+    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
         request.setRequestDate(dateFormat.format(date));
-        
-        
-        request.setLoanedprice(n2);
-        
-        Organization org = null;
-        //Enterprise.EnterpriseType type=null;
+    request.setLoanedprice(n2);
+    Organization org = null;
         for (Organization organization : ent.getOrganizationDirectory().getOrganizationList()) {
             if (organization instanceof DoctorOrganization) {
                 org = organization;
@@ -236,9 +234,7 @@ populateTable();
                 break;
             }
         }
-        // if (org!=null){
-
-        org.getWorkQueue().getWorkRequestList().add(request);
+    org.getWorkQueue().getWorkRequestList().add(request);
         ua.getWorkQueue().getWorkRequestList().add(request);
         // equiporg.getWorkQueue().getWorkRequestList().add(request);
         System.out.println("****** " + org.getName());
@@ -250,17 +246,11 @@ populateTable();
                 for (Enterprise ent : ntw.getEnterpriseDirectory().getEnterpriseList()) {
                     System.out.println("****" + ent.getName());
                     System.out.println("******" + ent.getEnterpriseType());
-                    //if(enterprise.getEnterpriseType().equals("MedicalEquipmentWareHouse")){
-                    //  Enterprise.EnterpriseType type=null;
-                    //if(enterprise.getEnterpriseType().equals("MedicalEquipmentWareHouse")){
-                    //if (type==Enterprise.EnterpriseType.MedicalEquipmentWareHouse) { 
-                    for (Organization organization : ent.getOrganizationDirectory().getOrganizationList()) {
+        for (Organization organization : ent.getOrganizationDirectory().getOrganizationList()) {
                         System.out.println("***** Organizatio Name:" + organization.getName());
                         if (organization.getName().equals("Equipment Organization")) {
                             System.out.println("True");
-                            // for( Organization organization :enterprise.getOrganizationDirectory().getOrganizationList()){
                             System.out.println("***** organization Name" + organization.getName());
-                            // if(organization.getName().equals("EquipmentOrganization")){
                             organization.getWorkQueue().getWorkRequestList().add(request);
                         }
                     }
@@ -299,7 +289,6 @@ populateTable();
 
         model.setRowCount(0);
         for (WorkRequest request : docOrg.getWorkQueue().getWorkRequestList()) {
-            //for(WorkRequest request : equiporg.getWorkQueue().getWorkRequestList()){
             Object[] row = new Object[9];
 
             row[0] = ((HealthcareEquipmentWorkRequest) request);
@@ -310,7 +299,9 @@ populateTable();
             row[3] = request.getSender();
             row[4] = ((HealthcareEquipmentWorkRequest) request).getReceiver();
             row[5] = request.getStatus();
+            
             String expectedArrivalTime = ((HealthcareEquipmentWorkRequest) request).getExpectedArrivalTime();
+            
             row[6] = request.getRequestDate();
             row[7] = ((HealthcareEquipmentWorkRequest) request).getActualprice();
             row[8] = ((HealthcareEquipmentWorkRequest) request).getLoanedprice();

@@ -62,6 +62,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         backBtn = new javax.swing.JButton();
         submitBtn = new javax.swing.JButton();
         jPasswordField1 = new javax.swing.JPasswordField();
+        jLabel1 = new javax.swing.JLabel();
 
         jScrollPane1.setOpaque(false);
 
@@ -120,12 +121,17 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
             }
         });
 
+        submitBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/R.png"))); // NOI18N
         submitBtn.setText("Submit");
         submitBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 submitBtnActionPerformed(evt);
             }
         });
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 102, 102));
+        jLabel1.setText("Manage Enterprise Admin");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -158,20 +164,25 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
                                 .addComponent(jPasswordField1))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(419, 419, 419)
-                        .addComponent(backBtn)
-                        .addGap(134, 134, 134)
+                        .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(92, 92, 92)
                         .addComponent(submitBtn))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(321, 321, 321)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(342, Short.MAX_VALUE))
+                        .addGap(322, 322, 322)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(314, 314, 314)
+                        .addComponent(jLabel1)))
+                .addContainerGap(333, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(56, 56, 56)
+                .addGap(21, 21, 21)
+                .addComponent(jLabel1)
+                .addGap(47, 47, 47)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(networkLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(networkCmbBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -193,16 +204,16 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
                     .addComponent(nameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(backBtn)
+                    .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(submitBtn))
-                .addContainerGap(230, Short.MAX_VALUE))
+                .addContainerGap(158, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void enterpriseCmbBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterpriseCmbBoxActionPerformed
      Enterprise ent =(Enterprise) enterpriseCmbBox.getSelectedItem();
      if(ent != null){
-//populateEnterpriseComboBox ();   // TODO add your handling code here:
+   // TODO add your handling code here:
     }//GEN-LAST:event_enterpriseCmbBoxActionPerformed
     }
     private void networkCmbBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_networkCmbBoxActionPerformed
@@ -225,8 +236,6 @@ for (UserAccount ua: ent.getUserAccountDirectory().getUserAccountList()) {
 }   
 Employee employee = ent.getEmployeeDirectory().createEmployee(name);
 UserAccount ua = ent.getUserAccountDirectory().createUserAccount(username, password, employee, new AdminRole());
-//system.getUserAccountDirectory().createUserAccount(username, password, employee, new AdminRole());
-//DB4OUtil.getInstance().storeSystem(system);
 populateTable();// TODO add your handling code here:
     }//GEN-LAST:event_submitBtnActionPerformed
 
@@ -279,6 +288,7 @@ for(Network ntw : system.getNetworkList()){
     private javax.swing.JButton backBtn;
     private javax.swing.JComboBox enterpriseCmbBox;
     private javax.swing.JLabel enterpriseLbl;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel nameLbl;

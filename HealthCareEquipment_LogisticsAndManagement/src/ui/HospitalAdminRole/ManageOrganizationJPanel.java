@@ -50,6 +50,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
         addOrgBtn = new javax.swing.JButton();
 
         headerLbl.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        headerLbl.setForeground(new java.awt.Color(0, 102, 102));
         headerLbl.setText("Manage Organization");
 
         orgTbl.setModel(new javax.swing.table.DefaultTableModel(
@@ -94,6 +95,7 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
             }
         });
 
+        addOrgBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/R.png"))); // NOI18N
         addOrgBtn.setText("Add Organization");
         addOrgBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -116,8 +118,8 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addComponent(orgCmbBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(backBtn)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(addOrgBtn))
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -140,8 +142,8 @@ public class ManageOrganizationJPanel extends javax.swing.JPanel {
                 .addGap(62, 62, 62)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addOrgBtn)
-                    .addComponent(backBtn))
-                .addContainerGap(788, Short.MAX_VALUE))
+                    .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(744, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -173,7 +175,7 @@ populateTable();
     private javax.swing.JLabel orgtypeLbl;
     // End of variables declaration//GEN-END:variables
 
-    private void populateTable() {
+private void populateTable() {
 DefaultTableModel model = (DefaultTableModel) orgTbl.getModel();
 model.setRowCount(0);
 for (Organization org : orgDir.getOrganizationList()){
@@ -185,8 +187,8 @@ model.addRow(row);
     }
     
     
-    private void populateCombo() {
- orgCmbBox.removeAllItems();
+private void populateCombo() {
+orgCmbBox.removeAllItems();
 for (OrganizationType type : Organization.OrganizationType.values()){
 if (!type.getValue().equals(OrganizationType.Admin.getValue()))
 orgCmbBox.addItem(type);

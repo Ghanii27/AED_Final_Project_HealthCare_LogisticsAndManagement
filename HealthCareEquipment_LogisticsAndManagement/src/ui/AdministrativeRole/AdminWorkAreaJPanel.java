@@ -45,6 +45,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         headerLbl.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        headerLbl.setForeground(new java.awt.Color(0, 102, 102));
         headerLbl.setText("My Work Area - Administrative Role");
         add(headerLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 40, -1, -1));
 

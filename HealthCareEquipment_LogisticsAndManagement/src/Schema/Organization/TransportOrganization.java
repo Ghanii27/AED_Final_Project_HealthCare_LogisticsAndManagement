@@ -15,7 +15,7 @@ import java.util.ArrayList;
  */
 public class TransportOrganization extends Organization {
 public TransportOrganization(){
-    super(Organization.OrganizationType.Transport.getValue());
+super(Organization.OrganizationType.Transport.getValue());
     
 }
 @Override

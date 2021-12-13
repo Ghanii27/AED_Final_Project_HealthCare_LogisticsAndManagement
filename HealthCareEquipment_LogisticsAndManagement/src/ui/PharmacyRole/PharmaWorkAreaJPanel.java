@@ -79,7 +79,6 @@ public class PharmaWorkAreaJPanel extends javax.swing.JPanel {
             row[0] = medication;
             int quantity=((PharmacyWorkRequest) request).getQuantity();
             row[1] = quantity;
-            //row[2] = request.getReceiver() == null ? null : request.getReceiver().getEmployee().getName();
             row[2] = ((PharmacyWorkRequest) request).getStatus();
             model.addRow(row);
         }
@@ -125,6 +124,8 @@ public class PharmaWorkAreaJPanel extends javax.swing.JPanel {
         invStatusCheckBtn = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 102, 102));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/R.png"))); // NOI18N
         jLabel1.setText("PHARMACY MEDICINE INVENTORY LOG");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -132,7 +133,7 @@ public class PharmaWorkAreaJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "MEDICINE NAME", "SERIAL NUMBER", "AVAILABLE QUANTITY", "REQUIRED QUANTITY", "RECORDER LEVEL", "RECORDER STATUS"
+                "MEDICINE NAME", "SERIAL NUMBER", "AVAILABLE QUANTITY", "REQUIRED QUANTITY", "REORDER LEVEL", "REORDER STATUS"
             }
         ) {
             Class[] types = new Class [] {
@@ -165,7 +166,7 @@ public class PharmaWorkAreaJPanel extends javax.swing.JPanel {
         reqQtyLbl.setText("REQUIRED QUANTITY:");
 
         recorderLbl.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        recorderLbl.setText("RECORDER LEVEL:");
+        recorderLbl.setText("REORDER LEVEL:");
 
         backBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         backBtn.setText("<<BACK");
@@ -176,6 +177,7 @@ public class PharmaWorkAreaJPanel extends javax.swing.JPanel {
         });
 
         addmedBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        addmedBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/R.png"))); // NOI18N
         addmedBtn.setText("ADD MEDICINE");
         addmedBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -239,11 +241,7 @@ public class PharmaWorkAreaJPanel extends javax.swing.JPanel {
                         .addComponent(invStatusCheckBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(617, 617, 617)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(addmedBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(mednameLbl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -257,8 +255,11 @@ public class PharmaWorkAreaJPanel extends javax.swing.JPanel {
                                     .addComponent(reqQtyTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(availQtyTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(recorderTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(mednameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(296, 296, 296)
+                                    .addComponent(mednameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(addmedBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(286, 286, 286)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(viewdetailsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(viewreqBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -313,8 +314,8 @@ public class PharmaWorkAreaJPanel extends javax.swing.JPanel {
                     .addComponent(recorderLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(48, 48, 48)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addmedBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(addmedBtn)
+                    .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
@@ -377,9 +378,9 @@ for(PharmaInventory mi : pharmorg.getMedList()){
                             System.out.println("***** Organization Name:" +organization.getName());
                             if(organization.getName().equals("Supplier Organization")){
                                 System.out.println("True");
-                                // for( Organization organization :enterprise.getOrganizationDirectory().getOrganizationList()){
+                                
                                     System.out.println("***** organization Name"+organization.getName());
-                                    // if(organization.getName().equals("EquipmentOrganization")){
+                                   
                                         organization.getWorkQueue().getWorkRequestList().add(request);
                                     }
                                 }
@@ -390,7 +391,7 @@ for(PharmaInventory mi : pharmorg.getMedList()){
 
                     }
                 }
-             JOptionPane.showMessageDialog(null, "Inventory status checked and updated!", "Warning", JOptionPane.INFORMATION_MESSAGE);        // TODO add your handling code here:
+             JOptionPane.showMessageDialog(null, "Status of inventory checked and updated!", "Warning", JOptionPane.INFORMATION_MESSAGE);        // TODO add your handling code here:
     }//GEN-LAST:event_invStatusCheckBtnActionPerformed
 
     private void addmedBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addmedBtnActionPerformed
@@ -402,7 +403,7 @@ PharmaInventory p=new PharmaInventory();
           Integer.parseInt(avail);
        }
        catch(NumberFormatException e){
-           JOptionPane.showMessageDialog(null,"Available quantity is not a valid field!");
+           JOptionPane.showMessageDialog(null,"Please provide valid data in Available Quantity");
           return;
        }
        p.setMedicineName(mednameTxt.getText());
@@ -413,7 +414,7 @@ PharmaInventory p=new PharmaInventory();
            Integer.parseInt(serialnumber);
        }
        catch(NumberFormatException e){
-           JOptionPane.showMessageDialog(null,"serial number must be integer!");
+           JOptionPane.showMessageDialog(null,"Serial Number must be integer!");
            return;
        }
        int serialNumber= Integer.parseInt(serialnumTxt.getText());

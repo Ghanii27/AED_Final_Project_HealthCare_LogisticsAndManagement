@@ -79,6 +79,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
         addEmpBtn = new javax.swing.JButton();
 
         headerLbl.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        headerLbl.setForeground(new java.awt.Color(0, 102, 102));
         headerLbl.setText("Manage Employee");
 
         orgLbl.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
@@ -142,6 +143,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
             }
         });
 
+        addEmpBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/add.png"))); // NOI18N
         addEmpBtn.setText("Create Employee");
         addEmpBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -174,7 +176,7 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
                                 .addGap(142, 142, 142))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(backBtn)
+                                    .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(addEmpBtn))
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -204,9 +206,9 @@ public class ManageEmployeeJPanel extends javax.swing.JPanel {
                     .addComponent(nameTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(backBtn)
+                    .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(addEmpBtn))
-                .addContainerGap(715, Short.MAX_VALUE))
+                .addContainerGap(639, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

@@ -25,6 +25,8 @@ public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, O
 return new HealthcareEquipmentWorkAreaJPanel(userProcessContainer, business, account,  organization,network);
 }
 
+
+
 @Override
 public String toString() {
     return "Medical Equipment Role";

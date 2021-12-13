@@ -92,6 +92,7 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         passwordTxt = new javax.swing.JTextField();
         backBtn = new javax.swing.JButton();
         createuserBtn = new javax.swing.JButton();
+        headerLbl = new javax.swing.JLabel();
 
         userTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -156,12 +157,17 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
             }
         });
 
+        createuserBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/add.png"))); // NOI18N
         createuserBtn.setText("Create");
         createuserBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 createuserBtnActionPerformed(evt);
             }
         });
+
+        headerLbl.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        headerLbl.setForeground(new java.awt.Color(0, 102, 102));
+        headerLbl.setText("Manage User Account");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -192,22 +198,27 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(usernameLbl)
                                     .addComponent(passwordLbl)
-                                    .addComponent(backBtn))
+                                    .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(70, 70, 70)
+                                        .addGap(38, 38, 38)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(nameTxt)
                                             .addComponent(passwordTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(197, 197, 197)
-                                        .addComponent(createuserBtn)))))))
+                                        .addGap(165, 165, 165)
+                                        .addComponent(createuserBtn))))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(402, 402, 402)
+                        .addComponent(headerLbl)))
                 .addContainerGap(666, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(112, 112, 112)
+                .addGap(34, 34, 34)
+                .addComponent(headerLbl)
+                .addGap(34, 34, 34)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(62, 62, 62)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -231,9 +242,9 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
                     .addComponent(passwordTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(78, 78, 78)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(backBtn)
+                    .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(createuserBtn))
-                .addContainerGap(168, Short.MAX_VALUE))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -273,6 +284,7 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
     private javax.swing.JButton createuserBtn;
     private javax.swing.JComboBox empCmbBox;
     private javax.swing.JLabel empLbl;
+    private javax.swing.JLabel headerLbl;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField nameTxt;
     private javax.swing.JComboBox orgCmbBox;

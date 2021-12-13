@@ -13,7 +13,7 @@ import Schema.Organization.OrganizationDirectory;
  * @author ganes
  */
 public abstract class Enterprise extends Organization {
-    private EnterpriseType enterpriseType;
+private EnterpriseType enterpriseType;
 private OrganizationDirectory organizationDirectory;
 private String zipcode;
 
@@ -32,19 +32,13 @@ MedicalEquipmentWareHouse("MedicalEquipmentWareHouse");
 
 private String value;
 
-
-
 private EnterpriseType(String value) {
 this.value = value;
 }
 
-
-
 public String getValue() {
 return value;
 }
-
-
 
 @Override
 public String toString() {
@@ -52,32 +46,21 @@ return value;
 }
 }
 
-
-
 public EnterpriseType getEnterpriseType() {
 return enterpriseType;
 }
-
-
 
 public OrganizationDirectory getOrganizationDirectory() {
 return organizationDirectory;
 }
 
-
-
 public String getZipcode() {
 return zipcode;
 }
 
-
-
 public void setZipcode(String zipcode) {
 this.zipcode = zipcode;
 }
-
-
-
 
 }
 

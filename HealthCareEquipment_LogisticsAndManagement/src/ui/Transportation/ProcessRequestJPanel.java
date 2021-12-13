@@ -67,6 +67,8 @@ public class ProcessRequestJPanel extends javax.swing.JPanel {
         notifythroughmailBtn = new javax.swing.JButton();
 
         trpaLbl.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        trpaLbl.setForeground(new java.awt.Color(0, 102, 102));
+        trpaLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/transport.png"))); // NOI18N
         trpaLbl.setText("TRANSPORT REQUEST PROCESS AREA");
 
         etdLbl.setText("Expected Time Of Delivery :");
@@ -109,9 +111,6 @@ public class ProcessRequestJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(437, 437, 437)
-                        .addComponent(trpaLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 782, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(318, 318, 318)
@@ -129,7 +128,10 @@ public class ProcessRequestJPanel extends javax.swing.JPanel {
                                     .addComponent(timeCmbBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(79, 79, 79)
                                     .addComponent(timezoneCmbBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(vehiclenumTxt)))))
+                                .addComponent(vehiclenumTxt))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(272, 272, 272)
+                        .addComponent(trpaLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 947, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(401, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -150,7 +152,7 @@ public class ProcessRequestJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backBtn)
                     .addComponent(notifythroughmailBtn))
-                .addContainerGap(566, Short.MAX_VALUE))
+                .addContainerGap(507, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -166,27 +168,7 @@ public void sendMailToCommunityMember(String to[], String subject, String messag
             props.put("mail.smtp.host", host);
             props.put("mail.smtp.auth", "true");
             props.put("mail.smtp.startttls.enable", "true");
-//                    Session session = Session.getDefaultInstance(props);
-//                    MimeMessage mimeMessage = new MimeMessage(session);
-//                    try{
-//                        mimeMessage.setFrom(new InternetAddress(from));
-//                        InternetAddress[] toAddr = new InternetAddress[to.length];
-//                        for(int i=0;i<to.length;i++){
-//                            toAddr[i] = new InternetAddress(to[i]);
-//                        }
-//                       for(int i=0;i<toAddr.length;i++){
-//                           mimeMessage.addRecipients(Message.RecipientType.TO, toAddr);
-//                       } 
-//                       mimeMessage.setSubject("Notification from Transport Department");
-//                       mimeMessage.setText(message);
-//                       SMIPTransport transport = (SMTPTransport)session.getTransport("smtp");
-//                       transport.connect(host,from,password);
-//                       transport.sendMessage(mimeMessage, mimeMessage.getAllRecipients());
-//                       transport.close();
-//                    }catch(MessagingException me){
-//                        JOptionPane.showMessageDialog(null, me);
-//                    }
-JOptionPane.showMessageDialog(this, "Notification from Transport Department");
+JOptionPane.showMessageDialog(this, "New notification from Transport Department");
                     
                     
                   
@@ -201,37 +183,10 @@ JOptionPane.showMessageDialog(this, "Notification from Transport Department");
         String[] to = {"yashwanth.3b8@gmail.com"};
         sendMailToCommunityMember(to,
                 "Alert from Transportation department",
-                "The delivery details are for the quipment "+request.getEquipmentinfo()+" are" +request.getTime(),
+                "The delivery details are for the equipment "+request.getEquipmentinfo()+" are" +request.getTime(),
                 "doctortesting.test@gmail.com",
                 "doctororganization");
         JOptionPane.showMessageDialog(null,"Email sent successfully");
-        
-        // compose the messege
-        //Get the session object
-        /*Properties props = new Properties();
-        props.put("mail.smtp.socketGactory.class",
-          "javax.netssl.SSLSocketFactory");
-        props.put("mail.smtp.host", "smtp.gmail.com");
-        props.put("mail.smtp.socketFactory.port","854"
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smitp.port", "854");
-        Session session = Session.getDefaultInstance(props,
-        new javax.mail.Authenticator(){
-        protected PasswordAuthentication getPasswordAuthentication(){
-        return new PasswordAuthentication("yashwanth.3b8@gmail.com","lifeear2fear");//change accordingly
-        }
-        });
-        //compose message
-        MimeMessage message = new MimeMessage(session);
-        message.setFrom(new InternetAddress("yashwanth.3b8@gmail.com"));//change accordingly
-        message.addRecipient(Message.recipientType.TO,new InternetAddress(to));
-        message.setSubject("Hi");
-        message.setText("Testing");
-        //send message
-        Transport.send(message);
-        System.out.println(message sent successfully");
-        }catch (MessagingException mex) {mex.printStackTrace():}
-        */        
         
     }//GEN-LAST:event_notifythroughmailBtnActionPerformed
 

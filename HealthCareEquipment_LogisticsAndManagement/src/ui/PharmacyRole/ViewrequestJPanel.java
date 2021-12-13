@@ -56,13 +56,9 @@ model.setRowCount(0);
             else{
             row[4]  = "Expected delivery time " +((SupplierWorkRequest) request).getDeliveryTime();
                     }
-            
             model.addRow(row);
         }
-       
-       
-       
-   }
+}
     
 
 
@@ -92,6 +88,7 @@ model.setRowCount(0);
         jScrollPane1.setViewportView(jTable1);
 
         headerLbl.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        headerLbl.setForeground(new java.awt.Color(0, 102, 102));
         headerLbl.setText("VIEW REQUESTS");
 
         backBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -103,7 +100,7 @@ model.setRowCount(0);
         });
 
         refreshBtn.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        refreshBtn.setText("REFRESH");
+        refreshBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/refresh.png"))); // NOI18N
         refreshBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 refreshBtnActionPerformed(evt);
@@ -117,30 +114,30 @@ model.setRowCount(0);
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(562, 562, 562)
-                        .addComponent(backBtn)
-                        .addGap(406, 406, 406)
-                        .addComponent(refreshBtn))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(738, 738, 738)
+                        .addGap(677, 677, 677)
                         .addComponent(headerLbl))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(414, 414, 414)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 855, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(522, 522, 522)
+                                .addComponent(refreshBtn))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 855, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(616, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(102, 102, 102)
+                .addGap(98, 98, 98)
                 .addComponent(headerLbl)
-                .addGap(79, 79, 79)
+                .addGap(83, 83, 83)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(93, 93, 93)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(backBtn)
-                    .addComponent(refreshBtn))
-                .addContainerGap(426, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(refreshBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(backBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(374, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

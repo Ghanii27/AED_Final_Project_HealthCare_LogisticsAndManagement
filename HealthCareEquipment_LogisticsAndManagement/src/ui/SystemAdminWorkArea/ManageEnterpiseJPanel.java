@@ -71,6 +71,7 @@ for(Network ntw : system.getNetworkList()){
         nameTxtField = new javax.swing.JTextField();
         backBtn = new javax.swing.JButton();
         submitBtn = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         nameTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -105,12 +106,17 @@ for(Network ntw : system.getNetworkList()){
             }
         });
 
+        submitBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/R.png"))); // NOI18N
         submitBtn.setText("Submit");
         submitBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 submitBtnActionPerformed(evt);
             }
         });
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 102, 102));
+        jLabel1.setText("Manage Enterprise");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -122,29 +128,39 @@ for(Network ntw : system.getNetworkList()){
                         .addGap(295, 295, 295)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 599, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(452, 452, 452)
-                                .addComponent(networkLbl))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(452, 452, 452)
+                                        .addComponent(networkLbl))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(453, 453, 453)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(enterprisetypeLbl)
+                                            .addComponent(nameLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(26, 26, 26))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(453, 453, 453)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(enterprisetypeLbl)
-                                    .addComponent(nameLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(backBtn))))
-                        .addGap(24, 24, 24)
+                                .addComponent(backBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(enterprisetypeCmbBox, 0, 137, Short.MAX_VALUE)
                                 .addComponent(networkCmbBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(nameTxtField))
-                            .addComponent(submitBtn))))
+                            .addComponent(submitBtn)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(343, 343, 343)
+                        .addComponent(jLabel1)))
                 .addContainerGap(221, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(146, 146, 146)
+                .addGap(49, 49, 49)
+                .addComponent(jLabel1)
+                .addGap(81, 81, 81)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -159,10 +175,10 @@ for(Network ntw : system.getNetworkList()){
                     .addComponent(nameLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(backBtn)
-                    .addComponent(submitBtn))
-                .addContainerGap(223, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(submitBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(backBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(151, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -178,24 +194,18 @@ Network network = (Network) networkCmbBox.getSelectedItem();
             JOptionPane.showMessageDialog(null, "Invalid Input!");
             return;
         }
-
-        String name = nameTxtField.getText();
-       
-        for (Enterprise e: network.getEnterpriseDirectory().getEnterpriseList()) {
+String name = nameTxtField.getText();
+for (Enterprise e: network.getEnterpriseDirectory().getEnterpriseList()) {
             if (e.getName().equals(name)) {
-                JOptionPane.showMessageDialog(this, "Enterprise name already exists Please select a different name.");
+                JOptionPane.showMessageDialog(this, "Enterprise name already exists.Please select a different name.");
                 return;
             }
         }
-
-        Enterprise enterprise = network.getEnterpriseDirectory().createAndAddEnterprise(name, type);
-        
+Enterprise enterprise = network.getEnterpriseDirectory().createAndAddEnterprise(name, type);
         Address a=addressList.AddAddress();
         a.setEnterpriseName(nameTxtField.getText());
       
-    //    File f= new File("D:\\AED_FINALPROJECT\\file.xls");
-         
-        populateTable();        // TODO add your handling code here:
+ populateTable();        // TODO add your handling code here:
     }//GEN-LAST:event_submitBtnActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
@@ -226,6 +236,7 @@ for (Enterprise.EnterpriseType type : Enterprise.EnterpriseType.values()){
     private javax.swing.JButton backBtn;
     private javax.swing.JComboBox enterprisetypeCmbBox;
     private javax.swing.JLabel enterprisetypeLbl;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel nameLbl;
     private javax.swing.JTable nameTbl;

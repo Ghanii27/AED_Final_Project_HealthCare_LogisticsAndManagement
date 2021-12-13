@@ -14,10 +14,12 @@ import java.util.ArrayList;
  * @author krishna
  */
 public class SupplierOrganization extends Organization{
- public SupplierOrganization(){
-     super(Organization.OrganizationType.Supplier.getValue());
+public SupplierOrganization(){
+super(Organization.OrganizationType.Supplier.getValue());
      }   
  @Override
+ 
+ 
  public ArrayList<Role> getSupportedRole(){
      ArrayList<Role> roles = new ArrayList<>();
      roles.add(new SupplierRole());

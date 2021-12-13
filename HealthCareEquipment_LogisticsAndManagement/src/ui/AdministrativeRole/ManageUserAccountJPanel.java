@@ -94,14 +94,15 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         jButton2 = new javax.swing.JButton();
 
         headerLbl.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        headerLbl.setText("Manage Organization");
+        headerLbl.setForeground(new java.awt.Color(0, 102, 102));
+        headerLbl.setText("Manage User Account");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "Name"
+                "User Name", "Role"
             }
         ) {
             Class[] types = new Class [] {
@@ -166,6 +167,7 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
         });
 
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/add.png"))); // NOI18N
         jButton2.setText("Create User Account");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -197,8 +199,8 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
                                 .addComponent(orgLbl3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(orgLbl1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton1)
-                                .addGap(28, 28, 28)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jButton2))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(353, 353, 353)
@@ -237,9 +239,9 @@ public class ManageUserAccountJPanel extends javax.swing.JPanel {
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(61, 61, 61)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2))
-                .addContainerGap(504, Short.MAX_VALUE))
+                .addContainerGap(434, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

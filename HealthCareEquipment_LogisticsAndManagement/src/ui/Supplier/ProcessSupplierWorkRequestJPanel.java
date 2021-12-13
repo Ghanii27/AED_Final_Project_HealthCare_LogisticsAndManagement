@@ -43,6 +43,8 @@ public class ProcessSupplierWorkRequestJPanel extends javax.swing.JPanel {
         updateBtn = new javax.swing.JButton();
 
         headerLbl.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        headerLbl.setForeground(new java.awt.Color(0, 102, 102));
+        headerLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/supplier.jpg"))); // NOI18N
         headerLbl.setText("PROCESSING SUPPLIER REQUEST");
 
         deliveryLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -77,7 +79,7 @@ public class ProcessSupplierWorkRequestJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(242, 242, 242)
                         .addComponent(headerLbl)))
-                .addContainerGap(526, Short.MAX_VALUE))
+                .addContainerGap(397, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -92,19 +94,13 @@ public class ProcessSupplierWorkRequestJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backBtn)
                     .addComponent(updateBtn))
-                .addContainerGap(1021, Short.MAX_VALUE))
+                .addContainerGap(955, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
 suppWorkReq.setStatus("Completed");
- //       int year=dateFld.getCalendar().get(Calendar.YEAR);
-     //   int month=dateFld.getCalendar().get(Calendar.MONTH);
-    //    int day=dateFld.getCalendar().get(Calendar.DAY_OF_MONTH);
-    //    String result=year+"-"+month+"-"+day;
-     //   deliveryTxt.setText(result);
-        
-        JOptionPane.showMessageDialog(null, "Request updated successfully!");        // TODO add your handling code here:
+JOptionPane.showMessageDialog(null, "Request updated successfully!");        // TODO add your handling code here:
     }//GEN-LAST:event_updateBtnActionPerformed
 
 

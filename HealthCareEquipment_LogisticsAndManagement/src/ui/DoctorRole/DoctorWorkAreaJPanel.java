@@ -57,6 +57,7 @@ ntw();
         jLabel1 = new javax.swing.JLabel();
 
         prescriptionBtn.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        prescriptionBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/prescription.png"))); // NOI18N
         prescriptionBtn.setText("WRITE PRESCRIPTION");
         prescriptionBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -65,6 +66,7 @@ ntw();
         });
 
         medicalequipBtn.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        medicalequipBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/steth.png"))); // NOI18N
         medicalequipBtn.setText("MEDICAL EQUIPMENT MANAGEMENT");
         medicalequipBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -73,7 +75,9 @@ ntw();
         });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 102, 102));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/doctor1.png"))); // NOI18N
         jLabel1.setText("DOCTOR WORK AREA");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -85,22 +89,22 @@ ntw();
                     .addGroup(layout.createSequentialGroup()
                         .addGap(263, 263, 263)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(medicalequipBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(prescriptionBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(prescriptionBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(medicalequipBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(228, 228, 228)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 541, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(200, Short.MAX_VALUE))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(117, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(69, 69, 69)
-                .addComponent(prescriptionBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(209, 209, 209)
-                .addComponent(medicalequipBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(53, 53, 53)
+                .addComponent(prescriptionBtn)
+                .addGap(95, 95, 95)
+                .addComponent(medicalequipBtn)
                 .addContainerGap(297, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents

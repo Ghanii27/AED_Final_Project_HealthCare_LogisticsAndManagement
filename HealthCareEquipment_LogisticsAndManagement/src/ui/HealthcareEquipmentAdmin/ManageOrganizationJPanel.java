@@ -58,6 +58,7 @@ private void populateTable(){
         orgCmbBox = new javax.swing.JComboBox();
         backBtn = new javax.swing.JButton();
         addOrgBtn = new javax.swing.JButton();
+        headerLbl = new javax.swing.JLabel();
 
         orgTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -108,12 +109,17 @@ private void populateTable(){
             }
         });
 
+        addOrgBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/R.png"))); // NOI18N
         addOrgBtn.setText("Add Organization");
         addOrgBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addOrgBtnActionPerformed(evt);
             }
         });
+
+        headerLbl.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        headerLbl.setForeground(new java.awt.Color(0, 102, 102));
+        headerLbl.setText("Manage Organization");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -129,17 +135,22 @@ private void populateTable(){
                     .addGroup(layout.createSequentialGroup()
                         .addGap(430, 430, 430)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(backBtn)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(addOrgBtn))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(484, 484, 484)
+                        .addComponent(headerLbl)))
                 .addContainerGap(466, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(189, 189, 189)
+                .addGap(83, 83, 83)
+                .addComponent(headerLbl)
+                .addGap(62, 62, 62)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -148,8 +159,8 @@ private void populateTable(){
                 .addGap(62, 62, 62)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addOrgBtn)
-                    .addComponent(backBtn))
-                .addContainerGap(498, Short.MAX_VALUE))
+                    .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(454, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -175,6 +186,7 @@ populateTable();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addOrgBtn;
     private javax.swing.JButton backBtn;
+    private javax.swing.JLabel headerLbl;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JComboBox orgCmbBox;

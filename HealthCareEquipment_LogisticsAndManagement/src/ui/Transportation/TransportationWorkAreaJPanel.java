@@ -15,8 +15,6 @@ import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JOptionPane;
-
-
 /**
  *
  * @author 16176
@@ -74,6 +72,8 @@ public class TransportationWorkAreaJPanel extends javax.swing.JPanel {
         processreqBtn = new javax.swing.JButton();
 
         TransportationworkareaLbl.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        TransportationworkareaLbl.setForeground(new java.awt.Color(0, 102, 102));
+        TransportationworkareaLbl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/transport.png"))); // NOI18N
         TransportationworkareaLbl.setText("TRNSPORTATION WORK AREA");
 
         workreqTble.setModel(new javax.swing.table.DefaultTableModel(
@@ -119,39 +119,36 @@ public class TransportationWorkAreaJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(459, 459, 459)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(531, 531, 531)
-                        .addComponent(TransportationworkareaLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 656, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(459, 459, 459)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 687, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(248, 248, 248)
-                        .addComponent(refreshBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(419, 419, 419)
-                        .addComponent(backBtn)
-                        .addGap(255, 255, 255)
-                        .addComponent(assignBtn)
-                        .addGap(262, 262, 262)
-                        .addComponent(processreqBtn)))
-                .addContainerGap(507, Short.MAX_VALUE))
+                        .addGap(6, 6, 6)
+                        .addComponent(TransportationworkareaLbl))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(backBtn)
+                            .addGap(73, 73, 73)
+                            .addComponent(assignBtn)
+                            .addGap(116, 116, 116)
+                            .addComponent(refreshBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(processreqBtn))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 687, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(570, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(107, 107, 107)
-                .addComponent(TransportationworkareaLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16)
-                .addComponent(refreshBtn)
-                .addGap(31, 31, 31)
+                .addContainerGap()
+                .addComponent(TransportationworkareaLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(74, 74, 74)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(115, 115, 115)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backBtn)
                     .addComponent(assignBtn)
-                    .addComponent(processreqBtn))
+                    .addComponent(processreqBtn)
+                    .addComponent(refreshBtn))
                 .addContainerGap(613, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -182,7 +179,6 @@ layout.next(userProcessContainer);
         int selectedRow = workreqTble.getSelectedRow();
         if (selectedRow < 0){
         return;
-        
         }
         TransportationWorkRequest request = (TransportationWorkRequest)workreqTble.getValueAt(selectedRow, 0);
         request.setReceiver(account);
