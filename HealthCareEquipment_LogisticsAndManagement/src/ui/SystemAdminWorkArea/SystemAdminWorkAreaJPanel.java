@@ -15,7 +15,6 @@ import javax.swing.JPanel;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
-import ui.SystemAdminWorkArea.ViewReportsJPanel;
 
 /**
  *
@@ -105,7 +104,6 @@ model.reload();
         jLabel1 = new javax.swing.JLabel();
         splitPane = new javax.swing.JSplitPane();
         jPanel1 = new javax.swing.JPanel();
-        SysAdminViewReports = new javax.swing.JButton();
         btnManageNetwork = new javax.swing.JButton();
         btnManageEnterprise = new javax.swing.JButton();
         btnManageEnterpriseAdmin = new javax.swing.JButton();
@@ -116,13 +114,6 @@ model.reload();
         jTree1 = new javax.swing.JTree();
 
         jLabel1.setText("jLabel1");
-
-        SysAdminViewReports.setText("Reports");
-        SysAdminViewReports.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SysAdminViewReportsActionPerformed(evt);
-            }
-        });
 
         btnManageNetwork.setText("Manage Network");
         btnManageNetwork.addActionListener(new java.awt.event.ActionListener() {
@@ -158,8 +149,7 @@ model.reload();
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnManageEnterpriseAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnManageEnterprise, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnManageNetwork, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(SysAdminViewReports, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(btnManageNetwork, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(176, 176, 176)
                         .addComponent(jLabel2)))
@@ -174,9 +164,7 @@ model.reload();
                 .addComponent(btnManageEnterprise)
                 .addGap(18, 18, 18)
                 .addComponent(btnManageEnterpriseAdmin)
-                .addGap(18, 18, 18)
-                .addComponent(SysAdminViewReports)
-                .addGap(61, 61, 61)
+                .addGap(104, 104, 104)
                 .addComponent(jLabel2)
                 .addContainerGap(194, Short.MAX_VALUE))
         );
@@ -236,16 +224,8 @@ model.reload();
      crdlyt.next(userprocessContainer);        // TODO add your handling code here:
     }//GEN-LAST:event_btnManageEnterpriseAdminActionPerformed
 
-    private void SysAdminViewReportsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SysAdminViewReportsActionPerformed
-        ui.SystemAdminWorkArea.ViewReportsJPanel showReports = new ui.SystemAdminWorkArea.ViewReportsJPanel(userprocessContainer, system);
-        userprocessContainer.add("showReports", showReports);
-        CardLayout crdlyt = (CardLayout) userprocessContainer.getLayout();
-        crdlyt.next(userprocessContainer);       // TODO add your handling code here:
-    }//GEN-LAST:event_SysAdminViewReportsActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton SysAdminViewReports;
     private javax.swing.JButton btnManageEnterprise;
     private javax.swing.JButton btnManageEnterpriseAdmin;
     private javax.swing.JButton btnManageNetwork;

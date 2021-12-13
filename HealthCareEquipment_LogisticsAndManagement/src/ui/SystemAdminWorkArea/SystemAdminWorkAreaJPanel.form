@@ -55,7 +55,6 @@
                                   <Component id="btnManageEnterpriseAdmin" max="32767" attributes="0"/>
                                   <Component id="btnManageEnterprise" alignment="0" max="32767" attributes="0"/>
                                   <Component id="btnManageNetwork" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="SysAdminViewReports" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -76,9 +75,7 @@
                       <Component id="btnManageEnterprise" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnManageEnterpriseAdmin" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                      <Component id="SysAdminViewReports" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="194" max="32767" attributes="0"/>
                   </Group>
@@ -86,14 +83,6 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="SysAdminViewReports">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Reports"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SysAdminViewReportsActionPerformed"/>
-              </Events>
-            </Component>
             <Component class="javax.swing.JButton" name="btnManageNetwork">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Manage Network"/>
